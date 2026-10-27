@@ -1,0 +1,1919 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>Vũ Mai Thy — UI/UX Design Lead & Product Owner</title>
+<meta name="description" content="Portfolio of Vũ Mai Thy: UI/UX Design Lead and Product Owner in Ho Chi Minh City. Case studies on fintech onboarding, GA4 funnels, design systems and team leadership.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vũ Mai Thy — UI/UX Design Lead & Product Owner">
+<meta property="og:description" content="Portfolio of Vũ Mai Thy: UI/UX Design Lead and Product Owner in Ho Chi Minh City. Case studies on fintech onboarding, GA4 funnels, design systems and team leadership.">
+<meta property="og:url" content="https://maithy0401.github.io/portfolio/">
+<meta name="theme-color" content="#EDF1EC">
+</head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.lang = "en";</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: celadon ground, cobalt ink. Each case study reads like a product spec: a meta rail on the left, the narrative on the right. */
+  :root {
+    --bg: #EDF1EC;
+    --surface: #F8FAF7;
+    --sunk: #E2E9E3;
+    --ink: #15221D;
+    --muted: #52625A;
+    --line: #CAD5CD;
+    --accent: #2340B0;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #DCE2F5;
+    --glaze: #C3D6C8;
+    --glaze-deep: #9DBBA7;
+    --glaze-ink: #22413A;
+    --danger: #B3261E;
+
+    --f-display: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --f-body: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --t-xs: 0.75rem;
+    --t-sm: 0.875rem;
+    --t-base: 1rem;
+    --t-lg: 1.25rem;
+    --t-xl: clamp(1.25rem, 1.1rem + 0.8vw, 1.6rem);
+    --t-h3: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+    --t-h2: clamp(1.9rem, 1.4rem + 2.4vw, 3.1rem);
+    --t-name: clamp(2.5rem, 0.9rem + 6vw, 6rem);
+
+    --r-lg: 22px;
+    --r-md: 14px;
+    --r-sm: 8px;
+    --wrap: 1180px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E1512;
+      --surface: #141E1A;
+      --sunk: #1A2621;
+      --ink: #E3EBE6;
+      --muted: #97A89F;
+      --line: #2A3933;
+      --accent: #93A6FF;
+      --accent-ink: #0A1026;
+      --accent-soft: #1E274D;
+      --glaze: #1F352C;
+      --glaze-deep: #2C4B3E;
+      --glaze-ink: #BFD9CB;
+      --danger: #F2B8B5;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E1512;
+    --surface: #141E1A;
+    --sunk: #1A2621;
+    --ink: #E3EBE6;
+    --muted: #97A89F;
+    --line: #2A3933;
+    --accent: #93A6FF;
+    --accent-ink: #0A1026;
+    --accent-soft: #1E274D;
+    --glaze: #1F352C;
+    --glaze-deep: #2C4B3E;
+    --glaze-ink: #BFD9CB;
+    --danger: #F2B8B5;
+    color-scheme: dark;
+  }
+
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: var(--t-base);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    height: env(safe-area-inset-top, 0px);
+    z-index: 30;
+    background: var(--bg);
+  }
+  h1, h2, h3, h4 { margin: 0; font-family: var(--f-display); text-wrap: balance; letter-spacing: -0.02em; }
+  p { margin: 0; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  code, .mono { font-family: var(--f-mono); }
+
+  .wrap {
+    max-width: var(--wrap);
+    margin-inline: auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .inner { padding-inline: clamp(0px, 2.5vw, 28px); }
+
+  .label {
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ---------- top bar ---------- */
+  .top {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .top .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 60px;
+  }
+  .mark {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .mark { display: inline-flex; align-items: center; }
+  .bear { display: block; }
+  .bear .b-ear, .bear .b-head { fill: var(--accent); }
+  .bear .b-ear-in { fill: var(--accent-soft); }
+  .bear .b-muzzle, .bear .b-eye { fill: var(--bg); }
+  .bear .b-nose { fill: var(--ink); }
+  .mark:hover .bear { transform: rotate(-6deg); }
+  @media (prefers-reduced-motion: no-preference) { .bear { transition: transform 0.2s ease; } }
+  .nav { display: flex; align-items: center; gap: clamp(12px, 2.4vw, 28px); }
+  .nav a.navlink {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: var(--t-sm);
+    font-weight: 500;
+  }
+  .nav a.navlink:hover { color: var(--ink); }
+  @media (max-width: 720px) { .nav a.navlink { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: end;
+    padding-block: clamp(44px, 7vw, 104px) clamp(36px, 5vw, 64px);
+  }
+  .hero-copy { display: flex; flex-direction: column; gap: 26px; min-width: 0; }
+  .name {
+    font-weight: 800;
+    font-size: var(--t-name);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+  }
+  .name .given { color: var(--accent); }
+  .thesis {
+    font-size: var(--t-xl);
+    line-height: 1.45;
+    max-width: 34ch;
+    color: var(--ink);
+  }
+  .thesis strong { font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 0 20px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: var(--t-sm);
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); }
+  .btn.primary:hover { text-decoration: none; filter: brightness(1.08); }
+  .btn.ghost { border-color: var(--line); color: var(--ink); background: var(--surface); }
+  .btn.ghost:hover { border-color: var(--ink); text-decoration: none; }
+
+  .portrait-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .portrait {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    max-width: 100%;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background:
+      radial-gradient(120% 80% at 85% 10%, var(--glaze-deep) 0%, transparent 55%),
+      radial-gradient(90% 70% at 10% 95%, var(--glaze-deep) 0%, transparent 60%),
+      var(--glaze);
+  }
+  .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .portrait .crackle {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.35;
+  }
+  .portrait .crackle path { fill: none; stroke: var(--glaze-ink); stroke-width: 0.6; }
+  .portrait .mono-mark {
+    position: absolute;
+    left: 22px;
+    bottom: 14px;
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(4.5rem, 10vw, 7.5rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--glaze-ink);
+  }
+  .portrait .tag {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    right: 22px;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--glaze-ink);
+  }
+  .now {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .now p { font-size: var(--t-sm); line-height: 1.55; }
+  .now .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #2E9E6A; margin-right: 8px; vertical-align: 1px; }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--line);
+    margin-block: 0 clamp(56px, 8vw, 104px);
+  }
+  .fact { padding: 20px 20px 0 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .fact + .fact { padding-left: 20px; border-left: 1px solid var(--line); }
+  .fact dt {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: clamp(1.7rem, 1.3rem + 1.4vw, 2.4rem);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    font-variant-numeric: tabular-nums;
+  }
+  .fact dd { margin: 0; font-size: var(--t-sm); color: var(--muted); line-height: 1.5; }
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; }
+    .portrait-col { max-width: 420px; }
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fact:nth-child(3) { padding-left: 0; border-left: 0; }
+    .fact:nth-child(n+3) { border-top: 1px solid var(--line); margin-top: 20px; }
+  }
+
+  /* ---------- sections ---------- */
+  .section { padding-block: clamp(56px, 8vw, 104px); border-top: 1px solid var(--line); }
+  .section-head { display: flex; flex-direction: column; gap: 14px; margin-bottom: clamp(28px, 4vw, 48px); max-width: 760px; }
+  .section-head h2 { font-size: var(--t-h2); font-weight: 700; line-height: 1.05; }
+  .section-head p { color: var(--muted); max-width: 62ch; }
+  [id] { scroll-margin-top: calc(76px + env(safe-area-inset-top, 0px)); }
+
+  /* two roles */
+  .roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2.5vw, 28px); }
+  .role {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: clamp(22px, 3vw, 34px);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
+  }
+  .role h3 { font-size: var(--t-h3); font-weight: 700; }
+  .role ul { display: flex; flex-direction: column; gap: 12px; }
+  .role li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; line-height: 1.55; }
+  .role li::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    margin-top: 0.5em;
+    border: 1.5px solid var(--accent);
+    border-radius: 2px;
+  }
+  .proof { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: auto; padding-top: 6px; }
+  @media (max-width: 760px) { .roles { grid-template-columns: 1fr; } }
+
+  .key {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 4px 9px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  a.key:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .lens {
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--t-xs);
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* work index */
+  .index { border-top: 1px solid var(--ink); }
+  .index a {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr) 150px 92px;
+    gap: 18px;
+    align-items: center;
+    padding: 20px 4px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .index a:hover .ititle { color: var(--accent); }
+  .index .ititle { font-family: var(--f-display); font-weight: 600; font-size: var(--t-lg); letter-spacing: -0.015em; line-height: 1.3; }
+  .index .iyear { font-family: var(--f-mono); font-size: var(--t-sm); color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+  @media (max-width: 760px) {
+    .index a { grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; }
+    .index .ikey { grid-column: 1; }
+    .index .iyear { grid-column: 2; grid-row: 1; }
+    .index .ititle { grid-column: 1 / -1; }
+    .index .ilens { grid-column: 1 / -1; }
+  }
+
+  /* ---------- case study ---------- */
+  .case { padding-block: clamp(56px, 8vw, 96px); border-top: 1px solid var(--line); }
+  .case-head { display: flex; flex-direction: column; gap: 18px; margin-bottom: clamp(28px, 4vw, 44px); }
+  .case-tags { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .case-head h2 { font-size: var(--t-h2); font-weight: 700; line-height: 1.06; max-width: 22ch; }
+  .lede { font-size: var(--t-xl); line-height: 1.5; max-width: 60ch; color: var(--ink); }
+
+  .case-body { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .meta {
+    position: sticky;
+    top: calc(84px + env(safe-area-inset-top, 0px));
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--ink);
+  }
+  .meta div { padding: 12px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 3px; }
+  .meta dt { font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .meta dd { margin: 0; font-size: var(--t-sm); line-height: 1.5; }
+  .story { display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px); min-width: 0; }
+  .block { display: flex; flex-direction: column; gap: 14px; }
+  .block h3 { font-size: var(--t-h3); font-weight: 700; }
+  .block > p { max-width: 64ch; }
+  .steps { display: flex; flex-direction: column; gap: 14px; counter-reset: s; max-width: 66ch; }
+  .steps li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; }
+  .steps li::before {
+    counter-increment: s;
+    content: counter(s, decimal-leading-zero);
+    font-family: var(--f-mono);
+    font-size: var(--t-sm);
+    color: var(--accent);
+    padding-top: 2px;
+  }
+  .bullets { display: flex; flex-direction: column; gap: 12px; max-width: 66ch; }
+  .bullets li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; }
+  .bullets li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: 0.62em; }
+  .outcome {
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: var(--r-lg);
+    padding: clamp(22px, 3vw, 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .outcome .label { color: color-mix(in srgb, var(--bg) 70%, var(--ink)); }
+  .outcome p { font-size: var(--t-lg); line-height: 1.55; max-width: 62ch; }
+  @media (max-width: 900px) {
+    .case-body { grid-template-columns: 1fr; }
+    .meta { position: static; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
+  }
+
+  figure { margin: 0; }
+  .fig {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: clamp(18px, 3vw, 30px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+  }
+  .fig figcaption { font-size: var(--t-sm); color: var(--muted); max-width: 70ch; }
+
+  /* onboarding stages */
+  .stages { display: flex; align-items: stretch; gap: 0; overflow-x: auto; padding-bottom: 4px; }
+  .stage { flex: 1 1 0; min-width: 118px; display: flex; flex-direction: column; gap: 10px; }
+  .stage .pill {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 8px 14px;
+    background: var(--sunk);
+    color: var(--ink);
+    font-weight: 600;
+    font-size: var(--t-sm);
+    line-height: 1.3;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%, 12px 50%);
+    padding-left: 22px;
+  }
+  .stage:first-child .pill { clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%); padding-left: 14px; border-radius: 8px 0 0 8px; }
+  .stage:last-child .pill { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 12px 50%); border-radius: 0 8px 8px 0; }
+  .stage + .stage { margin-left: -6px; }
+  .stage.hot .pill { background: var(--accent-soft); color: var(--accent); }
+  .stage .events { display: flex; flex-direction: column; gap: 4px; padding-left: 6px; }
+  .stage code { font-size: 0.72rem; color: var(--muted); }
+
+  .stack { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .stack div {
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--bg);
+    position: relative;
+  }
+  .stack div:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translate(50%, -50%);
+    font-family: var(--f-mono);
+    color: var(--muted);
+    font-size: 0.8rem;
+    z-index: 1;
+  }
+  .stack b { font-family: var(--f-display); font-size: 1.7rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .stack span { font-size: var(--t-sm); color: var(--muted); line-height: 1.4; }
+  @media (max-width: 640px) {
+    .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stack div::after { display: none; }
+  }
+
+  /* decision log */
+  .decisions { border-top: 1px solid var(--ink); }
+  .decision { padding: 20px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 16px; }
+  .decision .did { font-family: var(--f-mono); font-size: var(--t-sm); color: var(--accent); padding-top: 3px; }
+  .decision h4 { font-size: 1.08rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
+  .dgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .dgrid div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .dgrid p { font-size: var(--t-sm); line-height: 1.55; }
+  @media (max-width: 720px) {
+    .decision { grid-template-columns: 1fr; gap: 6px; }
+    .dgrid { grid-template-columns: 1fr; gap: 12px; }
+  }
+
+  /* system map */
+  .sysmap { display: grid; grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr); align-items: center; gap: 0; }
+  .sys-group { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .sys-node {
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    background: var(--bg);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .sys-node strong { font-family: var(--f-display); font-size: 1.1rem; letter-spacing: -0.015em; }
+  .sys-node > span { font-size: var(--t-sm); color: var(--muted); }
+  .sys-node.app { border-color: var(--accent); }
+  .flows { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .flows li { font-size: var(--t-xs); font-weight: 600; padding: 4px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  .sys-link { position: relative; align-self: stretch; display: flex; align-items: center; justify-content: center; }
+  .sys-link::before { content: ""; position: absolute; left: 8px; right: 8px; top: 50%; border-top: 1.5px dashed var(--muted); }
+  .sys-link span {
+    position: relative;
+    background: var(--surface);
+    padding: 4px 6px;
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.3;
+  }
+  @media (max-width: 720px) {
+    .sysmap { grid-template-columns: 1fr; }
+    .sys-link { min-height: 56px; }
+    .sys-link::before { left: 50%; right: auto; top: 6px; bottom: 6px; border-top: 0; border-left: 1.5px dashed var(--muted); }
+  }
+
+  /* release loop / process */
+  .loop { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; counter-reset: loop; }
+  .loop li {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+  .loop li::before {
+    counter-increment: loop;
+    content: counter(loop, decimal-leading-zero);
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    color: var(--accent);
+    letter-spacing: 0.06em;
+  }
+  .loop h3 { font-size: 1.12rem; font-weight: 700; }
+  .loop p { font-size: var(--t-sm); color: var(--muted); line-height: 1.55; }
+  .loop-return {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: var(--t-sm);
+    color: var(--muted);
+  }
+  .loop-return::before { content: "↺"; font-size: 1.2rem; color: var(--accent); line-height: 1; }
+  @media (max-width: 860px) { .loop { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { .loop { grid-template-columns: 1fr; } }
+
+  .principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 36px); margin-top: clamp(36px, 5vw, 56px); }
+  .principles blockquote { margin: 0; border-top: 1px solid var(--ink); padding-top: 16px; font-family: var(--f-display); font-size: var(--t-lg); font-weight: 600; line-height: 1.35; letter-spacing: -0.015em; }
+  @media (max-width: 760px) { .principles { grid-template-columns: 1fr; } }
+
+  /* process strip (case 3) */
+  .process { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .process li { display: flex; align-items: center; gap: 8px; font-size: var(--t-sm); font-weight: 600; }
+  .process li span.n { font-family: var(--f-mono); font-weight: 500; color: var(--accent); font-size: var(--t-xs); }
+  .process li:not(:last-child)::after { content: "→"; color: var(--muted); font-family: var(--f-mono); font-weight: 400; margin-left: 2px; }
+  .process li.mvp { background: var(--accent); color: var(--accent-ink); padding: 5px 11px; border-radius: 999px; }
+  .process li.mvp span.n { color: var(--accent-ink); }
+
+  /* schematic phones */
+  .phones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 3vw, 32px); }
+  .ph { display: flex; flex-direction: column; gap: 12px; align-items: center; min-width: 0; }
+  .phone {
+    width: 100%;
+    max-width: 190px;
+    aspect-ratio: 9 / 18;
+    border: 1.5px solid var(--ink);
+    border-radius: 26px;
+    background: var(--bg);
+    padding: 22px 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .phone::before { content: ""; position: absolute; top: 8px; left: 50%; width: 38px; height: 5px; border-radius: 4px; background: var(--line); transform: translateX(-50%); }
+  .sk { border-radius: 6px; background: var(--sunk); }
+  .sk.line { height: 7px; }
+  .sk.w70 { width: 70%; } .sk.w50 { width: 50%; } .sk.w85 { width: 85%; }
+  .sk.opt { height: 22px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); }
+  .sk.opt.on { background: var(--accent); border-color: var(--accent); }
+  .sk.cta { margin-top: auto; height: 26px; border-radius: 999px; background: var(--ink); }
+  .ring { width: 64%; aspect-ratio: 1; margin: 6px auto 4px; border-radius: 50%; background: conic-gradient(var(--accent) 0 66%, var(--accent-soft) 66% 100%); -webkit-mask: radial-gradient(circle, transparent 54%, #000 55%); mask: radial-gradient(circle, transparent 54%, #000 55%); }
+  .bars { display: flex; align-items: flex-end; gap: 5px; height: 54px; margin-top: 6px; }
+  .bars i { flex: 1; border-radius: 3px 3px 0 0; background: var(--glaze-deep); }
+  .bars i.hi { background: var(--accent); }
+  .isles { position: relative; flex: 1; }
+  .isles i { position: absolute; border-radius: 46% 54% 42% 58% / 52% 44% 56% 48%; background: var(--glaze-deep); }
+  .isles i::after { content: ""; position: absolute; left: 30%; right: 30%; top: -26%; height: 34%; border-radius: 4px 4px 2px 2px; background: var(--glaze-ink); opacity: .55; }
+  .ph p { font-size: var(--t-sm); text-align: center; color: var(--muted); line-height: 1.4; max-width: 22ch; }
+  @media (max-width: 560px) { .phones { gap: 8px; } .phone { padding: 18px 8px 10px; border-radius: 20px; } .ph p { font-size: var(--t-xs); } }
+
+  /* timeline (case 4) */
+  .timeline { border-left: 1.5px solid var(--line); margin-left: 6px; display: flex; flex-direction: column; gap: 22px; }
+  .timeline li { position: relative; padding-left: 26px; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 14px; }
+  .timeline li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+  .timeline li.edge::before { background: var(--accent); }
+  .timeline .yr { font-family: var(--f-mono); font-size: var(--t-sm); color: var(--accent); font-variant-numeric: tabular-nums; padding-top: 1px; }
+  .timeline strong { display: block; font-weight: 600; line-height: 1.45; }
+  .timeline span.d { display: block; font-size: var(--t-sm); color: var(--muted); line-height: 1.55; margin-top: 3px; }
+  @media (max-width: 520px) { .timeline li { grid-template-columns: 1fr; gap: 2px; } }
+
+  .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .trio div { border-top: 1.5px solid var(--accent); padding-top: 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .trio h4 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; }
+  .trio p { font-size: var(--t-sm); color: var(--muted); line-height: 1.55; }
+  @media (max-width: 720px) { .trio { grid-template-columns: 1fr; } }
+
+  /* background + experience */
+  .split { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+  .split > div { min-width: 0; }
+  .prose { display: flex; flex-direction: column; gap: 14px; max-width: 58ch; }
+  .words { display: flex; flex-direction: column; border-top: 1px solid var(--ink); }
+  .words li { padding: 14px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; }
+  .words strong { font-weight: 600; }
+  .words span { font-size: var(--t-sm); color: var(--muted); line-height: 1.55; }
+  @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+
+  .xp { border-top: 1px solid var(--ink); }
+  .xp li { display: grid; grid-template-columns: 112px minmax(0, 1fr) minmax(0, 0.9fr); gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .xp .yrs { font-family: var(--f-mono); font-size: var(--t-sm); color: var(--muted); font-variant-numeric: tabular-nums; }
+  .xp .co { font-family: var(--f-display); font-weight: 700; font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.3; }
+  .xp .rl { font-size: var(--t-sm); line-height: 1.5; }
+  @media (max-width: 700px) {
+    .xp li { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; }
+    .xp .yrs { grid-column: 2; grid-row: 1; }
+    .xp .co { grid-column: 1; grid-row: 1; }
+    .xp .rl { grid-column: 1 / -1; color: var(--muted); }
+  }
+
+  .kit { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); margin-top: clamp(40px, 5vw, 64px); }
+  .kit > div { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips li { font-size: var(--t-sm); padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); line-height: 1.4; }
+  @media (max-width: 760px) { .kit { grid-template-columns: 1fr; } }
+
+  /* contact */
+  .contact { background: var(--ink); color: var(--bg); }
+  .contact .inner { padding-block: clamp(56px, 8vw, 104px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: end; }
+  .contact h2 { font-size: var(--t-h2); font-weight: 700; line-height: 1.05; }
+  .contact .open { margin-top: 18px; color: color-mix(in srgb, var(--bg) 72%, var(--ink)); max-width: 44ch; }
+  .clist { display: flex; flex-direction: column; border-top: 1px solid color-mix(in srgb, var(--bg) 30%, var(--ink)); }
+  .clist li { display: grid; grid-template-columns: 92px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 16px 0; border-bottom: 1px solid color-mix(in srgb, var(--bg) 30%, var(--ink)); }
+  .clist .label { color: color-mix(in srgb, var(--bg) 62%, var(--ink)); }
+  .clist .val { font-size: var(--t-lg); font-weight: 500; overflow-wrap: break-word; user-select: all; -webkit-user-select: all; }
+  .clist a.val { color: var(--bg); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--bg) 40%, var(--ink)); user-select: auto; -webkit-user-select: auto; }
+  .copy {
+    appearance: none;
+    border: 1px solid color-mix(in srgb, var(--bg) 35%, var(--ink));
+    background: transparent;
+    color: var(--bg);
+    border-radius: 999px;
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    letter-spacing: 0.06em;
+    padding: 8px 12px;
+    min-height: 36px;
+    cursor: pointer;
+  }
+  .copy:hover { border-color: var(--bg); }
+  .copy:focus-visible { outline-color: var(--bg); }
+  @media (max-width: 860px) { .contact .inner { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .clist li { grid-template-columns: minmax(0, 1fr) auto; } .clist .label { grid-column: 1 / -1; } }
+
+  .outcome .label, .now .label, .dgrid .label, .fig .label { font-size: var(--t-xs); line-height: 1.4; }
+
+
+  /* image slots: empty frames are visible only to editors */
+  .slot { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .slot.empty { display: none; }
+  :root.editing .slot.empty { display: flex; }
+  .slot.cover { margin-bottom: clamp(28px, 4vw, 44px); }
+  .slot.solo { margin-top: clamp(28px, 4vw, 40px); }
+  .slot-frame { position: relative; width: 100%; max-width: 100%; border-radius: var(--r-md); overflow: hidden; background: var(--sunk); }
+  .r-wide .slot-frame { aspect-ratio: 16 / 9; border-radius: var(--r-lg); }
+  .r-screen .slot-frame { aspect-ratio: 16 / 10; }
+  .r-photo .slot-frame { aspect-ratio: 4 / 3; }
+  .r-phone .slot-frame { aspect-ratio: 9 / 19.5; border-radius: 22px; }
+  .slot-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .r-phone .slot-frame img, .r-screen .slot-frame img { object-fit: contain; }
+  :root:not(.editing) .slot-frame img, :root:not(.editing) .portrait .p-img { cursor: zoom-in; }
+  .slot-empty {
+    position: absolute; inset: 0;
+    border: 1.5px dashed var(--muted); border-radius: inherit;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px; text-align: center; color: var(--muted);
+  }
+  .slot-empty .plus { font-family: var(--f-display); font-size: 1.6rem; line-height: 1; color: var(--accent); }
+  .slot-empty .hint { font-size: var(--t-xs); line-height: 1.4; max-width: 26ch; }
+  .slot-btn {
+    appearance: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+    font-family: var(--f-body); font-size: var(--t-xs); font-weight: 600; line-height: 1.2;
+    padding: 7px 12px; min-height: 32px; border-radius: 999px; cursor: pointer;
+  }
+  .slot-btn:hover { border-color: var(--ink); }
+  .slot-btn:disabled { opacity: 0.5; cursor: default; }
+  .slot-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .slot-tools { position: absolute; top: 8px; right: 8px; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+  .slot-frame[data-busy]::after {
+    content: attr(data-busy); position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    font-size: var(--t-sm); font-weight: 600; color: var(--ink);
+  }
+  .slot-cap { font-size: var(--t-sm); color: var(--muted); line-height: 1.45; }
+  .slot-cap-input {
+    width: 100%; font-family: var(--f-body); font-size: var(--t-sm);
+    padding: 8px 10px; border-radius: var(--r-sm); border: 1px solid var(--line);
+    background: var(--surface); color: var(--ink);
+  }
+  .slot-err { font-size: var(--t-xs); color: var(--danger); line-height: 1.4; }
+
+  .gallery-wrap { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .gallery-wrap.all-empty { display: none; }
+  :root.editing .gallery-wrap.all-empty { display: flex; }
+  .gallery-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .gallery-add { display: none; }
+  :root.editing .gallery-add { display: inline-flex; }
+  .gallery { display: grid; gap: 14px; }
+  .g-phone { grid-template-columns: repeat(auto-fill, minmax(min(140px, 100%), 1fr)); }
+  .g-screen { grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); }
+  .g-photo { grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); }
+  .slot-section.all-empty { display: none; }
+  :root.editing .slot-section.all-empty { display: block; }
+
+  .portrait.filled .crackle, .portrait.filled .mono-mark, .portrait.filled .tag { display: none; }
+  .p-tools { position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 2; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 6px; }
+  .p-tools .slot-err { flex-basis: 100%; text-align: right; background: var(--surface); padding: 4px 8px; border-radius: 6px; }
+  .p-busy { font-size: var(--t-sm); font-weight: 600; background: var(--surface); padding: 6px 10px; border-radius: 999px; }
+
+  .editbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: var(--ink); color: var(--bg);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .editbar-in {
+    max-width: var(--wrap); margin-inline: auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 10px;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px 16px; flex-wrap: wrap;
+  }
+  .eb-status { font-size: var(--t-sm); line-height: 1.4; min-width: 0; flex: 1 1 260px; }
+  .eb-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  :root.has-editbar footer { padding-bottom: 96px; }
+
+  .lightbox {
+    position: fixed; inset: 0; z-index: 50;
+    background: color-mix(in srgb, #000 88%, transparent);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    padding: calc(16px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  }
+  .lightbox[hidden] { display: none; }
+  .lightbox img { max-width: 100%; max-height: calc(100% - 60px); object-fit: contain; border-radius: var(--r-sm); }
+
+  footer .inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 24px; font-size: var(--t-sm); color: var(--muted); }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="inner">
+      <a class="mark" href="#top" aria-label="Vũ Mai Thy, back to top">
+        <svg class="bear" viewBox="0 0 40 40" width="36" height="36" aria-hidden="true">
+          <circle class="b-ear" cx="9.5" cy="11" r="6.5"/>
+          <circle class="b-ear" cx="30.5" cy="11" r="6.5"/>
+          <circle class="b-ear-in" cx="9.5" cy="11" r="3"/>
+          <circle class="b-ear-in" cx="30.5" cy="11" r="3"/>
+          <circle class="b-head" cx="20" cy="22.5" r="14"/>
+          <ellipse class="b-muzzle" cx="20" cy="28" rx="6.6" ry="5"/>
+          <ellipse class="b-nose" cx="20" cy="25.8" rx="2.3" ry="1.6"/>
+          <circle class="b-eye" cx="14.6" cy="20" r="1.7"/>
+          <circle class="b-eye" cx="25.4" cy="20" r="1.7"/>
+        </svg>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a class="navlink" href="#work">Work</a>
+        <a class="navlink" href="#how">How I work</a>
+        <a class="navlink" href="#experience">Experience</a>
+        <a class="navlink" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="wrap">
+    <div class="inner">
+      <section class="hero" aria-labelledby="name">
+        <div class="hero-copy">
+          <p class="label">UI/UX Design Lead · Product Owner · Ho Chi Minh City</p>
+          <h1 class="name" id="name">Vũ Mai <span class="given">Thy</span></h1>
+          <p class="thesis">
+            I turn complex, high-stakes flows into products people trust. Then I <strong>measure whether they work</strong> and feed what we learn back into the backlog.
+            
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#work">See case studies <span aria-hidden="true">↓</span></a>
+            <a class="btn ghost" href="#contact">Get in touch</a>
+          </div>
+        </div>
+
+        <div class="portrait-col">
+          <div class="portrait" data-slot="portrait">
+            <svg class="crackle" viewBox="0 0 200 250" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 40 L38 52 L70 31 L112 48 L150 30 L200 44"/>
+              <path d="M38 52 L44 96 L20 130 L0 126"/>
+              <path d="M112 48 L104 92 L136 118 L180 104 L200 112"/>
+              <path d="M44 96 L104 92"/>
+              <path d="M20 130 L58 160 L52 204 L0 214"/>
+              <path d="M136 118 L128 166 L170 190 L200 182"/>
+              <path d="M58 160 L128 166"/>
+              <path d="M52 204 L96 232 L128 210 L170 190"/>
+              <path d="M96 232 L100 250"/>
+              <path d="M150 30 L162 0"/>
+              <path d="M70 31 L66 0"/>
+            </svg>
+            <div class="tag"><span>VMT</span><span>HCMC · 2026</span></div>
+            <div class="mono-mark" aria-hidden="true">Thy</div>
+          </div>
+          <div class="now">
+            <p class="label"><span class="dot" aria-hidden="true"></span>Now</p>
+            <p>
+              UI/UX Designer with Product Owner responsibilities for <strong>LOTTE FLEX</strong>, a Buy Now Pay Later app at LOTTE C&amp;F Vietnam (LOTTE Group).
+              
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <dl class="facts">
+        <div class="fact">
+          <dt>10+</dt>
+          <dd>years designing web, mobile and internal products</dd>
+        </div>
+        <div class="fact">
+          <dt>2014–25</dt>
+          <dd>founded and led a UI/UX &amp; front-end team for Japanese clients</dd>
+        </div>
+        <div class="fact">
+          <dt>2025–now</dt>
+          <dd>Product Owner responsibilities for LOTTE FLEX: PRDs, backlog, GA4 tracking and UAT</dd>
+        </div>
+        <div class="fact">
+          <dt>6</dt>
+          <dd>domains: fintech, Web3, healthcare, e-commerce, public sector, crypto</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- TWO ROLES -->
+  <section class="section" aria-labelledby="roles-h">
+    <div class="wrap"><div class="inner">
+      <div class="section-head">
+        <p class="label">What I bring</p>
+        <h2 id="roles-h">Two roles I already do every day</h2>
+        <p>At LOTTE C&amp;F Vietnam I design the product and own its requirements, backlog and measurement. Before that I spent over a decade leading a design and front-end team.</p>
+      </div>
+      <div class="roles">
+        <article class="role">
+          <p class="label">Design Lead</p>
+          <h3>Set direction, raise the bar, ship it as designed</h3>
+          <ul>
+            <li>Founded and led a UI/UX and front-end team serving Japanese clients, 2014–2025</li>
+            <li>Designs end-to-end flows across a customer app and the internal systems behind it</li>
+            <li>Redesigned a fintech app for a new brand identity</li>
+            <li>Reviews implementation and runs UAT before every release</li>
+          </ul>
+          <div class="proof"><span class="label">Proof</span><a class="key" href="#flex-ui">FLEX-UI</a><a class="key" href="#lead-pl">LEAD-PL</a><a class="key" href="#well-mvp">WELL-MVP</a></div>
+        </article>
+        <article class="role">
+          <p class="label">Product Owner</p>
+          <h3>Turn goals into a backlog, and the backlog into evidence</h3>
+          <ul>
+            <li>Writes PRDs, user stories and acceptance criteria from business goals and user insight</li>
+            <li>Prioritises the backlog with Business and Development in Jira and Confluence</li>
+            <li>Builds GA4 tracking plans and funnels, and uses the data to decide what to fix</li>
+            <li>Works across Marketing, Partnership, CS, Risk and IT</li>
+          </ul>
+          <div class="proof"><span class="label">Proof</span><a class="key" href="#flex-data">FLEX-DATA</a><a class="key" href="#flex-ui">FLEX-UI</a></div>
+        </article>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- WORK INDEX -->
+  <section class="section" id="work" aria-labelledby="work-h">
+    <div class="wrap"><div class="inner">
+      <div class="section-head">
+        <p class="label">Selected work</p>
+        <h2 id="work-h">Four case studies, four lenses</h2>
+        <p>Each one is written as problem, decisions and outcome, with the role I played made explicit.</p>
+      </div>
+      <nav class="index" aria-label="Case studies">
+        <a href="#flex-ui">
+          <span class="ikey"><span class="key">FLEX-UI</span></span>
+          <span class="ititle">LOTTE FLEX: one product, an app and three back-office systems</span>
+          <span class="ilens"><span class="lens">Design Lead</span></span>
+          <span class="iyear">2025–26</span>
+        </a>
+        <a href="#flex-data">
+          <span class="ikey"><span class="key">FLEX-DATA</span></span>
+          <span class="ititle">LOTTE FLEX: making onboarding measurable</span>
+          <span class="ilens"><span class="lens">Product Owner</span></span>
+          <span class="iyear">2025–26</span>
+        </a>
+        <a href="#well-mvp">
+          <span class="ikey"><span class="key">WELL-MVP</span></span>
+          <span class="ititle">Web3 well-being super app: first interview to MVP</span>
+          <span class="ilens"><span class="lens">0→1 product UI/UX</span></span>
+          <span class="iyear">2023–25</span>
+        </a>
+        <a href="#lead-pl">
+          <span class="ikey"><span class="key">LEAD-PL</span></span>
+          <span class="ititle">Prime-Labo: building a design team for Japanese clients</span>
+          <span class="ilens"><span class="lens">Team leadership</span></span>
+          <span class="iyear">2014–25</span>
+        </a>
+      </nav>
+    </div></div>
+  </section>
+
+  <!-- CASE 2 -->
+  <article class="case" id="flex-ui" aria-labelledby="c2-h">
+    <div class="wrap"><div class="inner">
+      <header class="case-head">
+        <div class="case-tags"><span class="key">FLEX-UI</span><span class="lens">Design Lead</span><span class="label">LOTTE C&amp;F Vietnam · 2025–26</span></div>
+        <h2 id="c2-h">One product across a customer app and three back-office systems</h2>
+        <p class="lede">
+          I redesigned the LOTTE FLEX app for its new brand and designed the internal systems that run it: Admin, Merchant and BOS rule management.
+          
+        </p>
+      </header>
+      <figure class="slot r-wide cover" data-slot="flex-ui-cover" data-hint-en="Cover: LOTTE FLEX app mockup"></figure>
+      <div class="case-body">
+        <dl class="meta">
+          <div><dt>Role</dt><dd>UI/UX Designer and requirements owner</dd></div>
+          <div><dt>Surfaces</dt><dd>Mobile app + 3 internal systems</dd></div>
+          <div><dt>Worked with</dt><dd>Business, Development, Risk, CS</dd></div>
+          <div><dt>Tools</dt><dd>Figma, Jira, Confluence</dd></div>
+        </dl>
+        <div class="story">
+          <section class="block">
+            <h3>The challenge</h3>
+            <p>Credit, repayment and account security are complicated and carry real money. Customers need them to feel simple and trustworthy. Staff on the other side need precise control over rules, merchants and accounts. Both sides change whenever the business does.</p>
+          </section>
+
+          <figure class="fig">
+            <p class="label">What I designed</p>
+            <div class="sysmap">
+              <div class="sys-group">
+                <p class="label">Customers</p>
+                <div class="sys-node app">
+                  <strong>LOTTE FLEX app</strong>
+                  <span>Redesigned for the new brand</span>
+                  <ul class="flows">
+                    <li>Onboarding</li>
+                    <li>Payment</li>
+                    <li>Repayment</li>
+                    <li>Account</li>
+                    <li>Security</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="sys-link" aria-hidden="true"><span>one flow</span></div>
+              <div class="sys-group">
+                <p class="label">Staff and partners</p>
+                <div class="sys-node"><strong>Admin</strong><span>Internal administration</span></div>
+                <div class="sys-node"><strong>Merchant</strong><span>Partner merchants</span></div>
+                <div class="sys-node"><strong>BOS</strong><span>Business rule management</span></div>
+              </div>
+            </div>
+            <figcaption>I design a feature as one flow: what the customer sees in the app and what staff see in the systems that support it.</figcaption>
+          </figure>
+
+          <div class="gallery-wrap" data-gallery="flex-ui-screens">
+            <div class="gallery-head"><p class="label">App screens</p><button type="button" class="slot-btn gallery-add" data-act="add-many">Add several images</button></div>
+            <div class="gallery g-phone">
+              <figure class="slot r-phone" data-slot="flex-ui-p1" data-hint-en="Home"></figure>
+              <figure class="slot r-phone" data-slot="flex-ui-p2" data-hint-en="Onboarding"></figure>
+              <figure class="slot r-phone" data-slot="flex-ui-p3" data-hint-en="Payment"></figure>
+              <figure class="slot r-phone" data-slot="flex-ui-p4" data-hint-en="Repayment"></figure>
+              <figure class="slot r-phone" data-slot="flex-ui-p5" data-hint-en="Account"></figure>
+              <figure class="slot r-phone" data-slot="flex-ui-p6" data-hint-en="Security"></figure>
+            </div>
+          </div>
+
+          <section class="block">
+            <h3>What I did</h3>
+            <ul class="bullets">
+              <li><span>Redesigned the app's screens for the new brand across onboarding, payment, repayment, account management and security.</span></li>
+              <li><span>Improved the mobile UX and found practical solutions for complex financial features.</span></li>
+              <li><span>Designed Admin, Merchant and BOS rule management alongside the app, so both sides of a feature ship together.</span></li>
+              <li><span>Wrote requirements and acceptance criteria with Business and Development, then reviewed the build and ran UAT before each release.</span></li>
+            </ul>
+          </section>
+
+          <div class="gallery-wrap" data-gallery="flex-ui-systems">
+            <div class="gallery-head"><p class="label">Internal systems</p><button type="button" class="slot-btn gallery-add" data-act="add-many">Add several images</button></div>
+            <div class="gallery g-screen">
+              <figure class="slot r-screen" data-slot="flex-ui-w1" data-hint-en="Admin screen"></figure>
+              <figure class="slot r-screen" data-slot="flex-ui-w2" data-hint-en="Merchant screen"></figure>
+              <figure class="slot r-screen" data-slot="flex-ui-w3" data-hint-en="BOS rule management"></figure>
+              <figure class="slot r-screen" data-slot="flex-ui-w4" data-hint-en="User flow or design system"></figure>
+            </div>
+          </div>
+
+          <div class="outcome">
+            <p class="label">Outcome</p>
+            <p>A refreshed app under the new brand, internal tools designed in step with it, and releases checked against agreed acceptance criteria before they reach customers.</p>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </article>
+
+  <!-- CASE 1 -->
+  <article class="case" id="flex-data" aria-labelledby="c1-h">
+    <div class="wrap"><div class="inner">
+      <header class="case-head">
+        <div class="case-tags"><span class="key">FLEX-DATA</span><span class="lens">Product Owner</span><span class="label">LOTTE C&amp;F Vietnam · 2025–26</span></div>
+        <h2 id="c1-h">Making a multi-step BNPL onboarding measurable</h2>
+        <p class="lede">
+          LOTTE FLEX is LOTTE C&amp;F Vietnam's Buy Now Pay Later app. To get a credit limit, a new user verifies their phone number, passes identity verification (eKYC), adds more information and signs a contract. I owned the tracking plan and the reporting that shows where people drop out.
+          
+        </p>
+      </header>
+      <figure class="slot r-wide cover" data-slot="flex-data-cover" data-hint-en="Cover: GA4 funnel or tracking overview"></figure>
+      <div class="case-body">
+        <dl class="meta">
+          <div><dt>Role</dt><dd>Product Owner responsibilities, UI/UX</dd></div>
+          <div><dt>Worked with</dt><dd>Mobile developers, BA, Business teams</dd></div>
+          <div><dt>Scope</dt><dd>Onboarding, from splash screen to credit limit</dd></div>
+          <div><dt>Tools</dt><dd>GA4, Google Sheets, Jira, Confluence</dd></div>
+        </dl>
+        <div class="story">
+          <section class="block">
+            <h3>The question</h3>
+            <p>Onboarding is where a credit app wins or loses a customer, and every step has a regulatory reason to exist. The team needed a reliable answer to one question: at which step do applicants drop out, and why?</p>
+          </section>
+
+          <figure class="fig">
+            <p class="label">Onboarding stages and sample events</p>
+            <ol class="stages">
+              <li class="stage"><span class="pill">Splash</span><span class="events"><code>ob_splash</code></span></li>
+              <li class="stage"><span class="pill">Phone number verification</span><span class="events"><code>phone_check_result</code></span></li>
+              <li class="stage hot"><span class="pill">eKYC</span><span class="events"><code>ekyc_start</code><code>ekyc_result</code></span></li>
+              <li class="stage"><span class="pill">Additional info</span></li>
+              <li class="stage"><span class="pill">Sign contract</span></li>
+              <li class="stage"><span class="pill">Get credit limit</span></li>
+            </ol>
+            <div class="stack">
+              <div><b>5</b><span>sheets in the tracking plan, incl. a parameter dictionary</span></div>
+              <div><b>12 + 3</b><span>custom dimensions and metrics in GA4</span></div>
+              <div><b>4</b><span>funnels: one master, three per stage</span></div>
+              <div><b>18</b><span>supporting reports outside the funnels</span></div>
+            </div>
+            <figcaption>Simplified. The live flow has more steps and branches. Screens use an <code>ob_</code> prefix; events follow <code>object_action</code> in snake_case.</figcaption>
+          </figure>
+
+          <section class="block">
+            <h3>What I did</h3>
+            <ol class="steps">
+              <li><span>Wrote the tracking plan: main events, popup and warning events, funnel milestones and a parameter dictionary, under one naming convention.</span></li>
+              <li><span>Worked with mobile developers on the implementation, then checked every event against live GA4 data.</span></li>
+              <li><span>Built four funnels and eighteen supporting reports on top of the right custom definitions.</span></li>
+              <li><span>Wrote setup guides so Business and BA can rebuild and read the reports without me.</span></li>
+            </ol>
+          </section>
+
+          <section class="block">
+            <h3>Decisions I made along the way</h3>
+            <div class="decisions">
+              <div class="decision">
+                <span class="did">D-01</span>
+                <div>
+                  <h4>The SDK always said yes</h4>
+                  <div class="dgrid">
+                    <div><p class="label">Found</p><p>The eKYC SDK returns no pass or fail status, so the app logged every attempt as a success.</p></div>
+                    <div><p class="label">Decided</p><p>Stop measuring pass rate from the SDK callback. Use the result event, which reports both true and false.</p></div>
+                    <div><p class="label">Trade-off</p><p>One fewer client-side signal, in exchange for a pass rate that counts failures.</p></div>
+                  </div>
+                </div>
+              </div>
+              <div class="decision">
+                <span class="did">D-02</span>
+                <div>
+                  <h4>A ten-step ceiling</h4>
+                  <div class="dgrid">
+                    <div><p class="label">Found</p><p>GA4 funnels stop at ten steps, and the full onboarding has more milestones than that.</p></div>
+                    <div><p class="label">Decided</p><p>Start the master funnel at the splash screen to catch early exits, and move reference-contact detail into its own funnel.</p></div>
+                    <div><p class="label">Trade-off</p><p>The master view is coarser; the detail is one funnel away.</p></div>
+                  </div>
+                </div>
+              </div>
+              <div class="decision">
+                <span class="did">D-03</span>
+                <div>
+                  <h4>A segment that would hide the drop</h4>
+                  <div class="dgrid">
+                    <div><p class="label">Found</p><p>A "new registrants only" segment relies on the phone check event, which people who leave at splash never fire.</p></div>
+                    <div><p class="label">Decided</p><p>No segment on the master funnel. Keep it on the three stage funnels.</p></div>
+                    <div><p class="label">Trade-off</p><p>The master includes some returning users, but no longer hides the earliest exits.</p></div>
+                  </div>
+                </div>
+              </div>
+              <div class="decision">
+                <span class="did">D-04</span>
+                <div>
+                  <h4>Data the app could not collect</h4>
+                  <div class="dgrid">
+                    <div><p class="label">Found</p><p>The SDK version could not be collected, so the planned breakdown of eKYC errors was impossible.</p></div>
+                    <div><p class="label">Decided</p><p>Drop the parameter. Break errors down by app version, with a version map from the mobile team.</p></div>
+                    <div><p class="label">Trade-off</p><p>One extra lookup step, and the report still answers the question.</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="gallery-wrap" data-gallery="flex-data-gallery">
+            <div class="gallery-head"><p class="label">From the work</p><button type="button" class="slot-btn gallery-add" data-act="add-many">Add several images</button></div>
+            <div class="gallery g-screen">
+              <figure class="slot r-screen" data-slot="flex-data-1" data-hint-en="GA4 funnel exploration"></figure>
+              <figure class="slot r-screen" data-slot="flex-data-2" data-hint-en="Tracking plan sheet"></figure>
+              <figure class="slot r-screen" data-slot="flex-data-3" data-hint-en="Supporting report"></figure>
+              <figure class="slot r-screen" data-slot="flex-data-4" data-hint-en="Event check in GA4 DebugView"></figure>
+            </div>
+          </div>
+
+          <div class="outcome">
+            <p class="label">Outcome</p>
+            <p>The team has one view of onboarding from the first screen to the credit limit, a dictionary that developers, BA and business read the same way, and an eKYC pass rate that counts failures.</p>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </article>
+
+  <!-- CASE 3 -->
+  <article class="case" id="well-mvp" aria-labelledby="c3-h">
+    <div class="wrap"><div class="inner">
+      <header class="case-head">
+        <div class="case-tags"><span class="key">WELL-MVP</span><span class="lens">0→1 product UI/UX</span><span class="label">Web3 · 2023–25</span></div>
+        <h2 id="c3-h">A Web3 well-being super app, from first interview to MVP</h2>
+        <p class="lede">
+          An open-data well-being app with mini apps, where people earn rewards for sharing their well-being data on blockchain. I joined on day one and ran the whole UX process.
+          
+        </p>
+      </header>
+      <figure class="slot r-wide cover" data-slot="well-cover" data-hint-en="Cover: MVP screens or key visual"></figure>
+      <div class="case-body">
+        <dl class="meta">
+          <div><dt>Role</dt><dd>UX/UI designer, end to end</dd></div>
+          <div><dt>Stage</dt><dd>Zero to MVP</dd></div>
+          <div><dt>Platform</dt><dd>Mobile super app with mini apps</dd></div>
+          <div><dt>Engagement</dt><dd>Full-time</dd></div>
+        </dl>
+        <div class="story">
+          <section class="block">
+            <h3>The challenge</h3>
+            <p>People are careful with personal well-being data, and crypto wallets and token rewards are new to many of them. The MVP had to make sharing feel safe and the rewards easy to understand, including for people new to crypto.</p>
+          </section>
+
+          <section class="block">
+            <h3>Process</h3>
+            <ol class="process" aria-label="UX process">
+              <li><span class="n">01</span>User research</li>
+              <li><span class="n">02</span>Interviews</li>
+              <li><span class="n">03</span>Analytics</li>
+              <li><span class="n">04</span>Wireframes</li>
+              <li class="mvp"><span class="n">05</span>UI for the MVP</li>
+            </ol>
+          </section>
+
+          <figure class="fig" data-hide-when="well-gallery">
+            <p class="label">Three moments in the MVP, as schematics</p>
+            <div class="phones">
+              <div class="ph">
+                <div class="phone" aria-hidden="true">
+                  <div class="sk line w50"></div>
+                  <div class="sk line w85"></div>
+                  <div class="sk line w70"></div>
+                  <div class="sk opt"></div>
+                  <div class="sk opt on"></div>
+                  <div class="sk opt"></div>
+                  <div class="sk opt"></div>
+                  <div class="sk cta"></div>
+                </div>
+                <p>Onboarding through a short values quiz</p>
+              </div>
+              <div class="ph">
+                <div class="phone" aria-hidden="true">
+                  <div class="sk line w50"></div>
+                  <div class="ring"></div>
+                  <div class="bars"><i style="height:40%"></i><i style="height:62%"></i><i style="height:48%"></i><i class="hi" style="height:86%"></i><i style="height:58%"></i><i style="height:70%"></i></div>
+                  <div class="sk line w85"></div>
+                  <div class="sk line w70"></div>
+                </div>
+                <p>Happiness and sentiment trends people can read at a glance</p>
+              </div>
+              <div class="ph">
+                <div class="phone" aria-hidden="true">
+                  <div class="sk line w70"></div>
+                  <div class="isles">
+                    <i style="left:8%;top:12%;width:46%;height:22%"></i>
+                    <i style="left:46%;top:44%;width:44%;height:20%"></i>
+                    <i style="left:12%;top:72%;width:40%;height:18%"></i>
+                  </div>
+                  <div class="sk cta"></div>
+                </div>
+                <p>Rewards as a world of islands to build</p>
+              </div>
+            </div>
+            <figcaption>The MVP also covered in-app wallet setup, so people could receive rewards without leaving the app.</figcaption>
+          </figure>
+
+          <div class="gallery-wrap" data-gallery="well-gallery">
+            <div class="gallery-head"><p class="label">MVP screens</p><button type="button" class="slot-btn gallery-add" data-act="add-many">Add several images</button></div>
+            <div class="gallery g-phone">
+              <figure class="slot r-phone" data-slot="well-p1" data-hint-en="Values quiz"></figure>
+              <figure class="slot r-phone" data-slot="well-p2" data-hint-en="Wallet setup"></figure>
+              <figure class="slot r-phone" data-slot="well-p3" data-hint-en="Happiness trend"></figure>
+              <figure class="slot r-phone" data-slot="well-p4" data-hint-en="Sentiment trend"></figure>
+              <figure class="slot r-phone" data-slot="well-p5" data-hint-en="Island rewards"></figure>
+              <figure class="slot r-phone" data-slot="well-p6" data-hint-en="Mini app"></figure>
+            </div>
+          </div>
+
+          <div class="outcome">
+            <p class="label">Outcome</p>
+            <p>A complete MVP design, from research findings to a modern UI covering onboarding, wallet setup, well-being trends and rewards.</p>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </article>
+
+  <!-- CASE 4 -->
+  <article class="case" id="lead-pl" aria-labelledby="c4-h">
+    <div class="wrap"><div class="inner">
+      <header class="case-head">
+        <div class="case-tags"><span class="key">LEAD-PL</span><span class="lens">Team leadership</span><span class="label">Prime-Labo · 2014–25</span></div>
+        <h2 id="c4-h">Building and leading a design and front-end team for Japanese clients</h2>
+        <p class="lede">
+          I founded Prime-Labo's UI/UX and front-end team and led it for over a decade, delivering web and mobile products for Japanese clients in public services, healthcare, retail and crypto.
+          
+        </p>
+      </header>
+      <figure class="slot r-wide cover" data-slot="lead-cover" data-hint-en="Cover: team photo or project collage"></figure>
+      <div class="case-body">
+        <dl class="meta">
+          <div><dt>Role</dt><dd>Founding team lead, UI/UX designer</dd></div>
+          <div><dt>Team</dt><dd>UI/UX and front-end</dd></div>
+          <div><dt>Clients</dt><dd>Japan</dd></div>
+          <div><dt>Years</dt><dd>2014–2025</dd></div>
+        </dl>
+        <div class="story">
+          <section class="block">
+            <h3>How I led</h3>
+            <div class="trio">
+              <div>
+                <h4>Show something real, early</h4>
+                <p>On tight timelines I ran wireframes and UI in parallel, so stakeholders could react to a working demo sooner.</p>
+              </div>
+              <div>
+                <h4>Respect the specification</h4>
+                <p>Japanese clients send detailed specifications. The team worked to them closely, down to the client's own colour systems.</p>
+              </div>
+              <div>
+                <h4>Design and code in one team</h4>
+                <p>UI/UX and front-end sat in the same team, so handoff happened inside it rather than across companies.</p>
+              </div>
+            </div>
+          </section>
+
+          <figure class="fig">
+            <p class="label">Selected projects the team delivered</p>
+            <ol class="timeline">
+              <li class="edge"><span class="yr">2014</span><div><strong>Team founded at Prime-Labo</strong></div></li>
+              <li><span class="yr">2018</span><div><strong>Communication system for Japanese local governments and residents</strong><span class="d">Two-way communication for officials and residents. Wireframes and UI built in parallel to get a demo in front of stakeholders quickly.</span></div></li>
+              <li><span class="yr">2019</span><div><strong>AI-assisted fashion browsing and shopping app</strong><span class="d">Browsing designed to feel like choosing clothes from a spacious closet.</span></div></li>
+              <li><span class="yr">2020</span><div><strong>Clinic and nurse/doctor matching app</strong><span class="d">Job matching with calendar and GPS, built to the client's detailed specs and colour scheme.</span></div></li>
+              <li><span class="yr">2021</span><div><strong>Crypto wallet</strong><span class="d">Concept, detailed wireframes and UI, developed with the blockchain team.</span></div></li>
+              <li class="edge"><span class="yr">2025</span><div><strong>Moved to LOTTE C&amp;F Vietnam</strong></div></li>
+            </ol>
+          </figure>
+
+          <div class="gallery-wrap" data-gallery="lead-gallery">
+            <div class="gallery-head"><p class="label">Projects</p><button type="button" class="slot-btn gallery-add" data-act="add-many">Add several images</button></div>
+            <div class="gallery g-photo">
+              <figure class="slot r-photo" data-slot="lead-1" data-hint-en="Local government communication system (2018)"></figure>
+              <figure class="slot r-photo" data-slot="lead-2" data-hint-en="Fashion shopping app (2019)"></figure>
+              <figure class="slot r-photo" data-slot="lead-3" data-hint-en="Clinic and nurse/doctor matching (2020)"></figure>
+              <figure class="slot r-photo" data-slot="lead-4" data-hint-en="Crypto wallet (2021)"></figure>
+              <figure class="slot r-photo" data-slot="lead-5" data-hint-en="Team photo"></figure>
+              <figure class="slot r-photo" data-slot="lead-6" data-hint-en="Any other project"></figure>
+            </div>
+          </div>
+
+          <div class="outcome">
+            <p class="label">Outcome</p>
+            <p>A team that delivered web and mobile products for Japanese clients from 2014 to 2025, across public services, healthcare, retail and crypto.</p>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </article>
+
+  <!-- HOW I WORK -->
+  <section class="section" id="how" aria-labelledby="how-h">
+    <div class="wrap"><div class="inner">
+      <div class="section-head">
+        <p class="label">How I work</p>
+        <h2 id="how-h">From goal to release, and back again</h2>
+        <p>The loop I run for each feature at LOTTE FLEX. Design is one step of six.</p>
+      </div>
+      <ol class="loop">
+        <li><h3>Frame</h3><p>Start from the business goal and what users actually do.</p></li>
+        <li><h3>Specify</h3><p>PRD, user stories and acceptance criteria everyone can test against.</p></li>
+        <li><h3>Prioritise</h3><p>Order the backlog with Business and Development.</p></li>
+        <li><h3>Design</h3><p>End-to-end flows for customers and for the staff who support them.</p></li>
+        <li><h3>Verify</h3><p>Implementation review and UAT before each release.</p></li>
+        <li><h3>Measure</h3><p>Tracking plan, funnels and reports that show whether it worked.</p></li>
+      </ol>
+      <p class="loop-return">What we measure becomes the next round of backlog items.</p>
+      <figure class="slot r-wide solo" data-slot="how-1" data-hint-en="Photo: workshop, whiteboard or sprint board"></figure>
+
+      <div class="principles">
+        <blockquote>Complicated things should feel simple, trustworthy and easy to use.</blockquote>
+        <blockquote>I design with business logic, user behaviour and day-to-day operations in view.</blockquote>
+        <blockquote>I bring AI tools into the workflow so the team moves faster.</blockquote>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- MORE WORK (gallery, hidden from visitors until it has images) -->
+  <section class="section slot-section" id="more" aria-labelledby="more-h">
+    <div class="wrap"><div class="inner">
+      <div class="section-head">
+        <p class="label">Gallery</p>
+        <h2 id="more-h">More work</h2>
+        <p>Other projects, explorations and moments from the work.</p>
+      </div>
+      <div class="gallery-wrap" data-gallery="more-gallery">
+        <div class="gallery-head"><p class="label">Selected images</p><button type="button" class="slot-btn gallery-add" data-act="add-many">Add several images</button></div>
+        <div class="gallery g-photo">
+          <figure class="slot r-photo" data-slot="more-1" data-hint-en="Any project image. Add a caption after uploading."></figure>
+          <figure class="slot r-photo" data-slot="more-2" data-hint-en="Any project image. Add a caption after uploading."></figure>
+          <figure class="slot r-photo" data-slot="more-3" data-hint-en="Any project image. Add a caption after uploading."></figure>
+          <figure class="slot r-photo" data-slot="more-4" data-hint-en="Any project image. Add a caption after uploading."></figure>
+          <figure class="slot r-photo" data-slot="more-5" data-hint-en="Any project image. Add a caption after uploading."></figure>
+          <figure class="slot r-photo" data-slot="more-6" data-hint-en="Any project image. Add a caption after uploading."></figure>
+          <figure class="slot r-photo" data-slot="more-7" data-hint-en="Any project image. Add a caption after uploading."></figure>
+          <figure class="slot r-photo" data-slot="more-8" data-hint-en="Any project image. Add a caption after uploading."></figure>
+          <figure class="slot r-photo" data-slot="more-9" data-hint-en="Any project image. Add a caption after uploading."></figure>
+        </div>
+      </div>
+
+    </div></div>
+  </section>
+
+  <!-- BACKGROUND + EXPERIENCE -->
+  <section class="section" id="experience" aria-labelledby="xp-h">
+    <div class="wrap"><div class="inner">
+      <div class="split">
+        <div>
+          <div class="section-head">
+            <p class="label">Background</p>
+            <h2 id="bg-h">I started with words</h2>
+          </div>
+          <div class="prose">
+            <p>Before product design I worked in content, SEO and marketing. That is why I write requirements people can act on and UX copy that explains itself, and why I care how a product is found and adopted after launch.</p>
+          </div>
+          <ul class="words" style="margin-top:22px">
+            <li><strong>Blocksky · BackWallet</strong><span>Marketing Manager, 2024–25. User acquisition, SEO content, social and KOL campaigns, data-led optimisation.</span></li>
+            <li><strong>Badger Việt Nam</strong><span>SEO content for an organic skincare e-commerce brand.</span></li>
+            <li><strong>Du But Books</strong><span>Creative content and social media for a book publisher.</span></li>
+            <li><strong>Kênh14</strong><span>Contributing writer, Vietnamese TV shows section.</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="section-head">
+            <p class="label">Experience</p>
+            <h2 id="xp-h">Where I've worked</h2>
+          </div>
+          <ul class="xp">
+            <li><span class="yrs">2025–now</span><span class="co">LOTTE C&amp;F Vietnam</span><span class="rl">UI/UX Designer with Product Owner responsibilities · LOTTE Group</span></li>
+            <li><span class="yrs">2014–2025</span><span class="co">Prime-Labo</span><span class="rl">Founding Team Lead, UI/UX, Front-end &amp; SEO</span></li>
+            <li><span class="yrs">2024–2025</span><span class="co">Blocksky</span><span class="rl">Marketing Manager, BackWallet · freelance</span></li>
+            <li><span class="yrs">2023–2025</span><span class="co">BigBeat Inc.</span><span class="rl">Graphic Designer · freelance</span></li>
+            <li><span class="yrs">2021–2023</span><span class="co">Du But Books</span><span class="rl">Content &amp; social media · freelance</span></li>
+            <li><span class="yrs">2020–2023</span><span class="co">Badger Việt Nam</span><span class="rl">Content &amp; SEO · freelance</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="kit">
+        <div>
+          <p class="label">Tools</p>
+          <ul class="chips"><li>Figma</li><li>Jira</li><li>Confluence</li><li>Google Analytics 4</li><li>Google Sheets</li><li>AI assistants</li></ul>
+        </div>
+        <div>
+          <p class="label">Methods</p>
+          <ul class="chips">
+            <li>User research &amp; interviews</li>
+            <li>Wireframing &amp; prototyping</li>
+            <li>User stories &amp; acceptance criteria</li>
+            <li>Backlog prioritisation</li>
+            <li>Tracking plans &amp; funnels</li>
+            <li>UAT</li>
+          </ul>
+        </div>
+        <div>
+          <p class="label">Currently studying</p>
+          <ul class="chips"><li>Professional Scrum Product Owner</li><li>Agile / Scrum</li></ul>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap"><div class="inner">
+      <div>
+        <p class="label" style="color: color-mix(in srgb, var(--bg) 62%, var(--ink))">Contact</p>
+        <h2 id="contact-h" style="margin-top:14px">Let's talk about your product</h2>
+        <p class="open">Open to UI/UX Design Lead and Product Owner roles in Ho Chi Minh City.</p>
+      </div>
+      <ul class="clist">
+        <li>
+          <span class="label">Email</span>
+          <span class="val" id="c-email">thychan13kuma<wbr>@gmail.com</span>
+          <button type="button" class="copy" id="copy-email" data-copy="thychan13kuma@gmail.com">Copy</button>
+        </li>
+        <li>
+          <span class="label">LinkedIn</span>
+          <a class="val" href="https://www.linkedin.com/in/thy-vu-831839158" target="_blank" rel="noopener">in/thy-vu-831839158</a>
+          <span aria-hidden="true"></span>
+        </li>
+      </ul>
+    </div></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><div class="inner">
+    <span>© 2026 Vũ Mai Thy</span>
+    <span>Portfolio 2026 · Ho Chi Minh City</span>
+  </div></div>
+</footer>
+
+<div class="editbar" id="editbar" hidden>
+  <div class="editbar-in">
+    <p class="eb-status" id="eb-status" aria-live="polite"></p>
+    <div class="eb-actions">
+      <button type="button" class="slot-btn" id="eb-preview"></button>
+      <button type="button" class="slot-btn" id="eb-discard" disabled></button>
+      <button type="button" class="slot-btn primary" id="eb-save" disabled></button>
+    </div>
+  </div>
+</div>
+<input type="file" id="vmt-file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" hidden>
+<div class="lightbox" id="lightbox" hidden>
+  <img id="lb-img" alt="">
+  <button type="button" class="slot-btn" id="lb-close">Close</button>
+</div>
+<script type="application/json" id="vmt-state">{"v": 1, "slots": {}}</script>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+
+    document.querySelectorAll('.copy').forEach(function (btn) {
+      var original = btn.innerHTML;
+      btn.addEventListener('click', function () {
+        var text = btn.getAttribute('data-copy');
+        var vi = root.getAttribute('data-lang') === 'vi';
+        function done(ok) {
+          btn.textContent = ok ? (vi ? 'Đã chép' : 'Copied') : (vi ? 'Đã chọn' : 'Selected');
+          setTimeout(function () { btn.innerHTML = original; }, 1800);
+        }
+        function selectFallback() {
+          var target = btn.previousElementSibling;
+          try {
+            var range = document.createRange();
+            range.selectNodeContents(target);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+          } catch (e) {}
+          done(false);
+        }
+        try {
+          navigator.clipboard.writeText(text).then(function () { done(true); }, selectFallback);
+        } catch (e) { selectFallback(); }
+      });
+    });
+  })();
+</script>
+<script>
+  /* Image slots. Editors upload into the artifact's asset store and Save
+     republishes this page with the slot map embedded; visitors only ever
+     see filled frames. */
+  (function () {
+    var root = document.documentElement;
+    var STATE = { v: 1, slots: {} };
+    try {
+      var parsed = JSON.parse(document.getElementById('vmt-state').textContent);
+      if (parsed && typeof parsed === 'object') STATE = parsed;
+    } catch (e) {}
+    if (!STATE.slots || typeof STATE.slots !== 'object') STATE.slots = {};
+    function clone(o) { return JSON.parse(JSON.stringify(o)); }
+
+    var pending = clone(STATE);
+    var assets = null, art = null, editor = false, previewing = false, saving = false;
+    var busy = {}, errs = {}, note = '', queue = null;
+    var SKEL = '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>';
+
+    var bar = document.getElementById('editbar');
+    var statusEl = document.getElementById('eb-status');
+    var bSave = document.getElementById('eb-save');
+    var bDiscard = document.getElementById('eb-discard');
+    var bPreview = document.getElementById('eb-preview');
+    var fileInput = document.getElementById('vmt-file');
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lb-img');
+
+    function isVi() { return root.getAttribute('data-lang') === 'vi'; }
+    function t(en, vi) { return isVi() ? vi : en; }
+    function blobUrl(id) { return '/_blob/' + id; }
+    function editing() { return root.classList.contains('editing'); }
+    function make(tag, cls, text) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
+    }
+    function button(label, act, key, primary) {
+      var b = make('button', 'slot-btn' + (primary ? ' primary' : ''), label);
+      b.type = 'button';
+      b.setAttribute('data-act', act);
+      if (key) b.setAttribute('data-key', key);
+      return b;
+    }
+    function anyBusy() { for (var k in busy) { if (busy[k]) return true; } return false; }
+    function changedCount() {
+      var keys = {}, n = 0, k;
+      for (k in STATE.slots) keys[k] = 1;
+      for (k in pending.slots) keys[k] = 1;
+      for (k in keys) {
+        if (JSON.stringify(STATE.slots[k] || null) !== JSON.stringify(pending.slots[k] || null)) n++;
+      }
+      return n;
+    }
+
+    /* ---------- rendering ---------- */
+    function renderSlot(node) {
+      var key = node.getAttribute('data-slot');
+      var v = pending.slots[key];
+      var hint = t(node.getAttribute('data-hint-en') || '', node.getAttribute('data-hint-vi') || '');
+      var ed = editing();
+      node.classList.toggle('filled', !!v);
+      node.classList.toggle('empty', !v);
+      node.textContent = '';
+      var frame = make('div', 'slot-frame');
+      if (busy[key]) frame.setAttribute('data-busy', t('Uploading…', 'Đang tải lên…'));
+      if (v) {
+        var img = make('img');
+        img.src = blobUrl(v.id);
+        img.alt = v.cap || hint;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        frame.appendChild(img);
+        if (ed) {
+          var tools = make('div', 'slot-tools');
+          tools.appendChild(button(t('Replace', 'Thay ảnh'), 'replace', key));
+          tools.appendChild(button(t('Remove', 'Gỡ ảnh'), 'remove', key));
+          frame.appendChild(tools);
+        }
+      } else if (ed) {
+        var empty = make('div', 'slot-empty');
+        empty.appendChild(make('span', 'plus', '+'));
+        empty.appendChild(make('span', 'hint', hint));
+        empty.appendChild(button(t('Add image', 'Thêm ảnh'), 'add', key, true));
+        frame.appendChild(empty);
+      }
+      node.appendChild(frame);
+      if (v && ed) {
+        var inp = make('input', 'slot-cap-input');
+        inp.type = 'text';
+        inp.id = 'cap-' + key;
+        inp.maxLength = 160;
+        inp.value = v.cap || '';
+        inp.placeholder = t('Caption (optional)', 'Chú thích (không bắt buộc)');
+        inp.setAttribute('aria-label', t('Caption: ', 'Chú thích: ') + hint);
+        inp.setAttribute('data-key', key);
+        node.appendChild(inp);
+      } else if (v && v.cap) {
+        node.appendChild(make('figcaption', 'slot-cap', v.cap));
+      }
+      if (ed && errs[key]) node.appendChild(make('p', 'slot-err', errs[key]));
+    }
+
+    function renderPortrait() {
+      var p = document.querySelector('.portrait[data-slot]');
+      if (!p) return;
+      var key = p.getAttribute('data-slot');
+      var v = pending.slots[key];
+      var ed = editing();
+      Array.prototype.forEach.call(p.querySelectorAll('.p-img, .p-tools'), function (n) { n.remove(); });
+      p.classList.toggle('filled', !!v);
+      if (v) {
+        var img = make('img', 'p-img');
+        img.src = blobUrl(v.id);
+        img.alt = 'Vũ Mai Thy';
+        p.appendChild(img);
+      }
+      if (ed) {
+        var tools = make('div', 'p-tools');
+        if (busy[key]) tools.appendChild(make('span', 'p-busy', t('Uploading…', 'Đang tải lên…')));
+        else if (v) {
+          tools.appendChild(button(t('Replace photo', 'Thay ảnh'), 'replace', key));
+          tools.appendChild(button(t('Remove', 'Gỡ ảnh'), 'remove', key));
+        } else {
+          tools.appendChild(button(t('Add your photo', 'Thêm ảnh chân dung'), 'add', key, true));
+        }
+        if (errs[key]) tools.appendChild(make('span', 'slot-err', errs[key]));
+        p.appendChild(tools);
+      }
+    }
+
+    function refreshGroups() {
+      Array.prototype.forEach.call(document.querySelectorAll('.gallery-wrap, .slot-section'), function (g) {
+        g.classList.toggle('all-empty', !g.querySelector('.slot.filled'));
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-hide-when]'), function (f) {
+        var g = document.querySelector('.gallery-wrap[data-gallery="' + f.getAttribute('data-hide-when') + '"]');
+        f.hidden = !editing() && !!(g && g.querySelector('.slot.filled'));
+      });
+    }
+
+    function updateBar() {
+      if (!editor) return;
+      var n = changedCount();
+      bSave.disabled = saving || !n || anyBusy();
+      bDiscard.disabled = saving || !n;
+      bSave.textContent = n ? t('Save ' + n + (n > 1 ? ' changes' : ' change'), 'Lưu ' + n + ' thay đổi') : t('Save', 'Lưu');
+      bDiscard.textContent = t('Discard', 'Hủy thay đổi');
+      bPreview.textContent = previewing ? t('Back to editing', 'Quay lại chỉnh sửa') : t('Preview as visitor', 'Xem như khách');
+      statusEl.textContent = note || (previewing
+        ? t('Visitor preview: empty frames are hidden.', 'Đang xem như khách: các khung trống được ẩn.')
+        : t('Image mode: only editors see the empty frames. Press Save to publish your images.', 'Chế độ chèn ảnh: chỉ người chỉnh sửa thấy khung trống. Bấm Lưu để đăng ảnh.'));
+    }
+
+    function renderAll() {
+      Array.prototype.forEach.call(document.querySelectorAll('.slot[data-slot]'), renderSlot);
+      renderPortrait();
+      refreshGroups();
+      updateBar();
+    }
+    function rerender(key) {
+      if (key === 'portrait') renderPortrait();
+      else {
+        var n = document.querySelector('.slot[data-slot="' + key + '"]');
+        if (n) renderSlot(n);
+      }
+      refreshGroups();
+      updateBar();
+    }
+    function setMode() {
+      root.classList.toggle('editing', editor && !previewing);
+      renderAll();
+    }
+
+    /* ---------- unsaved work survives a reload ---------- */
+    function stash() {
+      try {
+        if (changedCount()) sessionStorage.setItem('vmt-pending', JSON.stringify(pending));
+        else sessionStorage.removeItem('vmt-pending');
+      } catch (e) {}
+    }
+    function restore() {
+      try {
+        var s = sessionStorage.getItem('vmt-pending');
+        if (!s) return;
+        var p = JSON.parse(s);
+        if (p && p.slots && typeof p.slots === 'object') {
+          pending = p;
+          if (!changedCount()) { pending = clone(STATE); sessionStorage.removeItem('vmt-pending'); }
+        }
+      } catch (e) {}
+    }
+
+    /* ---------- uploads ---------- */
+    function errText(code) {
+      switch (code) {
+        case 'too_large': return t('This image is over 20 MB. Export a smaller version and try again.', 'Ảnh lớn hơn 20 MB. Hãy xuất bản nhỏ hơn rồi thử lại.');
+        case 'unsupported_type': return t('Use a PNG, JPG, WebP, GIF or SVG image.', 'Hãy dùng ảnh PNG, JPG, WebP, GIF hoặc SVG.');
+        case 'quota_or_state': return t('Image storage for this page is full.', 'Bộ nhớ ảnh của trang đã đầy.');
+        case 'rate_limited': return t('Too many uploads at once. Wait a moment and try again.', 'Tải lên quá nhanh. Đợi một chút rồi thử lại.');
+        case 'upstream_auth': return t('Your session expired. Reload the page and sign in again.', 'Phiên đăng nhập đã hết hạn. Hãy tải lại trang và đăng nhập lại.');
+        case 'not_granted':
+        case 'capability_disabled':
+        case 'capability_removed': return t('Uploading is not available in this view.', 'Không thể tải ảnh lên ở chế độ xem này.');
+        default: return t('Upload failed. Try again.', 'Tải lên thất bại. Hãy thử lại.');
+      }
+    }
+    function upload(key, file) {
+      busy[key] = true;
+      delete errs[key];
+      rerender(key);
+      var first = file.size > 20 * 1024 * 1024 ? Promise.reject({ code: 'too_large' }) : assets.upload(file);
+      return first
+        .catch(function (e) {
+          if (e && e.code === 'store_unavailable') {
+            return new Promise(function (r) { setTimeout(r, 900); }).then(function () { return assets.upload(file); });
+          }
+          throw e;
+        })
+        .then(function (r) {
+          var prev = pending.slots[key];
+          pending.slots[key] = { id: r.id, cap: (prev && prev.cap) || '' };
+        })
+        .catch(function (e) { errs[key] = errText(e && e.code); })
+        .then(function () { delete busy[key]; rerender(key); stash(); });
+    }
+    function pick(keys, multiple) {
+      if (!assets || saving) return;
+      queue = keys;
+      fileInput.multiple = !!multiple;
+      fileInput.value = '';
+      fileInput.click();
+    }
+    fileInput.addEventListener('change', function () {
+      var files = Array.prototype.slice.call(fileInput.files || []);
+      var keys = queue || [];
+      queue = null;
+      if (!files.length || !keys.length) return;
+      var jobs = [];
+      for (var i = 0; i < files.length && i < keys.length; i++) jobs.push([keys[i], files[i]]);
+      note = files.length > keys.length
+        ? t('Only ' + keys.length + ' empty frames here, so the extra images were skipped.', 'Chỉ còn ' + keys.length + ' khung trống nên các ảnh dư đã được bỏ qua.')
+        : '';
+      (function next() {
+        var j = jobs.shift();
+        if (j) upload(j[0], j[1]).then(next);
+      })();
+    });
+
+    /* ---------- save / discard / preview ---------- */
+    function buildDoc(state) {
+      var tpl = JSON.parse(document.getElementById('vmt-tpl').textContent);
+      function esc(s) { return s.replace(/</g, '\\u003c'); }
+      var T = '@@' + 'TPL@@', S = '@@' + 'STATE@@';
+      var out = tpl.replace(T, function () { return esc(JSON.stringify(tpl)); });
+      out = out.replace(S, function () { return esc(JSON.stringify(state)); });
+      return SKEL + '\n' + out + '\n</body></html>';
+    }
+    function save() {
+      if (saving || !changedCount() || anyBusy()) return;
+      if (!art) {
+        note = t("Saving isn't available in this view.", 'Không thể lưu ở chế độ xem này.');
+        updateBar();
+        return;
+      }
+      var clean = { v: 1, slots: {} };
+      Object.keys(pending.slots).forEach(function (k) {
+        var s = pending.slots[k];
+        if (s && s.id) clean.slots[k] = { id: s.id, cap: String(s.cap || '').trim().slice(0, 160) };
+      });
+      var html;
+      try { html = buildDoc(clean); } catch (e) {
+        note = t('Could not prepare the page for saving.', 'Không thể chuẩn bị trang để lưu.');
+        updateBar();
+        return;
+      }
+      saving = true;
+      stash();
+      note = t('Saving…', 'Đang lưu…');
+      updateBar();
+      art.publish(html).then(function () {
+        try { sessionStorage.removeItem('vmt-pending'); } catch (e) {}
+        note = t('Saved. Reloading…', 'Đã lưu. Đang tải lại…');
+        updateBar();
+      }, function (e) {
+        saving = false;
+        var c = e && e.code;
+        if (c === 'conflict') note = t('The page was updated elsewhere. Loading the latest version; your unsaved images will come back.', 'Trang vừa được cập nhật ở nơi khác. Đang tải bản mới nhất; ảnh chưa lưu sẽ được khôi phục.');
+        else if (['not_writer', 'not_granted', 'consent_required', 'capability_disabled', 'capability_removed', 'not_declared'].indexOf(c) >= 0) note = t("This view is read-only, so changes can't be saved here.", 'Chế độ xem này chỉ đọc nên không lưu được thay đổi.');
+        else if (c === 'too_large') note = t('The page is too large to save.', 'Trang quá lớn để lưu.');
+        else if (c === 'rate_limited') note = t('Saving too often. Wait a moment, then save again.', 'Lưu quá nhanh. Đợi một chút rồi lưu lại.');
+        else note = t('Saving failed. Try again in a moment.', 'Lưu thất bại. Hãy thử lại sau giây lát.');
+        updateBar();
+      });
+    }
+    bSave.addEventListener('click', save);
+    bDiscard.addEventListener('click', function () {
+      pending = clone(STATE);
+      errs = {};
+      note = '';
+      stash();
+      renderAll();
+    });
+    bPreview.addEventListener('click', function () {
+      previewing = !previewing;
+      note = '';
+      try { localStorage.setItem('vmt-preview', previewing ? '1' : '0'); } catch (e) {}
+      setMode();
+    });
+
+    /* ---------- interactions ---------- */
+    function openLightbox(img) {
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt || '';
+      lb.hidden = false;
+      document.getElementById('lb-close').focus();
+    }
+    function closeLightbox() {
+      lb.hidden = true;
+      lbImg.removeAttribute('src');
+    }
+    lb.addEventListener('click', function (e) {
+      if (e.target === lb || e.target.closest('#lb-close')) closeLightbox();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !lb.hidden) closeLightbox();
+    });
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-act]');
+      if (b) {
+        if (!editing()) return;
+        var act = b.getAttribute('data-act');
+        var key = b.getAttribute('data-key');
+        note = '';
+        if (act === 'add' || act === 'replace') pick([key], false);
+        else if (act === 'remove') {
+          delete pending.slots[key];
+          delete errs[key];
+          rerender(key);
+          stash();
+        } else if (act === 'add-many') {
+          var g = b.closest('.gallery-wrap');
+          var keys = g ? Array.prototype.map.call(g.querySelectorAll('.slot.empty'), function (n) { return n.getAttribute('data-slot'); }) : [];
+          if (!keys.length) { note = t('Every frame here already has an image.', 'Tất cả khung ở đây đã có ảnh.'); updateBar(); return; }
+          pick(keys, true);
+        }
+        return;
+      }
+      var img = e.target.closest('.slot-frame img, .portrait .p-img');
+      if (img && !editing()) openLightbox(img);
+    });
+    document.addEventListener('input', function (e) {
+      var inp = e.target;
+      if (!inp.classList || !inp.classList.contains('slot-cap-input')) return;
+      var k = inp.getAttribute('data-key');
+      if (pending.slots[k]) {
+        pending.slots[k].cap = inp.value.slice(0, 160);
+        note = '';
+        updateBar();
+        stash();
+      }
+    });
+
+    /* ---------- start ---------- */
+    window.vmtRender = renderAll;
+    renderAll();
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('assets').then(function (a) {
+        if (!a) return;
+        assets = a;
+        editor = true;
+        try { previewing = localStorage.getItem('vmt-preview') === '1'; } catch (e) {}
+        restore();
+        bar.hidden = false;
+        root.classList.add('has-editbar');
+        window.claude.use('artifact').then(function (x) { art = x; updateBar(); }, function () {});
+        setMode();
+      }, function () {});
+    }
+  })();
+</script>
+
+</body></html>
