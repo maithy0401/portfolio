@@ -7,7 +7,7 @@ Live: https://maithy0401.github.io/portfolio/
 ## What's in this repo
 
 - `index.html`: the whole site in one file. The home page and the four case studies live here; the case studies open at `#lotte-flex-design`, `#lotte-flex-onboarding`, `#web3-wellbeing-mvp` and `#prime-labo-team`.
-- `assets/`: certificate images and the favicon.
+- `assets/`: portrait, company logos, the Gumroad cover, certificate images and the favicon.
 - `.nojekyll`: tells GitHub Pages to serve the files as they are.
 
 ## Editing
