@@ -15,6 +15,7 @@
 </head>
 <body>
 <!-- Icons: Lucide (ISC License, © Lucide Contributors). Illustrations: Humation assets (MIT License, © 2026 Humation contributors). -->
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script>document.documentElement.lang = "en";
@@ -1890,6 +1891,124 @@
   .loop-tag .ic { color: var(--flow); }
   @media (min-width: 900px) { .loop::before { background: var(--flow); } }
   @media (max-width: 899px) { .loop li:not(:last-child) { background: linear-gradient(var(--flow), var(--flow)) 27px 28px / 2px calc(100% - 28px) no-repeat; } }
+
+  /* case pages: an image slot beside the title in the header band */
+  .case-top { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+  :root:not(.editing) .case-top:has(> .slot.empty) { grid-template-columns: minmax(0, 1fr); }
+  .case-top .slot.cover { margin: 0; }
+  .r-head .slot-frame { aspect-ratio: 4 / 3; border-radius: var(--r-lg); }
+  .r-head.filled .slot-frame { background: transparent; box-shadow: none; border: 0; }
+  .r-head .slot-frame img { object-fit: contain; }
+  /* ground shadow under the header image */
+  .r-head.filled .slot-frame { overflow: visible; }
+  .r-head.filled .slot-frame img { z-index: 1; filter: drop-shadow(0 14px 18px rgba(40, 30, 70, 0.16)); }
+  .r-head.filled .slot-frame::after { content: ""; position: absolute; z-index: 0; left: 20%; right: 20%; bottom: -22px; height: 34px; border-radius: 50%; background: radial-gradient(closest-side, rgba(40, 30, 70, 0.34), rgba(40, 30, 70, 0.12) 55%, rgba(40, 30, 70, 0)); filter: blur(4px); pointer-events: none; }
+  .case-top:has(> .slot.filled) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(20px, 3vw, 40px); }
+  .case-top:has(> .slot.filled) .r-head .slot-frame { transform: scale(1.12); transform-origin: center bottom; }
+  @media (max-width: 900px) { .case-top { grid-template-columns: minmax(0, 1fr); } }
+
+  /* next case study: thumbnail from the work card beside the title */
+  .case-next .next-link { flex-direction: row; align-items: center; gap: clamp(16px, 2.5vw, 28px); }
+  .next-link .next-thumb { flex: none; width: clamp(140px, 22vw, 240px); border-radius: 16px; }
+  .next-link .nl-text { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    .next-thumb .art, .next-thumb .cover-img { transition: transform 0.35s ease; }
+    .next-link:hover .next-thumb .art, .next-link:hover .next-thumb .cover-img { transform: scale(1.04); }
+  }
+  @media (max-width: 520px) { .case-next .next-link { flex-direction: column; align-items: stretch; } .next-link .next-thumb { width: 100%; } }
+
+  /* FLEX-UI product slideshow */
+  .slides-nav { display: flex; gap: 8px; margin-left: auto; }
+  .slides-nav[hidden] { display: none; }
+  .slides-btn { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0; border-radius: 50%; border: 1px solid var(--ring); background: var(--surface); color: var(--ink); cursor: pointer; }
+  .slides-btn:hover:not(:disabled) { border-color: var(--ink); }
+  .slides-btn:disabled { opacity: 0.35; cursor: default; }
+  .slides-btn .ic { width: 18px; height: 18px; }
+  @media (max-width: 720px) { .slides-btn { width: 44px; height: 44px; } }
+  .gallery.g-slides { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; border-radius: var(--r-lg); }
+  .g-slides::-webkit-scrollbar { display: none; }
+  .g-slides > .slot { flex: 0 0 100%; scroll-snap-align: start; }
+  .g-slides:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+  .r-slide .slot-frame { aspect-ratio: 16 / 9; border-radius: var(--r-lg); background: var(--sunk); }
+  .r-slide .slot-frame img { object-fit: contain; }
+
+  /* FLEX-UI: download the app */
+  .get-app { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: clamp(20px, 3vw, 32px); align-items: center; padding: clamp(20px, 3vw, 32px); border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
+  :root:not(.editing) .get-app:has(> .slot.empty) { grid-template-columns: minmax(0, 1fr); }
+  .r-app .slot-frame { aspect-ratio: 1 / 1; border-radius: 22px; }
+  .r-app.filled .slot-frame { background: var(--surface); border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(40, 30, 70, 0.10); }
+  .r-app .slot-frame img { object-fit: contain; }
+  .get-app-copy { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .get-app-copy h3 { font-size: var(--fs-22); line-height: 1.3; }
+  .get-app-copy p:not(.label) { color: var(--muted); }
+  .store-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+  .store-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 20px 0 16px; border-radius: 14px; background: var(--ink); color: var(--accent-ink); text-decoration: none; font-weight: 600; font-size: var(--fs-16); line-height: 1.1; }
+  .store-btn:hover { background: var(--ink-hover); text-decoration: none; }
+  .store-btn .ic { width: 22px; height: 22px; flex: none; }
+  .store-btn span { display: flex; flex-direction: column; }
+  .store-btn small { font-size: 0.6875rem; font-weight: 500; opacity: 0.8; }
+  @media (max-width: 600px) { .get-app { grid-template-columns: minmax(0, 1fr); } .get-app .r-app { max-width: 180px; } }
+
+
+  /* system map: a small two-way icon on the dashed line links the two sides */
+  .sys-link { min-width: 56px; }
+  .sys-link .sys-link-ic { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--flow, #7B5BD6); box-shadow: var(--shadow); }
+  .sys-link .sys-link-ic .ic { width: 18px; height: 18px; }
+  .sys-link::before { border-color: var(--flow, #7B5BD6); }
+  @media (max-width: 720px) { .sys-link .sys-link-ic .ic { transform: rotate(90deg); } .sysmap .sys-link::before { border-left-color: var(--flow, #7B5BD6); } }
+
+  /* next case study: title runs the full width of the card; "All case studies" sits bottom-right */
+  @media (min-width: 601px) {
+    .case-next { position: relative; grid-template-columns: minmax(0, 1fr); }
+    .case-next .btn { position: absolute; right: clamp(20px, 3vw, 32px); bottom: clamp(20px, 3vw, 32px); }
+    .case-next .nl-text { padding-bottom: 4px; }
+  }
+
+  /* slideshow: transparent frames, controls centred under the image */
+  .r-slide.filled .slot-frame { background: transparent; }
+  .gallery.g-slides { border-radius: 0; }
+  .slides-wrap .slides-nav { margin: 4px 0 0; align-self: center; align-items: center; gap: 14px; }
+  .slides-count { min-width: 3.5em; text-align: center; font-size: var(--fs-14); font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .slides-btn { width: 44px; height: 44px; }
+
+  /* slideshow: each slide is as tall as its image, and the track follows the current slide */
+  .gallery.g-slides { align-items: flex-start; }
+  .r-slide.filled .slot-frame { aspect-ratio: auto; border-radius: 0; overflow: visible; }
+  .r-slide.filled .slot-frame img { position: static; display: block; width: auto; max-width: 100%; height: auto; max-height: min(72vh, 680px); margin: 0 auto; border-radius: var(--r-md); }
+  @media (prefers-reduced-motion: no-preference) { .gallery.g-slides { transition: height 0.3s ease; } }
+
+  /* app screens: transparent frames, each image fills its column at its own height */
+  .g-phone { grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); gap: 20px; align-items: start; }
+  .r-phone.filled .slot-frame { aspect-ratio: auto; background: transparent; border-radius: 0; overflow: visible; }
+  .r-phone.filled .slot-frame img { position: static; display: block; width: 100%; height: auto; object-fit: contain; border-radius: 16px; }
+  @media (max-width: 520px) { .g-phone { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
+
+  /* lightbox: previous / next between the images on the current page */
+  .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.35); background: rgba(255, 255, 255, 0.12); color: #fff; cursor: pointer; }
+  .lb-nav:hover { background: rgba(255, 255, 255, 0.24); }
+  .lb-nav:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  .lb-nav[hidden] { display: none; }
+  .lb-nav .ic { width: 22px; height: 22px; }
+  .lb-prev { left: max(16px, env(safe-area-inset-left, 0px)); }
+  .lb-next { right: max(16px, env(safe-area-inset-right, 0px)); }
+  .lb-bar { display: flex; align-items: center; gap: 16px; }
+  .lb-count { color: rgba(255, 255, 255, 0.8); font-size: var(--fs-14); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .lightbox img { max-width: calc(100% - 128px); }
+  @media (max-width: 600px) { .lightbox img { max-width: 100%; } .lb-nav { top: auto; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); transform: none; } }
+
+  /* stages: pills share one height so the owner labels line up */
+  .stage .pill { min-height: 52px; box-sizing: border-box; }
+
+  /* FLEX-DATA: frame for the GA4 funnel image (replaces the bar list) */
+  :root:not(.editing) .funnel-wrap:has(.slot.empty) { display: none; }
+  .funnel-wrap { display: flex; flex-direction: column; gap: 8px; }
+  .r-funnel .slot-frame { aspect-ratio: 16 / 9; border-radius: var(--r-md); }
+  .r-funnel.filled .slot-frame { aspect-ratio: auto; background: transparent; overflow: visible; }
+  .r-funnel.filled .slot-frame img { position: static; display: block; width: 100%; height: auto; object-fit: contain; border-radius: var(--r-md); }
+
+  /* FLEX-DATA findings: three cards fill the row; stacked on phones */
+  .stack.findings { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 560px) { .stack.findings { grid-template-columns: minmax(0, 1fr); } }
 </style>
 
 <header class="top">
@@ -1988,7 +2107,7 @@
           <div class="card-body">
           <div class="card-meta"><span class="key">FLEX-UI</span><span class="lens">UI/UX Design Lead</span><span class="yr">2025–now</span></div>
           <h3>LOTTE FLEX: one product across an app and three back-office systems</h3>
-          <p>Redesigned a BNPL app for its new brand and designed the Admin, Merchant and BOS systems that run it.</p>
+          <p>Redesigned a BNPL app for its new brand, and took over the Admin, Merchant and BOS systems that run it and keep improving them.</p>
           <span class="go">Read case study <svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
           </div>
         </a>
@@ -2006,7 +2125,7 @@
           <div class="card-body">
           <div class="card-meta"><span class="key">FLEX-DATA</span><span class="lens">Product Owner</span><span class="yr">2025–now</span></div>
           <h3>LOTTE FLEX: making onboarding measurable</h3>
-          <p>A GA4 tracking plan and funnel report that showed 90% of drop-offs sit at the partner bank's approval steps, and found the one screen our team should fix first.</p>
+          <p>A GA4 tracking plan and funnel report that showed 90% of drop-offs sit at the financial partner's approval steps, and found the one screen our team should fix first.</p>
           <span class="go">Read case study <svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
           </div>
         </a>
@@ -2083,10 +2202,10 @@
           <ul>
             <li>Founded Prime-Labo's UI/UX team in 2018 and led it for five years, then managed the UI/UX and front-end teams together</li>
             <li>Introduced Figma and Agile practices, estimated design work for each sprint and improved handoff</li>
-            <li>Redesigned a BNPL app for a new brand and designed the internal systems behind it</li>
+            <li>Redesigned a BNPL app for a new brand, and took over the internal systems behind it and keep improving them</li>
             <li>Reviews implementation and runs UAT before every release</li>
           </ul>
-          <div class="proof"><p class="label">Proof in case studies</p><a class="proof-link" href="#lotte-flex-design"><span class="key">FLEX-UI</span><span class="pt">LOTTE FLEX app and back-office redesign</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a><a class="proof-link" href="#prime-labo-team"><span class="key">LEAD-PL</span><span class="pt">Founding and leading a design team</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a><a class="proof-link" href="#web3-wellbeing-mvp"><span class="key">WELL-MVP</span><span class="pt">Web3 well-being app, from interview to MVP</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+          <div class="proof"><p class="label">Proof in case studies</p><a class="proof-link" href="#lotte-flex-design"><span class="key">FLEX-UI</span><span class="pt">LOTTE FLEX app redesign and back-office systems</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a><a class="proof-link" href="#prime-labo-team"><span class="key">LEAD-PL</span><span class="pt">Founding and leading a design team</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a><a class="proof-link" href="#web3-wellbeing-mvp"><span class="key">WELL-MVP</span><span class="pt">Web3 well-being app, from interview to MVP</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
         </article>
         <article class="role">
           <p class="label role-k"><span class="ic-circle sm v2" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 5v11"/><path d="M12 5v6"/><path d="M18 5v14"/></svg></span>Product Owner</p>
@@ -2097,7 +2216,7 @@
             <li>Builds GA4 tracking plans and funnel reports to measure features and guide UX decisions</li>
             <li>Writes test cases and runs UAT before each release</li>
           </ul>
-          <div class="proof"><p class="label">Proof in case studies</p><a class="proof-link" href="#lotte-flex-onboarding"><span class="key">FLEX-DATA</span><span class="pt">Finding where BNPL applicants drop out</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a><a class="proof-link" href="#lotte-flex-design"><span class="key">FLEX-UI</span><span class="pt">LOTTE FLEX app and back-office redesign</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+          <div class="proof"><p class="label">Proof in case studies</p><a class="proof-link" href="#lotte-flex-onboarding"><span class="key">FLEX-DATA</span><span class="pt">Finding where BNPL applicants drop out</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a><a class="proof-link" href="#lotte-flex-design"><span class="key">FLEX-UI</span><span class="pt">LOTTE FLEX app redesign and back-office systems</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
         </article>
       </div>
     </div></div>
@@ -2270,7 +2389,7 @@
             </div>
             <span class="xp-yrs">3/2025–now</span>
             <div class="xp-desc">
-              <p>Manage the LOTTE FLEX backlog, PRDs and GA4 tracking, and design the BNPL app and the internal systems behind it.</p>
+              <p>Manage the LOTTE FLEX backlog, PRDs and GA4 tracking, design the BNPL app, and look after the internal systems behind it.</p>
               <div class="xp-links"><a class="key key-link" href="#lotte-flex-design" aria-label="Open case study FLEX-UI">FLEX-UI<svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a><a class="key key-link" href="#lotte-flex-onboarding" aria-label="Open case study FLEX-DATA">FLEX-DATA<svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></div>
             </div>
           </li>
@@ -2379,20 +2498,22 @@
   <article class="case-page" id="cs-flex-ui" data-view="lotte-flex-design" aria-labelledby="c2-h" hidden>
     <div class="case-band"><div class="wrap"><div class="inner">
       <nav class="crumbs" aria-label="Breadcrumb"><a class="back" href="#work"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>All case studies</a><div class="case-pager"><span class="label">Case study 1 of 4</span><a class="pager-btn" href="#prime-labo-team" aria-label="Previous case study: Prime-Labo: founding and leading a design team" title="Previous: Prime-Labo: founding and leading a design team"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m15 18-6-6 6-6"/></svg></a><a class="pager-btn" href="#lotte-flex-onboarding" aria-label="Next case study: LOTTE FLEX: making onboarding measurable" title="Next: LOTTE FLEX: making onboarding measurable"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></a></div></nav>
-      <header class="case-head">
-        <div class="case-tags"><span class="key">FLEX-UI</span><span class="lens">UI/UX Design Lead</span><span class="label">LOTTE C&amp;F Vietnam · 2025–now</span></div>
-        <h1 id="c2-h">One product across a customer app and three back-office systems</h1>
-        <p class="lede">
-          I redesigned the LOTTE FLEX app for its new brand and worked out its end-to-end flows on iOS and Android. I also designed the internal systems behind it: Admin Dashboard, Merchant Portal and BOS business-rule management.
-          
-        </p>
-      </header>
+      <div class="case-top">
+        <header class="case-head">
+          <div class="case-tags"><span class="key">FLEX-UI</span><span class="lens">UI/UX Design Lead</span><span class="label">LOTTE C&amp;F Vietnam · 2025–now</span></div>
+          <h1 id="c2-h">One product across a customer app and three back-office systems</h1>
+          <p class="lede">
+            I redesigned the LOTTE FLEX app for its new brand and worked out its end-to-end flows on iOS and Android. I also took over the internal systems behind it through a handover: Admin Dashboard, Merchant Portal and BOS business-rule management. I now manage them and keep adjusting and improving them.
+            
+          </p>
+        </header>
+        <figure class="slot r-head cover" data-slot="flex-ui-cover" data-hint-en="Cover: LOTTE FLEX app mockup"></figure>
+      </div>
     </div></div></div>
     <div class="wrap"><div class="inner">
-      <figure class="slot r-wide cover" data-slot="flex-ui-cover" data-hint-en="Cover: LOTTE FLEX app mockup"></figure>
       <div class="case-body">
         <dl class="meta">
-          <div><dt>Role</dt><dd>UI/UX Designer Specialist &amp; Product Owner</dd></div>
+          <div><dt>Role</dt><dd>UI/UX Designer Specialist &amp; Product Owner duties</dd></div>
           <div><dt>Surfaces</dt><dd>iOS &amp; Android app + 3 internal systems</dd></div>
           <div><dt>Worked with</dt><dd>Business, Development, Risk, CS</dd></div>
           <div><dt>Tools</dt><dd>Figma, Jira, Confluence</dd></div>
@@ -2404,7 +2525,7 @@
           </section>
 
           <figure class="fig">
-            <p class="label">What I designed</p>
+            <p class="label">What I work on</p>
             <div class="sysmap">
               <div class="sys-group">
                 <p class="label">Customers</p>
@@ -2421,7 +2542,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="sys-link" aria-hidden="true"><span>one flow</span></div>
+              <div class="sys-link" aria-hidden="true"><span class="sys-link-ic"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg></span></div>
               <div class="sys-group">
                 <p class="label">Staff and partners</p>
                 <div class="sys-node"><strong>Admin Dashboard</strong><span>Users and service configuration</span></div>
@@ -2429,8 +2550,23 @@
                 <div class="sys-node"><strong>BOS</strong><span>Business rule management</span></div>
               </div>
             </div>
-            <figcaption>I design a feature as one flow: what the customer sees in the app and what staff see in the systems that support it.</figcaption>
+            <figcaption>I redesigned the app customers use. The staff and partner systems came to me through a handover; I manage them and adjust and improve them over time, so each new app feature also works for the people who support it.</figcaption>
           </figure>
+
+          <div class="gallery-wrap slides-wrap" data-gallery="flex-ui-slides">
+            <div class="gallery-head"><p class="label">Product gallery</p><button type="button" class="slot-btn gallery-add" data-act="add-many">Add several images</button></div>
+            <div class="gallery g-slides" tabindex="0" aria-label="Product images. Scroll sideways to see more.">
+              <figure class="slot r-slide" data-slot="flex-ui-s1" data-hint-en="Product image 1"></figure>
+              <figure class="slot r-slide" data-slot="flex-ui-s2" data-hint-en="Product image 2"></figure>
+              <figure class="slot r-slide" data-slot="flex-ui-s3" data-hint-en="Product image 3"></figure>
+              <figure class="slot r-slide" data-slot="flex-ui-s4" data-hint-en="Product image 4"></figure>
+              <figure class="slot r-slide" data-slot="flex-ui-s5" data-hint-en="Product image 5"></figure>
+              <figure class="slot r-slide" data-slot="flex-ui-s6" data-hint-en="Product image 6"></figure>
+              <figure class="slot r-slide" data-slot="flex-ui-s7" data-hint-en="Product image 7"></figure>
+              <figure class="slot r-slide" data-slot="flex-ui-s8" data-hint-en="Product image 8"></figure>
+            </div>
+            <div class="slides-nav"><button type="button" class="slides-btn" data-dir="-1" aria-label="Previous image"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m15 18-6-6 6-6"/></svg></button><span class="slides-count" aria-live="polite"></span><button type="button" class="slides-btn" data-dir="1" aria-label="Next image"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></button></div>
+          </div>
 
           <div class="gallery-wrap" data-gallery="flex-ui-screens">
             <div class="gallery-head"><p class="label">App screens</p><button type="button" class="slot-btn gallery-add" data-act="add-many">Add several images</button></div>
@@ -2449,7 +2585,7 @@
             <ul class="bullets">
               <li><span>Redesigned the app for the new brand identity and designed end-to-end flows for onboarding and eKYC, payment, repayment, Soft OTP, session management and account status.</span></li>
               <li><span>Wrote PRDs and feature specs covering use cases and edge cases on iOS and Android, then followed development closely and resolved open questions with developers.</span></li>
-              <li><span>Designed the Admin Dashboard, Merchant Portal and BOS business-rule management for users, merchants, business rules and service configuration.</span></li>
+              <li><span>Took over the Admin Dashboard, Merchant Portal and BOS business-rule management through a handover, and now manage them: adjusting and improving how staff handle users, merchants, business rules and service configuration.</span></li>
               <li><span>Wrote test cases, took part in testing and ran UAT before each release.</span></li>
               <li><span>Supported the Marketing team with key visuals, campaign banners and social posts when needed.</span></li>
             </ul>
@@ -2465,14 +2601,36 @@
             </div>
           </div>
 
+          <section class="get-app" aria-labelledby="get-app-h">
+            <figure class="slot r-app" data-slot="flex-ui-app" data-hint-en="App thumbnail or phone mockup"></figure>
+            <div class="get-app-copy">
+              <p class="label">Live on iOS and Android</p>
+              <h3 id="get-app-h">LOTTE C&amp;F: Buy Now Pay Later</h3>
+              <p>The app is live on both stores. Download it to try the flows from this case study.</p>
+              <div class="store-links">
+                <a class="store-btn" href="https://apps.apple.com/vn/app/lotte-c-f-buy-now-pay-later/id6477904637" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg><span><small>Download on the</small>App Store</span></a>
+                <a class="store-btn" href="https://play.google.com/store/apps/details?id=vn.lotte.lcnf" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polygon points="6 3 20 12 6 21 6 3"/></svg><span><small>Get it on</small>Google Play</span></a>
+              </div>
+            </div>
+          </section>
+
           <div class="outcome">
             <p class="label"><span class="ic-circle xs v3" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg></span>Outcome</p>
-            <p>The app now runs on the new brand, the internal tools were designed alongside it, and every release is checked against the agreed acceptance criteria before it reaches customers.</p>
+            <p>The app now runs on the new brand, the internal systems keep improving alongside it, and every release is checked against the agreed acceptance criteria before it reaches customers.</p>
           </div>
         </div>
       </div>
       <nav class="case-next" aria-label="Next case study">
-        <a class="next-link" href="#lotte-flex-onboarding"><span class="label">Next case study</span><span class="t">LOTTE FLEX: making onboarding measurable</span><span class="lens">Product Owner</span></a>
+        <a class="next-link" href="#lotte-flex-onboarding"><div class="card-media next-thumb" data-cover="flex-data-cover" data-thumb="flex-data-thumb">
+            <svg class="art" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <rect class="f" x="60" y="40" width="200" height="16" rx="4"/>
+              <rect class="f" x="74" y="62" width="172" height="16" rx="4"/>
+              <rect class="a" x="85" y="84" width="150" height="16" rx="4"/>
+              <rect class="f" x="101" y="106" width="118" height="16" rx="4"/>
+              <rect class="f" x="110" y="128" width="100" height="16" rx="4"/>
+              <rect class="d" x="117" y="150" width="86" height="16" rx="4"/>
+            </svg>
+          </div><span class="nl-text"><span class="label">Next case study</span><span class="t">LOTTE FLEX: making onboarding measurable</span><span class="lens">Product Owner</span></span></a>
         <a class="btn ghost" href="#work">All case studies</a>
       </nav>
     </div></div>
@@ -2482,69 +2640,65 @@
   <article class="case-page" id="cs-flex-data" data-view="lotte-flex-onboarding" aria-labelledby="c1-h" hidden>
     <div class="case-band"><div class="wrap"><div class="inner">
       <nav class="crumbs" aria-label="Breadcrumb"><a class="back" href="#work"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>All case studies</a><div class="case-pager"><span class="label">Case study 2 of 4</span><a class="pager-btn" href="#lotte-flex-design" aria-label="Previous case study: LOTTE FLEX: one product across an app and three back-office systems" title="Previous: LOTTE FLEX: one product across an app and three back-office systems"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m15 18-6-6 6-6"/></svg></a><a class="pager-btn" href="#web3-wellbeing-mvp" aria-label="Next case study: Web3 well-being super app: first interview to MVP" title="Next: Web3 well-being super app: first interview to MVP"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></a></div></nav>
-      <header class="case-head">
-        <div class="case-tags"><span class="key">FLEX-DATA</span><span class="lens">Product Owner</span><span class="label">LOTTE C&amp;F Vietnam · 2025–now</span></div>
-        <h1 id="c1-h">Finding where BNPL applicants drop out, and who can fix it</h1>
-        <p class="lede">LOTTE FLEX is LOTTE C&amp;F Vietnam's Buy Now Pay Later app. To get a credit limit, a new user verifies their phone, passes eKYC, adds personal details and signs a contract, and a partner bank approves two of those steps. I wrote the GA4 tracking plan, built the funnels and wrote the monthly report that shows which drop-offs we can fix ourselves.</p>
-      </header>
+      <div class="case-top">
+        <header class="case-head">
+          <div class="case-tags"><span class="key">FLEX-DATA</span><span class="lens">Product Owner</span><span class="label">LOTTE C&amp;F Vietnam · 2025–now</span></div>
+          <h1 id="c1-h">Finding where BNPL applicants drop out, and who can fix it</h1>
+          <p class="lede">New LOTTE FLEX users pass several steps to get a credit limit, and a financial partner approves two of them. I built the GA4 tracking that shows which drop-offs our team can fix.</p>
+        </header>
+        <figure class="slot r-head cover" data-slot="flex-data-cover" data-hint-en="Cover: GA4 funnel or tracking overview"></figure>
+      </div>
     </div></div></div>
     <div class="wrap"><div class="inner">
-      <figure class="slot r-wide cover" data-slot="flex-data-cover" data-hint-en="Cover: GA4 funnel or tracking overview"></figure>
       <div class="case-body">
         <dl class="meta">
-          <div><dt>Role</dt><dd>Product Owner, UI/UX</dd></div>
+          <div><dt>Role</dt><dd>Product Owner duties, UI/UX</dd></div>
           <div><dt>Worked with</dt><dd>Mobile developers, BA, Business, Risk, IT</dd></div>
-          <div><dt>Scope</dt><dd>Onboarding, from phone verification to credit limit</dd></div>
-          <div><dt>Data</dt><dd>GA4 funnels, checked against BOS</dd></div>
+          <div><dt>Scope</dt><dd>Onboarding flow</dd></div>
+          <div><dt>Data</dt><dd>GA4 funnels, checked against internal data</dd></div>
           <div><dt>Tools</dt><dd>GA4, Google Sheets, Jira, Confluence</dd></div>
         </dl>
         <div class="story">
           <section class="block">
             <h3><span class="ic-circle xs" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span>The question</h3>
-            <p>Every new user goes through several required steps before they get a credit limit, and two of the approvals belong to a partner bank. The team needed to know where applicants drop out, and which of those drop-offs our own screens cause.</p>
+            <p>Every new user goes through several required steps before they get a credit limit, and two of the approvals belong to a financial partner. The team needed to know where applicants drop out, and which of those drop-offs our own screens cause.</p>
           </section>
-
           <figure class="fig">
-            <p class="label">Onboarding stages and who controls them</p>
+            <p class="label">Onboarding stages</p>
             <ol class="stages">
-              <li class="stage"><span class="pill">Splash</span><span class="own">Our screens</span><span class="events"><code>ob_splash</code></span></li>
-              <li class="stage"><span class="pill">Phone number verification</span><span class="own">Our screens</span><span class="events"><code>phone_check_<wbr>result</code></span></li>
-              <li class="stage hot"><span class="pill">eKYC</span><span class="own">Partner bank</span><span class="events"><code>ekyc_start</code><code>ekyc_result</code></span></li>
-              <li class="stage"><span class="pill">Additional info</span><span class="own">Our screens</span></li>
-              <li class="stage"><span class="pill">Sign contract</span><span class="own">Shared</span></li>
-              <li class="stage hot"><span class="pill">Get credit limit</span><span class="own">Partner bank</span></li>
+              <li class="stage"><span class="pill">Splash</span></li>
+              <li class="stage"><span class="pill">Phone verification</span></li>
+              <li class="stage hot"><span class="pill">eKYC</span></li>
+              <li class="stage"><span class="pill">Additional info</span></li>
+              <li class="stage"><span class="pill">Sign contract</span></li>
+              <li class="stage hot"><span class="pill">Get credit limit</span></li>
             </ol>
-            <figcaption>Simplified. Dark stages are the partner bank's approval steps. GA4 funnels stop at ten steps, so the journey is tracked as one master funnel plus three detailed funnels: eKYC, Additional info, and Contract and credit limit.</figcaption>
+            <figcaption>Dark stages are the financial partner's approval steps. GA4 funnels stop at ten steps, so the journey is tracked as one master funnel plus three detailed funnels: eKYC, Additional info, and Contract and credit limit.</figcaption>
           </figure>
+
 
           <section class="block">
             <h3><span class="ic-circle xs" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/></svg></span>What I did</h3>
             <ol class="steps">
               <li><span>Wrote the tracking plan: screen and action events, funnel milestones and a parameter dictionary, under one naming convention.</span></li>
-              <li><span>Worked with mobile developers on the implementation and checked each event against live GA4 data. The eKYC pass rate comes from the result event, so failed attempts count.</span></li>
+              <li><span>Worked with mobile developers on the implementation and checked each event against live GA4 data.</span></li>
               <li><span>Built a master funnel with ten milestones and three detailed funnels, one per stage.</span></li>
-              <li><span>Compared GA4 with BOS, our back-office record, before trusting any pattern.</span></li>
+              <li><span>Compared GA4 with internal data before trusting any pattern.</span></li>
               <li><span>Wrote the monthly report: what each funnel shows and what Business, Risk and IT should do next.</span></li>
             </ol>
           </section>
 
           <figure class="fig">
-            <p class="label">What the September 2026 report showed</p>
+            <p class="label">What we learned from the GA4 report</p>
             <div class="stack findings">
-              <div><b>90.3%</b><span>of drop-offs happened at the partner bank's two approval steps</span></div>
-              <div><b>9.7%</b><span>happened on screens our team controls</span></div>
-              <div><b>35.4%</b><span>of users who started eKYC left before a result, more than the 32.1% who failed it</span></div>
-              <div><b>+23%</b><span>more new accounts if one weak screen kept users as well as the others</span></div>
+              <div><b>~90%</b><span>of drop-offs happen at the financial partner's approval steps</span></div>
+              <div><b>~10%</b><span>of drop-offs happen on screens our team controls</span></div>
+              <div><b>~35%</b><span>of users leave eKYC before getting a result</span></div>
             </div>
-            <p class="label chart-k" id="flex-bars-k">Additional info: share of users who continue past each screen</p>
-            <ol class="barlist" aria-labelledby="flex-bars-k">
-              <li tabindex="0"><span class="n">Contact person 1</span><span class="bar" aria-hidden="true"><i style="--v: 99.4%"></i></span><span class="v">99.4%</span><span class="tip">0.6% leave at this screen</span></li>
-              <li tabindex="0"><span class="n">Contact person 2</span><span class="bar" aria-hidden="true"><i style="--v: 99.5%"></i></span><span class="v">99.5%</span><span class="tip">0.5% leave at this screen</span></li>
-              <li class="hot" tabindex="0"><span class="n">Residence &amp; income <span class="flag">Main drop</span></span><span class="bar" aria-hidden="true"><i style="--v: 80.3%"></i></span><span class="v">80.3%</span><span class="tip">19.7% leave here, 71% of this stage's drop-offs</span></li>
-              <li tabindex="0"><span class="n">Account setup</span><span class="bar" aria-hidden="true"><i style="--v: 99.4%"></i></span><span class="v">99.4%</span><span class="tip">0.6% leave at this screen</span></li>
-              <li tabindex="0"><span class="n">Submit info</span><span class="bar" aria-hidden="true"><i style="--v: 92%"></i></span><span class="v">92.0%</span><span class="tip">8.0% leave at this step</span></li>
-            </ol>
-            <figcaption>GA4 recorded 53.2% of the registrations in BOS that month, so these are patterns, not totals. Each rate is measured against the screen before it.</figcaption>
+            <div class="funnel-wrap">
+              <p class="label chart-k">Additional info funnel</p>
+              <figure class="slot r-funnel" data-slot="flex-data-funnel" data-hint-en="Funnel chart from GA4"></figure>
+            </div>
           </figure>
 
           <section class="block">
@@ -2553,11 +2707,11 @@
               <div class="decision">
                 <span class="did">D-01</span>
                 <div>
-                  <h4>Patterns from GA4, totals from BOS</h4>
+                  <h4>Patterns from GA4, totals from internal data</h4>
                   <div class="dgrid">
-                    <div><p class="label">Found</p><p>GA4 recorded 53.2% of the registrations in BOS. Tracking only became stable mid-month, and older app versions don't send events.</p></div>
-                    <div><p class="label">Decided</p><p>Read drop-off patterns from GA4, take absolute numbers from BOS, and say so on the first page of the report.</p></div>
-                    <div><p class="label">Trade-off</p><p>No exact counts from GA4 for now, but the priorities rest on patterns that hold. Coverage rises as people update the app.</p></div>
+                    <div><p class="label">Found</p><p>GA4 didn't capture every registration yet: tracking was still settling, and older app versions don't send events.</p></div>
+                    <div><p class="label">Decided</p><p>Use GA4 for drop-off patterns, take absolute numbers from internal records, and say so clearly in the report.</p></div>
+                    <div><p class="label">Trade-off</p><p>No exact counts from GA4 for now, but priorities rest on patterns that hold. Coverage improves as people update the app.</p></div>
                   </div>
                 </div>
               </div>
@@ -2566,8 +2720,8 @@
                 <div>
                   <h4>Sort drop-offs by who can fix them</h4>
                   <div class="dgrid">
-                    <div><p class="label">Found</p><p>90.3% of drop-offs happened at the partner bank's approval steps, and only 9.7% on our own screens.</p></div>
-                    <div><p class="label">Decided</p><p>Tag every funnel step with its owner. Bank steps get a root-cause review with the bank, Risk and IT. Our screens get UX fixes.</p></div>
+                    <div><p class="label">Found</p><p>Most drop-offs happened at steps the financial partner controls; only a small share were on our own screens.</p></div>
+                    <div><p class="label">Decided</p><p>Tag every funnel step with its owner. Partner steps go to a joint review with the partner and internal teams; our own screens get UX fixes.</p></div>
                     <div><p class="label">Trade-off</p><p>The biggest losses aren't ours to fix directly, so progress there depends on the partner.</p></div>
                   </div>
                 </div>
@@ -2577,9 +2731,9 @@
                 <div>
                   <h4>Leaving eKYC is not the same as failing it</h4>
                   <div class="dgrid">
-                    <div><p class="label">Found</p><p>More users left eKYC midway (35.4%) than failed it (32.1%). The SDK belongs to the bank, so we can't see where inside it they stop.</p></div>
-                    <div><p class="label">Decided</p><p>Tell users before the phone OTP that they need their original ID card, and ask the bank which SDK step people leave at.</p></div>
-                    <div><p class="label">Trade-off</p><p>Some unprepared users stop earlier, but they can come back ready, and we send fewer OTPs to people who won't finish.</p></div>
+                    <div><p class="label">Found</p><p>More users left eKYC midway than failed it. The verification step is run by the partner, so we can't see exactly where people stop.</p></div>
+                    <div><p class="label">Decided</p><p>Prepare users earlier: tell them which documents they need before they start, and ask the partner for step-level data.</p></div>
+                    <div><p class="label">Trade-off</p><p>Some unprepared users stop earlier, but they can come back ready, and we spend less on users who won't finish.</p></div>
                   </div>
                 </div>
               </div>
@@ -2588,8 +2742,8 @@
                 <div>
                   <h4>One screen, most of the loss</h4>
                   <div class="dgrid">
-                    <div><p class="label">Found</p><p>Residence &amp; income kept 80.3% of users, while every other input screen kept over 99%. It caused 71% of the drop-offs in Additional info.</p></div>
-                    <div><p class="label">Decided</p><p>Proposed splitting it into two screens, Residence and Income, with GPS address picking so people don't have to type their address.</p></div>
+                    <div><p class="label">Found</p><p>One personal-details screen lost far more users than any other input screen, and caused most of the drop-off in that stage.</p></div>
+                    <div><p class="label">Decided</p><p>Proposed splitting it into two shorter screens and letting people pick their address instead of typing it.</p></div>
                     <div><p class="label">Trade-off</p><p>One more screen in the flow, in exchange for shorter, clearer input on each.</p></div>
                   </div>
                 </div>
@@ -2609,12 +2763,21 @@
 
           <div class="outcome">
             <p class="label"><span class="ic-circle xs v3" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg></span>Outcome</p>
-            <p>The team now has one shared view of onboarding, with every drop-off sorted by who can fix it. For the bank's approval steps, the report lists what to check with the bank, Risk and IT. On our side no big redesign was needed: the work narrowed to one screen, and the proposal is in the backlog.</p>
+            <p>The team now has one shared view of onboarding, with every drop-off sorted by who can fix it. For the financial partner's approval steps, the report lists what to check with the partner, Risk and IT. On our side no big redesign was needed: the work narrowed to a specific step in the flow, and the proposal is in the backlog.</p>
           </div>
         </div>
       </div>
       <nav class="case-next" aria-label="Next case study">
-        <a class="next-link" href="#web3-wellbeing-mvp"><span class="label">Next case study</span><span class="t">Web3 well-being super app: first interview to MVP</span><span class="lens">0→1 product UI/UX</span></a>
+        <a class="next-link" href="#web3-wellbeing-mvp"><div class="card-media next-thumb" data-cover="well-cover" data-thumb="well-thumb">
+            <svg class="art" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <circle class="rb" cx="118" cy="100" r="40"/>
+              <circle class="ra" cx="118" cy="100" r="40" stroke-dasharray="166 252" transform="rotate(-90 118 100)"/>
+              <ellipse class="m" cx="222" cy="78" rx="36" ry="12"/>
+              <rect class="d" x="212" y="56" width="20" height="16" rx="3"/>
+              <ellipse class="m" cx="236" cy="132" rx="30" ry="10"/>
+              <rect class="d" x="228" y="114" width="16" height="13" rx="3"/>
+            </svg>
+          </div><span class="nl-text"><span class="label">Next case study</span><span class="t">Web3 well-being super app: first interview to MVP</span><span class="lens">0→1 product UI/UX</span></span></a>
         <a class="btn ghost" href="#work">All case studies</a>
       </nav>
     </div></div>
@@ -2624,17 +2787,19 @@
   <article class="case-page" id="cs-well-mvp" data-view="web3-wellbeing-mvp" aria-labelledby="c3-h" hidden>
     <div class="case-band"><div class="wrap"><div class="inner">
       <nav class="crumbs" aria-label="Breadcrumb"><a class="back" href="#work"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>All case studies</a><div class="case-pager"><span class="label">Case study 3 of 4</span><a class="pager-btn" href="#lotte-flex-onboarding" aria-label="Previous case study: LOTTE FLEX: making onboarding measurable" title="Previous: LOTTE FLEX: making onboarding measurable"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m15 18-6-6 6-6"/></svg></a><a class="pager-btn" href="#prime-labo-team" aria-label="Next case study: Prime-Labo: founding and leading a design team" title="Next: Prime-Labo: founding and leading a design team"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></a></div></nav>
-      <header class="case-head">
-        <div class="case-tags"><span class="key">WELL-MVP</span><span class="lens">0→1 product UI/UX</span><span class="label">Web3 · 2023–25</span></div>
-        <h1 id="c3-h">A Web3 well-being super app, from first interview to MVP</h1>
-        <p class="lede">
-          An open-data well-being app with mini apps, where people earn rewards for sharing their well-being data on blockchain. I joined on day one, ran the whole UX process and kept iterating in later releases with international stakeholders.
-          
-        </p>
-      </header>
+      <div class="case-top">
+        <header class="case-head">
+          <div class="case-tags"><span class="key">WELL-MVP</span><span class="lens">0→1 product UI/UX</span><span class="label">Web3 · 2023–25</span></div>
+          <h1 id="c3-h">A Web3 well-being super app, from first interview to MVP</h1>
+          <p class="lede">
+            An open-data well-being app with mini apps, where people earn rewards for sharing their well-being data on blockchain. I joined on day one, ran the whole UX process and kept iterating in later releases with international stakeholders.
+            
+          </p>
+        </header>
+        <figure class="slot r-head cover" data-slot="well-cover" data-hint-en="Cover: MVP screens or key visual"></figure>
+      </div>
     </div></div></div>
     <div class="wrap"><div class="inner">
-      <figure class="slot r-wide cover" data-slot="well-cover" data-hint-en="Cover: MVP screens or key visual"></figure>
       <div class="case-body">
         <dl class="meta">
           <div><dt>Role</dt><dd>UX/UI designer, end to end</dd></div>
@@ -2720,7 +2885,16 @@
         </div>
       </div>
       <nav class="case-next" aria-label="Next case study">
-        <a class="next-link" href="#prime-labo-team"><span class="label">Next case study</span><span class="t">Prime-Labo: founding and leading a design team</span><span class="lens">Team leadership</span></a>
+        <a class="next-link" href="#prime-labo-team"><div class="card-media next-thumb" data-cover="lead-cover" data-thumb="lead-thumb">
+            <svg class="art" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <path class="s" d="M160 66 V84 M100 84 H220 M100 84 V98 M220 84 V98 M100 122 V136 M76 136 H124 M76 136 V146 M100 136 V146 M124 136 V146 M220 122 V136 M196 136 H244 M196 136 V146 M220 136 V146 M244 136 V146"/>
+              <circle class="a" cx="160" cy="52" r="14"/>
+              <circle class="f" cx="100" cy="110" r="12"/><circle class="s" cx="100" cy="110" r="12"/>
+              <circle class="f" cx="220" cy="110" r="12"/><circle class="s" cx="220" cy="110" r="12"/>
+              <circle class="m" cx="76" cy="155" r="9"/><circle class="m" cx="100" cy="155" r="9"/><circle class="m" cx="124" cy="155" r="9"/>
+              <circle class="m" cx="196" cy="155" r="9"/><circle class="m" cx="220" cy="155" r="9"/><circle class="m" cx="244" cy="155" r="9"/>
+            </svg>
+          </div><span class="nl-text"><span class="label">Next case study</span><span class="t">Prime-Labo: founding and leading a design team</span><span class="lens">Team leadership</span></span></a>
         <a class="btn ghost" href="#work">All case studies</a>
       </nav>
     </div></div>
@@ -2730,14 +2904,16 @@
   <article class="case-page" id="cs-lead-pl" data-view="prime-labo-team" aria-labelledby="c4-h" hidden>
     <div class="case-band"><div class="wrap"><div class="inner">
       <nav class="crumbs" aria-label="Breadcrumb"><a class="back" href="#work"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>All case studies</a><div class="case-pager"><span class="label">Case study 4 of 4</span><a class="pager-btn" href="#web3-wellbeing-mvp" aria-label="Previous case study: Web3 well-being super app: first interview to MVP" title="Previous: Web3 well-being super app: first interview to MVP"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m15 18-6-6 6-6"/></svg></a><a class="pager-btn" href="#lotte-flex-design" aria-label="Next case study: LOTTE FLEX: one product across an app and three back-office systems" title="Next: LOTTE FLEX: one product across an app and three back-office systems"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></a></div></nav>
-      <header class="case-head">
-        <div class="case-tags"><span class="key">LEAD-PL</span><span class="lens">Team leadership</span><span class="label">Prime-Labo Co., Ltd. · 2018–25</span></div>
-        <h1 id="c4-h">Founding and leading a design team for Japanese clients</h1>
-        <p class="lede">I joined Prime-Labo in SEO, taught myself UI/UX on real projects, founded the company's UI/UX team in 2018 and later managed the UI/UX and front-end teams together.</p>
-      </header>
+      <div class="case-top">
+        <header class="case-head">
+          <div class="case-tags"><span class="key">LEAD-PL</span><span class="lens">Team leadership</span><span class="label">Prime-Labo Co., Ltd. · 2018–25</span></div>
+          <h1 id="c4-h">Founding and leading a design team for Japanese clients</h1>
+          <p class="lede">I joined Prime-Labo in SEO, taught myself UI/UX on real projects, founded the company's UI/UX team in 2018 and later managed the UI/UX and front-end teams together.</p>
+        </header>
+        <figure class="slot r-head cover" data-slot="lead-cover" data-hint-en="Cover: team photo or project collage"></figure>
+      </div>
     </div></div></div>
     <div class="wrap"><div class="inner">
-      <figure class="slot r-wide cover" data-slot="lead-cover" data-hint-en="Cover: team photo or project collage"></figure>
       <div class="case-body">
         <dl class="meta">
           <div><dt>Roles</dt><dd>UI/UX Team Leader, 2018–2023<br>UI/UX &amp; Front-end Team Manager, 2023–2025</dd></div>
@@ -2810,7 +2986,23 @@
         </div>
       </div>
       <nav class="case-next" aria-label="Next case study">
-        <a class="next-link" href="#lotte-flex-design"><span class="label">Next case study</span><span class="t">LOTTE FLEX: one product across an app and three back-office systems</span><span class="lens">UI/UX Design Lead</span></a>
+        <a class="next-link" href="#lotte-flex-design"><div class="card-media next-thumb" data-cover="flex-ui-cover" data-thumb="flex-ui-thumb">
+            <svg class="art" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <rect class="f" x="70" y="30" width="72" height="140" rx="14"/>
+              <rect class="s" x="70" y="30" width="72" height="140" rx="14"/>
+              <rect class="a" x="80" y="48" width="52" height="30" rx="6"/>
+              <rect class="m" x="80" y="86" width="52" height="8" rx="4"/>
+              <rect class="m" x="80" y="100" width="38" height="8" rx="4"/>
+              <rect class="d" x="80" y="146" width="52" height="12" rx="6"/>
+              <path class="s" d="M148 100 H178" stroke-dasharray="4 4"/>
+              <rect class="f" x="182" y="46" width="78" height="30" rx="8"/><rect class="s" x="182" y="46" width="78" height="30" rx="8"/>
+              <rect class="f" x="182" y="85" width="78" height="30" rx="8"/><rect class="s" x="182" y="85" width="78" height="30" rx="8"/>
+              <rect class="f" x="182" y="124" width="78" height="30" rx="8"/><rect class="s" x="182" y="124" width="78" height="30" rx="8"/>
+              <rect class="m" x="192" y="57" width="40" height="8" rx="4"/>
+              <rect class="m" x="192" y="96" width="50" height="8" rx="4"/>
+              <rect class="m" x="192" y="135" width="32" height="8" rx="4"/>
+            </svg>
+          </div><span class="nl-text"><span class="label">Next case study</span><span class="t">LOTTE FLEX: one product across an app and three back-office systems</span><span class="lens">UI/UX Design Lead</span></span></a>
         <a class="btn ghost" href="#work">All case studies</a>
       </nav>
     </div></div>
@@ -2859,11 +3051,13 @@
   </div>
 </div>
 <input type="file" id="vmt-file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" hidden>
-<div class="lightbox" id="lightbox" hidden>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
   <img id="lb-img" alt="">
-  <button type="button" class="slot-btn" id="lb-close">Close</button>
+  <button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Previous image"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m15 18-6-6 6-6"/></svg></button>
+  <button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next image"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></button>
+  <div class="lb-bar"><span class="lb-count" id="lb-count" aria-live="polite"></span><button type="button" class="slot-btn" id="lb-close">Close</button></div>
 </div>
-<script type="application/json" id="vmt-state">{"v": 1, "slots": {"cert-pspo": {"id": "cert-pspo.jpg", "cap": ""}, "cert-google-ux": {"id": "cert-google-ux.jpg", "cap": ""}, "cert-claude-101": {"id": "cert-claude-101.jpg", "cap": ""}, "cert-claude-cowork": {"id": "cert-claude-cowork.jpg", "cap": ""}, "portrait": {"id": "portrait.jpg", "cap": ""}, "gumroad-cover": {"id": "gumroad-cover.jpg", "cap": ""}, "logo-lotte": {"id": "logo-lotte.png", "cap": ""}, "logo-primelabo": {"id": "logo-primelabo.png", "cap": ""}, "logo-blocksky": {"id": "logo-blocksky.jpg", "cap": ""}, "logo-bigbeat": {"id": "logo-bigbeat.png", "cap": ""}, "logo-dubut": {"id": "logo-dubut.png", "cap": ""}, "logo-badger": {"id": "logo-badger.png", "cap": ""}, "logo-kenh14": {"id": "logo-kenh14.png", "cap": ""}}}</script>
+<script type="application/json" id="vmt-state">{"v": 1, "slots": {"cert-pspo": {"id": "cert-pspo.jpg", "cap": ""}, "cert-google-ux": {"id": "cert-google-ux.jpg", "cap": ""}, "cert-claude-101": {"id": "cert-claude-101.jpg", "cap": ""}, "cert-claude-cowork": {"id": "cert-claude-cowork.jpg", "cap": ""}, "logo-lotte": {"id": "logo-lotte.png", "cap": ""}, "logo-primelabo": {"id": "logo-primelabo.png", "cap": ""}, "logo-blocksky": {"id": "logo-blocksky.jpg", "cap": ""}, "logo-bigbeat": {"id": "logo-bigbeat.png", "cap": ""}, "logo-dubut": {"id": "logo-dubut.png", "cap": ""}, "logo-badger": {"id": "logo-badger.png", "cap": ""}, "logo-kenh14": {"id": "logo-kenh14.png", "cap": ""}, "portrait": {"id": "portrait.jpg", "cap": ""}, "gumroad-cover": {"id": "gumroad-cover.jpg", "cap": ""}, "flex-ui-app": {"id": "flex-ui-app.png", "cap": ""}, "flex-ui-cover": {"id": "flex-ui-cover.png", "cap": ""}, "flex-ui-s1": {"id": "flex-ui-s1.png", "cap": ""}, "flex-ui-s2": {"id": "flex-ui-s2.png", "cap": ""}, "flex-ui-s3": {"id": "flex-ui-s3.png", "cap": ""}, "flex-ui-s4": {"id": "flex-ui-s4.png", "cap": ""}, "flex-ui-p1": {"id": "flex-ui-p1.png", "cap": ""}, "flex-ui-p2": {"id": "flex-ui-p2.png", "cap": ""}, "flex-ui-p3": {"id": "flex-ui-p3.png", "cap": ""}, "flex-ui-p4": {"id": "flex-ui-p4.png", "cap": ""}, "flex-ui-p5": {"id": "flex-ui-p5.png", "cap": ""}, "flex-ui-p6": {"id": "flex-ui-p6.png", "cap": ""}}}</script>
 <script>
   /* Case studies are separate views, addressed by #name so each one has its own link. */
   (function () {
@@ -3366,9 +3560,28 @@
     });
 
     /* ---------- interactions ---------- */
+    var lbList = [], lbIdx = 0;
+    var lbPrev = document.getElementById('lb-prev'), lbNext = document.getElementById('lb-next'), lbCount = document.getElementById('lb-count');
+    function showLb() {
+      var im = lbList[lbIdx];
+      if (!im) return;
+      lbImg.src = im.currentSrc || im.src;
+      lbImg.alt = im.alt || '';
+      var many = lbList.length > 1;
+      lbPrev.hidden = !many; lbNext.hidden = !many;
+      lbCount.textContent = many ? (lbIdx + 1) + ' / ' + lbList.length : '';
+    }
+    function stepLb(d) {
+      if (lbList.length < 2) return;
+      lbIdx = (lbIdx + d + lbList.length) % lbList.length;
+      showLb();
+    }
     function openLightbox(img) {
-      lbImg.src = img.currentSrc || img.src;
-      lbImg.alt = img.alt || '';
+      var scope = img.closest('[data-view]') || document;
+      lbList = Array.prototype.filter.call(scope.querySelectorAll('.slot:not(.logo-slot) .slot-frame img, .portrait .p-img'), function (i) { return i.offsetParent !== null && i.getAttribute('src'); });
+      lbIdx = lbList.indexOf(img);
+      if (lbIdx < 0) { lbList = [img]; lbIdx = 0; }
+      showLb();
       lb.hidden = false;
       document.getElementById('lb-close').focus();
     }
@@ -3377,11 +3590,23 @@
       lbImg.removeAttribute('src');
     }
     lb.addEventListener('click', function (e) {
+      if (e.target.closest('#lb-prev')) { stepLb(-1); return; }
+      if (e.target.closest('#lb-next')) { stepLb(1); return; }
       if (e.target === lb || e.target.closest('#lb-close')) closeLightbox();
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !lb.hidden) closeLightbox();
+      if (lb.hidden) return;
+      if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') stepLb(-1);
+      else if (e.key === 'ArrowRight') stepLb(1);
     });
+    var lbX = null;
+    lb.addEventListener('touchstart', function (e) { lbX = e.touches.length === 1 ? e.touches[0].clientX : null; }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      if (lbX === null) return;
+      var dx = e.changedTouches[0].clientX - lbX; lbX = null;
+      if (Math.abs(dx) > 40) stepLb(dx < 0 ? 1 : -1);
+    }, { passive: true });
     document.addEventListener('click', function (e) {
       var b = e.target.closest('[data-act]');
       if (b) {
@@ -3466,7 +3691,39 @@
     });
   })();
 </script>
+<script>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    Array.prototype.forEach.call(document.querySelectorAll('.slides-wrap'), function (w) {
+      var tr = w.querySelector('.g-slides');
+      var nav = w.querySelector('.slides-nav');
+      var btns = w.querySelectorAll('.slides-btn');
+      function shown() { return Array.prototype.filter.call(tr.children, function (c) { return getComputedStyle(c).display !== 'none'; }).length; }
+      function upd() {
+        nav.hidden = shown() < 2;
+        var max = tr.scrollWidth - tr.clientWidth - 2;
+        btns[0].disabled = tr.scrollLeft <= 2;
+        btns[1].disabled = tr.scrollLeft >= max;
+        var vis = Array.prototype.filter.call(tr.children, function (c) { return getComputedStyle(c).display !== 'none'; });
+        var cur = vis[Math.min(vis.length - 1, Math.round(tr.scrollLeft / Math.max(1, tr.clientWidth)))];
+        tr.style.height = (cur && cur.offsetHeight) ? cur.offsetHeight + 'px' : '';
+        var cnt = w.querySelector('.slides-count');
+        if (cnt) { var n = shown(); var i = Math.min(n, Math.round(tr.scrollLeft / Math.max(1, tr.clientWidth)) + 1); cnt.textContent = n > 1 ? i + ' / ' + n : ''; }
+      }
+      Array.prototype.forEach.call(btns, function (b) {
+        b.addEventListener('click', function () { tr.scrollBy({ left: Number(b.getAttribute('data-dir')) * tr.clientWidth, behavior: reduce ? 'auto' : 'smooth' }); });
+      });
+      tr.addEventListener('scroll', upd, { passive: true });
+      tr.addEventListener('load', upd, true);
+      tr.addEventListener('scrollend', upd);
+      window.addEventListener('resize', upd);
+      window.addEventListener('hashchange', function () { setTimeout(upd, 50); });
+      if (window.MutationObserver) new MutationObserver(upd).observe(tr, { subtree: true, childList: true, attributes: true, attributeFilter: ['class'] });
+      if (window.MutationObserver) new MutationObserver(upd).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+      upd();
+    });
+  })();
+</script>
 <script type="application/json" id="vmt-tpl">""</script>
 
-</body>
-</html>
+</body></html>
