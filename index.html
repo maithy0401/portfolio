@@ -364,6 +364,7 @@
   .block { display: flex; flex-direction: column; gap: 14px; }
   .block h3 { font-size: var(--t-h3); font-weight: 700; }
   .block > p { max-width: 64ch; }
+  #cs-flex-data .block > p { max-width: none; }
   .steps { display: flex; flex-direction: column; gap: 14px; counter-reset: s; max-width: 66ch; }
   .steps li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; }
   .steps li::before {
@@ -404,7 +405,7 @@
     gap: 20px;
     min-width: 0;
   }
-  .fig figcaption { font-size: var(--t-sm); color: var(--muted); max-width: 70ch; }
+  .fig figcaption { font-size: var(--t-sm); color: var(--muted); max-width: none; }
 
   /* onboarding stages */
   .stages { display: flex; align-items: stretch; gap: 0; overflow-x: auto; padding-bottom: 4px; }
@@ -1902,9 +1903,69 @@
   /* ground shadow under the header image */
   .r-head.filled .slot-frame { overflow: visible; }
   .r-head.filled .slot-frame img { z-index: 1; filter: drop-shadow(0 14px 18px rgba(40, 30, 70, 0.16)); }
+  /* editor buttons (Replace / Remove) must sit above the header image */
+  .r-head.filled .slot-tools { z-index: 3; }
   .r-head.filled .slot-frame::after { content: ""; position: absolute; z-index: 0; left: 20%; right: 20%; bottom: -22px; height: 34px; border-radius: 50%; background: radial-gradient(closest-side, rgba(40, 30, 70, 0.34), rgba(40, 30, 70, 0.12) 55%, rgba(40, 30, 70, 0)); filter: blur(4px); pointer-events: none; }
   .case-top:has(> .slot.filled) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(20px, 3vw, 40px); }
   .case-top:has(> .slot.filled) .r-head .slot-frame { transform: scale(1.12); transform-origin: center bottom; }
+  /* FLEX-DATA cover: slightly smaller, no shadow so it reads as transparent */
+  .case-top:has(> .slot.filled) .r-head[data-slot="flex-data-cover"] .slot-frame { transform: scale(0.92); transform-origin: center; }
+  .r-head[data-slot="flex-data-cover"].filled .slot-frame img { filter: none; }
+  .r-head[data-slot="flex-data-cover"].filled .slot-frame::after { display: none; }
+  /* FLEX-UI cover: a touch smaller than the default header image */
+  .case-top:has(> .slot.filled) .r-head[data-slot="flex-ui-cover"] .slot-frame { transform: scale(1); transform-origin: center bottom; }
+  /* small screens: a filled cover goes under the title instead of squeezing it into a narrow column */
+  @media (max-width: 900px) {
+    .case-top:has(> .slot.filled) { grid-template-columns: minmax(0, 1fr); }
+    .case-top:has(> .slot.filled) .r-head .slot-frame { transform: none; }
+  }
+  /* Web3 well-being: challenge as two cards, outcome as delivered-screen pills */
+  .duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .duo-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .duo-card p { font-size: var(--t-sm); line-height: 1.55; }
+  .duo-card p.label { font-size: var(--t-xs); }
+  @media (max-width: 640px) { .duo { grid-template-columns: 1fr; } }
+  /* Web3 well-being: process as a connected 5-step flow */
+  .flow5 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; position: relative; counter-reset: none; }
+  .flow5 li { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 16px 8px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); min-width: 0; }
+  .flow5 li:not(:last-child)::after { content: ""; position: absolute; top: 50%; right: -11px; width: 12px; border-top: 1.5px dashed var(--muted); z-index: 1; }
+  .flow5 .n { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--muted); letter-spacing: 0.06em; }
+  .flow5 .t { font-size: var(--t-sm); font-weight: 600; line-height: 1.3; }
+  /* Process steps use a different icon style (solid glyph in a soft square tile) from the section icons */
+  .step-ic { --kn: var(--accent-soft); display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 12px; background: var(--accent-soft); color: var(--ink); }
+  .step-ic .gl { width: 24px; height: 24px; display: block; }
+  .step-ic .k { fill: var(--kn); }
+  .flow5 li.mvp .step-ic { --kn: #4c4a4a; background: rgba(255, 255, 255, 0.14); color: #fff; }
+  .flow5 li.mvp { background: var(--ink); border-color: var(--ink); color: var(--accent-ink); }
+  .flow5 li.mvp .n { color: rgba(255, 255, 255, 0.7); }
+  @media (max-width: 760px) {
+    .flow5 { grid-template-columns: 1fr; }
+    .flow5 li { flex-direction: row; text-align: left; padding: 12px 14px; gap: 12px; }
+    .flow5 li:not(:last-child)::after { top: auto; bottom: -11px; right: auto; left: 30px; width: 0; height: 12px; border-top: 0; border-left: 1.5px dashed var(--muted); }
+  }
+  /* Web3 well-being MVP screens: each card (empty or filled) transparent and a bit larger */
+  [data-gallery="well-gallery"] .g-phone { grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); }
+  [data-gallery="well-gallery"] .slot .slot-frame { background: transparent; }
+  /* screenshots come on a solid white backdrop: let it blend into the page so each card reads as transparent */
+  [data-gallery="well-gallery"] .slot .slot-frame img { mix-blend-mode: multiply; }
+  @media (max-width: 520px) { [data-gallery="well-gallery"] .g-phone { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  /* Web3 well-being: what the MVP covered, as four cards */
+  .cover4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  @media (max-width: 440px) { .cover4 { grid-template-columns: 1fr; } }
+  .cover4 li { display: flex; flex-direction: column; gap: 8px; padding: 16px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-md); min-width: 0; }
+  .cover4 strong { font-size: var(--t-base); font-weight: 600; line-height: 1.3; }
+  .cover4 li > span:last-child { font-size: var(--t-sm); color: var(--muted); line-height: 1.5; }
+  /* FLEX-DATA thumbnail: crop from the top instead of the middle */
+  .card-media[data-cover="flex-data-cover"] .cover-img { object-position: top; }
+  /* 7 nav items: tighten spacing on mid-size screens so they stay on one line */
+  @media (min-width: 721px) and (max-width: 1000px) {
+    .top .nav { gap: 12px; }
+    .nav a.navlink { font-size: 0.8125rem; white-space: nowrap; }
+    .nav-cta { padding: 0 14px; white-space: nowrap; }
+    .mark .mt-sub { display: none; }
+  }
+  .deliver { display: flex; flex-wrap: wrap; gap: 8px; }
+  .deliver li { font-size: var(--t-xs); font-weight: 600; padding: 5px 12px; border-radius: 999px; border: 1px solid rgba(57, 55, 55, 0.25); background: rgba(255, 255, 255, 0.6); color: var(--ink); }
   @media (max-width: 900px) { .case-top { grid-template-columns: minmax(0, 1fr); } }
 
   /* next case study: thumbnail from the work card beside the title */
@@ -2019,9 +2080,11 @@
         <span class="mark-text"><span class="mt-name">Vũ Mai Thy</span> <span class="mt-sub">Portfolio 2026</span></span>
       </a>
       <nav class="nav" aria-label="Sections">
+        <a class="navlink" href="#top">Home</a>
         <a class="navlink" href="#work">Work</a>
         <a class="navlink" href="#how">How I work</a>
         <a class="navlink" href="#learning">Growth</a>
+        <a class="navlink" href="#certificates">Certificates</a>
         <a class="navlink" href="#experience">Experience</a>
         <a class="nav-cta" href="#contact">Contact</a>
         <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-panel" aria-label="Menu"><svg aria-hidden="true" focusable="false" class="ic ic-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg><svg aria-hidden="true" focusable="false" class="ic ic-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
@@ -2029,6 +2092,7 @@
     </div>
   </div>
   <nav class="menu-panel" id="menu-panel" aria-label="Menu" hidden><div class="wrap"><div class="inner">
+    <a href="#top">Home</a>
     <a href="#work">Work</a>
     <a href="#how">How I work</a>
     <a href="#learning">Growth</a>
@@ -2125,7 +2189,7 @@
           <div class="card-body">
           <div class="card-meta"><span class="key">FLEX-DATA</span><span class="lens">Product Owner</span><span class="yr">2025–now</span></div>
           <h3>LOTTE FLEX: making onboarding measurable</h3>
-          <p>A GA4 tracking plan and funnel report that showed 90% of drop-offs sit at the financial partner's approval steps, and found the one screen our team should fix first.</p>
+          <p>A GA4 tracking plan and funnel report that showed ~90% of drop-offs sit at the financial partner's approval steps, and found the specific step in the flow our team should fix first.</p>
           <span class="go">Read case study <svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
           </div>
         </a>
@@ -2202,7 +2266,7 @@
           <ul>
             <li>Founded Prime-Labo's UI/UX team in 2018 and led it for five years, then managed the UI/UX and front-end teams together</li>
             <li>Introduced Figma and Agile practices, estimated design work for each sprint and improved handoff</li>
-            <li>Redesigned a BNPL app for a new brand, and took over the internal systems behind it and keep improving them</li>
+            <li>Redesigned a BNPL app for a new brand, and now manages and improves the internal systems behind it</li>
             <li>Reviews implementation and runs UAT before every release</li>
           </ul>
           <div class="proof"><p class="label">Proof in case studies</p><a class="proof-link" href="#lotte-flex-design"><span class="key">FLEX-UI</span><span class="pt">LOTTE FLEX app redesign and back-office systems</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a><a class="proof-link" href="#prime-labo-team"><span class="key">LEAD-PL</span><span class="pt">Founding and leading a design team</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a><a class="proof-link" href="#web3-wellbeing-mvp"><span class="key">WELL-MVP</span><span class="pt">Web3 well-being app, from interview to MVP</span><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
@@ -2387,7 +2451,7 @@
                 <li><span>UI/UX Designer Specialist &amp; Product Owner, LOTTE FLEX</span></li>
               </ul>
             </div>
-            <span class="xp-yrs">3/2025–now</span>
+            <span class="xp-yrs">2025–now</span>
             <div class="xp-desc">
               <p>Manage the LOTTE FLEX backlog, PRDs and GA4 tracking, design the BNPL app, and look after the internal systems behind it.</p>
               <div class="xp-links"><a class="key key-link" href="#lotte-flex-design" aria-label="Open case study FLEX-UI">FLEX-UI<svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a><a class="key key-link" href="#lotte-flex-onboarding" aria-label="Open case study FLEX-DATA">FLEX-DATA<svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></div>
@@ -2398,12 +2462,12 @@
             <div class="xp-main">
               <div class="xp-co"><span class="co">Prime-Labo Co., Ltd.</span><span class="where">Full-time · Japanese clients</span></div>
               <ul class="career-roles">
-                <li><span>UI/UX &amp; Front-end Team Manager</span><span class="yrs">6/2023–3/2025</span></li>
+                <li><span>UI/UX &amp; Front-end Team Manager</span><span class="yrs">2023–2025</span></li>
                 <li><span>UI/UX Team Leader</span><span class="yrs">2018–2023</span></li>
                 <li><span>SEO Specialist → Junior UI/UX Designer</span><span class="yrs">2014–2018</span></li>
               </ul>
             </div>
-            <span class="xp-yrs">2014–3/2025</span>
+            <span class="xp-yrs">2014–2025</span>
             <div class="xp-desc">
               <p>Started in SEO, writing content and optimising pages based on website analytics. I taught myself UI/UX on real projects, founded the UI/UX team in 2018 and later managed UI/UX and front-end together.</p>
               <div class="xp-links"><a class="key key-link" href="#prime-labo-team" aria-label="Open case study LEAD-PL">LEAD-PL<svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></div>
@@ -2502,10 +2566,7 @@
         <header class="case-head">
           <div class="case-tags"><span class="key">FLEX-UI</span><span class="lens">UI/UX Design Lead</span><span class="label">LOTTE C&amp;F Vietnam · 2025–now</span></div>
           <h1 id="c2-h">One product across a customer app and three back-office systems</h1>
-          <p class="lede">
-            I redesigned the LOTTE FLEX app for its new brand and worked out its end-to-end flows on iOS and Android. I also took over the internal systems behind it through a handover: Admin Dashboard, Merchant Portal and BOS business-rule management. I now manage them and keep adjusting and improving them.
-            
-          </p>
+          <p class="lede">I redesigned the LOTTE FLEX app for its new brand, and took over the three internal systems behind it. I now manage and improve them.</p>
         </header>
         <figure class="slot r-head cover" data-slot="flex-ui-cover" data-hint-en="Cover: LOTTE FLEX app mockup"></figure>
       </div>
@@ -2643,8 +2704,8 @@
       <div class="case-top">
         <header class="case-head">
           <div class="case-tags"><span class="key">FLEX-DATA</span><span class="lens">Product Owner</span><span class="label">LOTTE C&amp;F Vietnam · 2025–now</span></div>
-          <h1 id="c1-h">Finding where BNPL applicants drop out, and who can fix it</h1>
-          <p class="lede">New LOTTE FLEX users pass several steps to get a credit limit, and a financial partner approves two of them. I built the GA4 tracking that shows which drop-offs our team can fix.</p>
+          <h1 id="c1-h">Finding where BNPL applicants drop out</h1>
+          <p class="lede">I built the GA4 tracking that shows where new LOTTE FLEX users drop out, and which drop-offs our team can fix.</p>
         </header>
         <figure class="slot r-head cover" data-slot="flex-data-cover" data-hint-en="Cover: GA4 funnel or tracking overview"></figure>
       </div>
@@ -2696,7 +2757,6 @@
               <div><b>~35%</b><span>of users leave eKYC before getting a result</span></div>
             </div>
             <div class="funnel-wrap">
-              <p class="label chart-k">Additional info funnel</p>
               <figure class="slot r-funnel" data-slot="flex-data-funnel" data-hint-en="Funnel chart from GA4"></figure>
             </div>
           </figure>
@@ -2710,7 +2770,7 @@
                   <h4>Patterns from GA4, totals from internal data</h4>
                   <div class="dgrid">
                     <div><p class="label">Found</p><p>GA4 didn't capture every registration yet: tracking was still settling, and older app versions don't send events.</p></div>
-                    <div><p class="label">Decided</p><p>Use GA4 for drop-off patterns, take absolute numbers from internal records, and say so clearly in the report.</p></div>
+                    <div><p class="label">Decided</p><p>Use GA4 to read trends and analyze user behavior, not as an official source that replaces internal records. Official numbers come from internal records, and the report says so clearly.</p></div>
                     <div><p class="label">Trade-off</p><p>No exact counts from GA4 for now, but priorities rest on patterns that hold. Coverage improves as people update the app.</p></div>
                   </div>
                 </div>
@@ -2752,12 +2812,12 @@
           </section>
 
           <div class="gallery-wrap" data-gallery="flex-data-gallery">
-            <div class="gallery-head"><p class="label">From the work</p><button type="button" class="slot-btn gallery-add" data-act="add-many">Add several images</button></div>
+            <div class="gallery-head"><p class="label">Chart types that were used</p><button type="button" class="slot-btn gallery-add" data-act="add-many">Add several images</button></div>
             <div class="gallery g-screen">
-              <figure class="slot r-screen" data-slot="flex-data-1" data-hint-en="Master funnel in GA4"></figure>
-              <figure class="slot r-screen" data-slot="flex-data-2" data-hint-en="Report: key insights page"></figure>
-              <figure class="slot r-screen" data-slot="flex-data-3" data-hint-en="Additional info funnel"></figure>
-              <figure class="slot r-screen" data-slot="flex-data-4" data-hint-en="Tracking plan sheet"></figure>
+              <figure class="slot r-screen" data-slot="flex-data-1" data-hint-en="Funnel exploration"></figure>
+              <figure class="slot r-screen" data-slot="flex-data-2" data-hint-en="Path exploration"></figure>
+              <figure class="slot r-screen" data-slot="flex-data-3" data-hint-en="Free form"></figure>
+              <figure class="slot r-screen" data-slot="flex-data-4" data-hint-en="Segment overlap"></figure>
             </div>
           </div>
 
@@ -2791,10 +2851,7 @@
         <header class="case-head">
           <div class="case-tags"><span class="key">WELL-MVP</span><span class="lens">0→1 product UI/UX</span><span class="label">Web3 · 2023–25</span></div>
           <h1 id="c3-h">A Web3 well-being super app, from first interview to MVP</h1>
-          <p class="lede">
-            An open-data well-being app with mini apps, where people earn rewards for sharing their well-being data on blockchain. I joined on day one, ran the whole UX process and kept iterating in later releases with international stakeholders.
-            
-          </p>
+          <p class="lede">A well-being app where people earn rewards for sharing their data on blockchain. I joined on day one and ran the whole UX process.</p>
         </header>
         <figure class="slot r-head cover" data-slot="well-cover" data-hint-en="Cover: MVP screens or key visual"></figure>
       </div>
@@ -2802,68 +2859,39 @@
     <div class="wrap"><div class="inner">
       <div class="case-body">
         <dl class="meta">
-          <div><dt>Role</dt><dd>UX/UI designer, end to end</dd></div>
+          <div><dt>Role</dt><dd>UI/UX designer</dd></div>
           <div><dt>Stage</dt><dd>Zero to MVP</dd></div>
           <div><dt>Platform</dt><dd>Mobile super app with mini apps</dd></div>
-          <div><dt>Engagement</dt><dd>Full-time</dd></div>
+          <div><dt>Company</dt><dd>Prime-Labo, for a Japanese client</dd></div>
         </dl>
         <div class="story">
           <section class="block">
             <h3><span class="ic-circle xs" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"/></svg></span>The challenge</h3>
-            <p>Well-being data is personal, and crypto wallets were new to many users. The MVP had to make sharing data feel safe and make the rewards easy to understand for people new to crypto.</p>
+            <div class="duo">
+              <div class="duo-card"><span class="ic-circle sm" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span><p class="label">Personal data</p><p>Well-being data is personal, so sharing it had to feel safe.</p></div>
+              <div class="duo-card"><span class="ic-circle sm v2" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></span><p class="label">New to crypto</p><p>Crypto wallets were new to many users, so the rewards had to be easy to understand.</p></div>
+            </div>
           </section>
 
           <section class="block">
             <h3><span class="ic-circle xs" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg></span>Process</h3>
-            <ol class="process" aria-label="UX process">
-              <li><span class="n">01</span>User research</li>
-              <li><span class="n">02</span>Interviews</li>
-              <li><span class="n">03</span>Analytics</li>
-              <li><span class="n">04</span>Wireframes</li>
-              <li class="mvp"><span class="n">05</span>UI for the MVP</li>
+            <ol class="flow5" aria-label="UX process">
+              <li><span class="step-ic" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="gl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="7.5" r="4"/><path d="M1.5 21a7.5 7.5 0 0 1 15 0z"/><circle cx="18" cy="9" r="3"/><path d="M17.8 21c0-2.7-.8-4.6-2-6a6 6 0 0 1 6.7 6z"/></svg></span><span class="t">User research</span></li>
+              <li><span class="step-ic" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="gl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3h14a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-8l-5 4v-4H5a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z"/><circle class="k" cx="8" cy="10" r="1.4"/><circle class="k" cx="12" cy="10" r="1.4"/><circle class="k" cx="16" cy="10" r="1.4"/></svg></span><span class="t">Interviews</span></li>
+              <li><span class="step-ic" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="gl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="12" width="4.5" height="9" rx="1.2"/><rect x="9.75" y="4" width="4.5" height="17" rx="1.2"/><rect x="16.5" y="8" width="4.5" height="13" rx="1.2"/></svg></span><span class="t">Analytics</span></li>
+              <li><span class="step-ic" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="gl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="7" rx="1.8"/><rect x="3" y="12" width="8" height="9" rx="1.8"/><rect x="13" y="12" width="8" height="9" rx="1.8"/></svg></span><span class="t">Wireframes</span></li>
+              <li class="mvp"><span class="step-ic" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="gl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="2" width="12" height="20" rx="3.2"/><circle class="k" cx="12" cy="18" r="1.1"/><rect class="k" x="9.5" y="5" width="5" height="1.6" rx=".8"/></svg></span><span class="t">UI for the MVP</span></li>
             </ol>
           </section>
 
-          <figure class="fig" data-hide-when="well-gallery">
-            <p class="label">Three moments in the MVP, as schematics</p>
-            <div class="phones">
-              <div class="ph">
-                <div class="phone" aria-hidden="true">
-                  <div class="sk line w50"></div>
-                  <div class="sk line w85"></div>
-                  <div class="sk line w70"></div>
-                  <div class="sk opt"></div>
-                  <div class="sk opt on"></div>
-                  <div class="sk opt"></div>
-                  <div class="sk opt"></div>
-                  <div class="sk cta"></div>
-                </div>
-                <p>Onboarding through a short values quiz</p>
-              </div>
-              <div class="ph">
-                <div class="phone" aria-hidden="true">
-                  <div class="sk line w50"></div>
-                  <div class="ring"></div>
-                  <div class="bars"><i style="height:40%"></i><i style="height:62%"></i><i style="height:48%"></i><i class="hi" style="height:86%"></i><i style="height:58%"></i><i style="height:70%"></i></div>
-                  <div class="sk line w85"></div>
-                  <div class="sk line w70"></div>
-                </div>
-                <p>Happiness and sentiment trends people can read at a glance</p>
-              </div>
-              <div class="ph">
-                <div class="phone" aria-hidden="true">
-                  <div class="sk line w70"></div>
-                  <div class="isles">
-                    <i style="left:8%;top:12%;width:46%;height:22%"></i>
-                    <i style="left:46%;top:44%;width:44%;height:20%"></i>
-                    <i style="left:12%;top:72%;width:40%;height:18%"></i>
-                  </div>
-                  <div class="sk cta"></div>
-                </div>
-                <p>Rewards as a world of islands to build</p>
-              </div>
-            </div>
-            <figcaption>The MVP also covered in-app wallet setup, so people could receive rewards without leaving the app.</figcaption>
+          <figure class="fig">
+            <p class="label">What the MVP covered</p>
+            <ul class="cover4">
+                <li><span class="ic-circle sm" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span><strong>Onboarding</strong><span>Through a short values quiz</span></li>
+                <li><span class="ic-circle sm v2" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></span><strong>Wallet setup</strong><span>In the app, so people receive rewards without leaving it</span></li>
+                <li><span class="ic-circle sm" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></span><strong>Well-being trends</strong><span>Happiness and sentiment trends people can read at a glance</span></li>
+                <li><span class="ic-circle sm v2" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg></span><strong>Rewards</strong><span>A world of islands to build</span></li>
+            </ul>
           </figure>
 
           <div class="gallery-wrap" data-gallery="well-gallery">
@@ -2908,7 +2936,7 @@
         <header class="case-head">
           <div class="case-tags"><span class="key">LEAD-PL</span><span class="lens">Team leadership</span><span class="label">Prime-Labo Co., Ltd. · 2018–25</span></div>
           <h1 id="c4-h">Founding and leading a design team for Japanese clients</h1>
-          <p class="lede">I joined Prime-Labo in SEO, taught myself UI/UX on real projects, founded the company's UI/UX team in 2018 and later managed the UI/UX and front-end teams together.</p>
+          <p class="lede">I joined Prime-Labo in SEO, taught myself UI/UX, founded its UI/UX team in 2018 and later managed UI/UX and front-end together.</p>
         </header>
         <figure class="slot r-head cover" data-slot="lead-cover" data-hint-en="Cover: team photo or project collage"></figure>
       </div>
@@ -3057,7 +3085,7 @@
   <button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next image"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></button>
   <div class="lb-bar"><span class="lb-count" id="lb-count" aria-live="polite"></span><button type="button" class="slot-btn" id="lb-close">Close</button></div>
 </div>
-<script type="application/json" id="vmt-state">{"v": 1, "slots": {"cert-pspo": {"id": "cert-pspo.jpg", "cap": ""}, "cert-google-ux": {"id": "cert-google-ux.jpg", "cap": ""}, "cert-claude-101": {"id": "cert-claude-101.jpg", "cap": ""}, "cert-claude-cowork": {"id": "cert-claude-cowork.jpg", "cap": ""}, "logo-lotte": {"id": "logo-lotte.png", "cap": ""}, "logo-primelabo": {"id": "logo-primelabo.png", "cap": ""}, "logo-blocksky": {"id": "logo-blocksky.jpg", "cap": ""}, "logo-bigbeat": {"id": "logo-bigbeat.png", "cap": ""}, "logo-dubut": {"id": "logo-dubut.png", "cap": ""}, "logo-badger": {"id": "logo-badger.png", "cap": ""}, "logo-kenh14": {"id": "logo-kenh14.png", "cap": ""}, "portrait": {"id": "portrait.jpg", "cap": ""}, "gumroad-cover": {"id": "gumroad-cover.jpg", "cap": ""}, "flex-ui-app": {"id": "flex-ui-app.png", "cap": ""}, "flex-ui-cover": {"id": "flex-ui-cover.png", "cap": ""}, "flex-ui-s1": {"id": "flex-ui-s1.png", "cap": ""}, "flex-ui-s2": {"id": "flex-ui-s2.png", "cap": ""}, "flex-ui-s3": {"id": "flex-ui-s3.png", "cap": ""}, "flex-ui-s4": {"id": "flex-ui-s4.png", "cap": ""}, "flex-ui-p1": {"id": "flex-ui-p1.png", "cap": ""}, "flex-ui-p2": {"id": "flex-ui-p2.png", "cap": ""}, "flex-ui-p3": {"id": "flex-ui-p3.png", "cap": ""}, "flex-ui-p4": {"id": "flex-ui-p4.png", "cap": ""}, "flex-ui-p5": {"id": "flex-ui-p5.png", "cap": ""}, "flex-ui-p6": {"id": "flex-ui-p6.png", "cap": ""}}}</script>
+<script type="application/json" id="vmt-state">{"v": 1, "slots": {"cert-pspo": {"id": "cert-pspo.jpg", "cap": ""}, "cert-google-ux": {"id": "cert-google-ux.jpg", "cap": ""}, "cert-claude-101": {"id": "cert-claude-101.jpg", "cap": ""}, "cert-claude-cowork": {"id": "cert-claude-cowork.jpg", "cap": ""}, "logo-lotte": {"id": "logo-lotte.png", "cap": ""}, "logo-primelabo": {"id": "logo-primelabo.png", "cap": ""}, "logo-blocksky": {"id": "logo-blocksky.jpg", "cap": ""}, "logo-bigbeat": {"id": "logo-bigbeat.png", "cap": ""}, "logo-dubut": {"id": "logo-dubut.png", "cap": ""}, "logo-badger": {"id": "logo-badger.png", "cap": ""}, "logo-kenh14": {"id": "logo-kenh14.png", "cap": ""}, "portrait": {"id": "portrait.jpg", "cap": ""}, "gumroad-cover": {"id": "gumroad-cover.jpg", "cap": ""}, "flex-ui-app": {"id": "flex-ui-app.png", "cap": ""}, "flex-ui-cover": {"id": "flex-ui-cover.png", "cap": ""}, "flex-ui-s1": {"id": "flex-ui-s1.png", "cap": ""}, "flex-ui-s2": {"id": "flex-ui-s2.png", "cap": ""}, "flex-ui-s3": {"id": "flex-ui-s3.png", "cap": ""}, "flex-ui-s4": {"id": "flex-ui-s4.png", "cap": ""}, "flex-ui-p1": {"id": "flex-ui-p1.png", "cap": ""}, "flex-ui-p2": {"id": "flex-ui-p2.png", "cap": ""}, "flex-ui-p3": {"id": "flex-ui-p3.png", "cap": ""}, "flex-ui-p4": {"id": "flex-ui-p4.png", "cap": ""}, "flex-ui-p5": {"id": "flex-ui-p5.png", "cap": ""}, "flex-ui-p6": {"id": "flex-ui-p6.png", "cap": ""}, "flex-data-cover": {"id": "flex-data-cover.png", "cap": ""}, "flex-data-1": {"id": "flex-data-1.png", "cap": ""}, "flex-data-2": {"id": "flex-data-2.png", "cap": ""}, "flex-data-3": {"id": "flex-data-3.png", "cap": ""}, "flex-data-4": {"id": "flex-data-4.png", "cap": ""}, "well-cover": {"id": "well-cover.png", "cap": ""}, "well-p1": {"id": "well-p1.png", "cap": ""}, "well-p2": {"id": "well-p2.png", "cap": ""}, "well-p3": {"id": "well-p3.png", "cap": ""}, "well-p4": {"id": "well-p4.png", "cap": ""}, "well-p5": {"id": "well-p5.png", "cap": ""}, "well-p6": {"id": "well-p6.png", "cap": ""}, "lead-1": {"id": "lead-1.png", "cap": "Local government communication system"}, "lead-2": {"id": "lead-2.png", "cap": "AI fashion shopping app"}, "lead-3": {"id": "lead-3.png", "cap": "Clinic and nurse/doctor matching app"}, "lead-4": {"id": "lead-4.png", "cap": "Crypto wallet tool"}, "lead-5": {"id": "lead-5.png", "cap": "Internal tools for office workers"}, "lead-cover": {"id": "lead-cover.png", "cap": ""}}}</script>
 <script>
   /* Case studies are separate views, addressed by #name so each one has its own link. */
   (function () {
