@@ -2308,6 +2308,48 @@
   .career-roles:has(li + li) li { position: relative; padding-left: 14px; }
   .career-roles:has(li + li) li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
   .career-roles:has(li + li) .yrs { font-size: 0.6875rem; font-weight: 400; color: #8F8D8D; }
+  /* Backlog sample: a worked eKYC backlog linked from How I work */
+  .bsample { margin-top: clamp(32px, 4vw, 48px); background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); padding: clamp(22px, 3vw, 36px); display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+  .bsample-head { display: flex; flex-direction: column; gap: 8px; }
+  .bsample h3 { font-size: var(--t-h3); font-weight: 600; line-height: 1.25; }
+  .bsample-lede { color: var(--muted); max-width: 64ch; }
+  .bsample-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; }
+  .bsample-stats li { display: flex; align-items: baseline; justify-content: center; gap: 8px; padding: 11px 12px; }
+  .bsample-stats li + li { border-left: 1px solid var(--line); }
+  .bsample-stats b { font-family: var(--f-display); font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .bsample-stats span { font-size: var(--t-sm); color: var(--muted); }
+  .bsample-flow { display: flex; flex-direction: column; gap: 14px; }
+  .bsample-steps { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 28px; row-gap: 26px; counter-reset: none; }
+  .bsample-steps li { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 10px 8px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--bg); font-size: var(--t-sm); font-weight: 500; line-height: 1.3; text-align: center; min-width: 0; }
+  .bsample-steps li span { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--muted); }
+  .bsample-steps li:not(:last-child)::after { content: "\2192"; position: absolute; right: -24px; top: 50%; width: 20px; transform: translateY(-50%); text-align: center; color: var(--ink); font-size: 1.05rem; line-height: 1; }
+  .bsample-outcomes { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .bsample-outcomes::before { content: "\21B3  Risk scoring routes each applicant to"; flex-basis: 100%; font-size: var(--t-xs); color: var(--muted); }
+  .bsample-outcomes li { padding: 6px 14px; border-radius: var(--r-pill); font-size: var(--t-sm); }
+  .bsample-outcomes b { font-weight: 700; margin-right: 4px; }
+  .bsample-outcomes .auto { background: var(--halo-mint); }
+  .bsample-outcomes .review { background: var(--halo-cream); }
+  .bsample-outcomes .reject { background: var(--halo-blush); }
+  .bsample-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .bsample-grid > li { display: flex; flex-direction: column; gap: 8px; padding: 16px 20px; border: 1px solid var(--line); border-radius: var(--r-md); min-width: 0; }
+  .bsample-grid h4 { font-size: 1rem; font-weight: 600; }
+  .bsample-points { display: flex; flex-direction: column; gap: 4px; }
+  .bsample-points li { position: relative; padding-left: 16px; font-size: var(--t-sm); color: var(--muted); line-height: 1.5; }
+  .bsample-points li::before { content: ""; position: absolute; left: 2px; top: 0.6em; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
+  .bsample-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+  @media (max-width: 900px) {
+    .bsample-steps { grid-template-columns: 1fr; row-gap: 24px; max-width: 320px; }
+    .bsample-steps li { flex-direction: row; justify-content: flex-start; gap: 10px; padding: 9px 14px; text-align: left; }
+    .bsample-steps li:not(:last-child)::after { content: "\2193"; right: auto; left: 50%; top: auto; bottom: -22px; transform: translateX(-50%); }
+  }
+  @media (max-width: 760px) {
+    .bsample-grid { grid-template-columns: 1fr; }
+    .bsample-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bsample-stats li { gap: 6px; padding: 10px 8px; }
+    .bsample-stats li:nth-child(3) { border-left: 0; }
+    .bsample-stats li:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .bsample-stats span { font-size: var(--t-xs); }
+  }
   .deliver { display: flex; flex-wrap: wrap; gap: 8px; }
   .deliver li { font-size: var(--t-xs); font-weight: 600; padding: 5px 12px; border-radius: 999px; border: 1px solid rgba(57, 55, 55, 0.25); background: rgba(255, 255, 255, 0.6); color: var(--ink); }
   @media (max-width: 900px) { .case-top { grid-template-columns: minmax(0, 1fr); } }
@@ -2650,6 +2692,44 @@
           <li><span class="ic-circle v3" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Verify</h3><p>Implementation review and UAT before each release.</p></li>
           <li><span class="ic-circle" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg></span><h3>Measure</h3><p>Tracking plan, funnels and reports that show whether it worked.</p></li>
         </ol>
+        </div>
+      </div>
+      <div class="bsample" aria-labelledby="bsample-h">
+        <div class="bsample-head">
+          <p class="label">My backlog template</p>
+          <h3 id="bsample-h">My backlog template, shown on an eKYC e-wallet flow</h3>
+          <p class="bsample-lede">The template I use to manage a backlog, filled in for a sample project. The product, targets and limits are assumptions, not tied to any company.</p>
+        </div>
+        <ul class="bsample-stats" aria-label="Size of the sample backlog">
+          <li><b>12</b><span>epics</span></li>
+          <li><b>71</b><span>user stories</span></li>
+          <li><b>3</b><span>releases</span></li>
+          <li><b>10</b><span>sprints planned</span></li>
+        </ul>
+        <div class="bsample-flow" role="group" aria-label="The eKYC journey the epics follow">
+          <p class="label">The user journey the epics follow</p>
+          <ol class="bsample-steps">
+            <li><span>E01</span>Start and consent</li>
+            <li><span>E02</span>Capture ID</li>
+            <li><span>E03</span>Check ID</li>
+            <li><span>E04</span>Selfie and liveness</li>
+            <li><span>E05</span>Confirm details</li>
+            <li><span>E06</span>Risk scoring</li>
+          </ol>
+          <ul class="bsample-outcomes">
+            <li class="auto"><b>≈ 70%</b> approved automatically</li>
+            <li class="review"><b>≈ 25%</b> sent to manual review</li>
+            <li class="reject"><b>≈ 5%</b> rejected with next steps</li>
+          </ul>
+        </div>
+        <ul class="bsample-grid">
+          <li><h4>Start from the outcome</h4><ul class="bsample-points"><li>7 success metrics come first</li><li>Each has a measure, a target and owning epics</li><li>For example: 70% completion, 80% first-pass</li></ul></li>
+          <li><h4>Releases and sprints</h4><ul class="bsample-points"><li>MVP: 243 points, sprints 1 to 6</li><li>Release 2: 154 points, sprints 7 to 10</li><li>Release 3: 47 points, unscheduled until open questions are answered</li><li>About 42 points per two-week sprint</li></ul></li>
+          <li><h4>Working agreements</h4><ul class="bsample-points"><li>Definition of Ready and Done</li><li>Planning poker on the Fibonacci scale</li><li>Stories above 13 points are split first</li><li>MoSCoW, with a written reason for every "Won't"</li></ul></li>
+          <li><h4>Risks and open questions</h4><ul class="bsample-points"><li>6 risks, linked to the stories that reduce them</li><li>6 open questions, linked to the stories they affect</li></ul></li>
+        </ul>
+        <div class="bsample-cta">
+          <a class="btn primary" href="https://magical-engineer-33b.notion.site/Backlog-eKYC-cho-v-i-n-t-40d869c7531a812f851ce4d01277e8bf" target="_blank" rel="noopener">Open the backlog in Notion <svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
         </div>
       </div>
       <div class="ai-band" aria-labelledby="ai-h">
