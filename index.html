@@ -2219,6 +2219,9 @@
 
   /* how I work: connectors and the loop-back arrow in a brighter violet */
   #how { --flow: #7B5BD6; }
+  .section-head { max-width: none; }
+  .section-head h2 { max-width: 760px; }
+  .section-head > p:not(.label) { max-width: none; }
   .loop li:not(:last-child)::after, .loop-back::after { border-color: var(--flow); }
   .loop-back { border-color: var(--flow); }
   .loop-tag .ic { color: var(--flow); }
@@ -2309,46 +2312,41 @@
   .career-roles:has(li + li) li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
   .career-roles:has(li + li) .yrs { font-size: 0.6875rem; font-weight: 400; color: #8F8D8D; }
   /* Backlog sample: a worked eKYC backlog linked from How I work */
-  .bsample { margin-top: clamp(32px, 4vw, 48px); background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); padding: clamp(22px, 3vw, 36px); display: flex; flex-direction: column; gap: 22px; min-width: 0; }
-  .bsample-head { display: flex; flex-direction: column; gap: 8px; }
-  .bsample h3 { font-size: var(--t-h3); font-weight: 600; line-height: 1.25; }
-  .bsample-lede { color: var(--muted); max-width: 64ch; }
-  .bsample-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; }
-  .bsample-stats li { display: flex; align-items: baseline; justify-content: center; gap: 8px; padding: 11px 12px; }
-  .bsample-stats li + li { border-left: 1px solid var(--line); }
-  .bsample-stats b { font-family: var(--f-display); font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; font-variant-numeric: tabular-nums; }
-  .bsample-stats span { font-size: var(--t-sm); color: var(--muted); }
-  .bsample-flow { display: flex; flex-direction: column; gap: 14px; }
-  .bsample-steps { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 28px; row-gap: 26px; counter-reset: none; }
-  .bsample-steps li { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 10px 8px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--bg); font-size: var(--t-sm); font-weight: 500; line-height: 1.3; text-align: center; min-width: 0; }
-  .bsample-steps li span { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--muted); }
-  .bsample-steps li:not(:last-child)::after { content: "\2192"; position: absolute; right: -24px; top: 50%; width: 20px; transform: translateY(-50%); text-align: center; color: var(--ink); font-size: 1.05rem; line-height: 1; }
-  .bsample-outcomes { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .how-pair { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(16px, 2.5vw, 28px); align-items: stretch; margin-top: clamp(32px, 4vw, 48px); }
+  #how .how-pair .bsample, #how .how-pair .ai-band { margin-top: 0; }
+  #how .how-pair .ai-band { display: flex; flex-direction: column; }
+  #how .how-pair .ai-quote { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  @media (min-width: 1101px) { #how .how-pair .ai-quote p { font-size: 1.3rem; line-height: 1.5; } }
+  .bsample { background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); padding: clamp(18px, 2.5vw, 26px); display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .bsample-lede { color: var(--muted); font-size: var(--fs-16); max-width: none; text-wrap: pretty; }
+  .bsample-facts { display: flex; flex-wrap: wrap; gap: 2px 12px; font-size: var(--t-sm); color: var(--muted); }
+  .bsample-facts li + li::before { content: "\00B7"; margin-right: 12px; }
+  .bsample-facts b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .bsample-flow { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .bsample-steps { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 8px; row-gap: 18px; }
+  .bsample-steps li { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: var(--t-xs); font-weight: 500; line-height: 1.3; text-align: center; min-width: 0; }
+  .bsample-steps li span { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line); font-family: var(--f-mono); font-size: 0.6875rem; color: var(--ink); }
+  .bsample-steps li:not(:last-child)::after { content: ""; position: absolute; top: 19px; left: calc(50% + 23px); width: calc(100% - 38px); border-top: 1.5px solid var(--flow, #7B5BD6); }
+  .bsample-steps li:not(:last-child)::before { content: ""; position: absolute; top: 16px; left: calc(150% - 21.5px); width: 6px; height: 6px; border-top: 1.5px solid var(--flow, #7B5BD6); border-right: 1.5px solid var(--flow, #7B5BD6); transform: rotate(45deg); }
+  .bsample-outcomes { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
   .bsample-outcomes::before { content: "\21B3  Risk scoring routes each applicant to"; flex-basis: 100%; font-size: var(--t-xs); color: var(--muted); }
-  .bsample-outcomes li { padding: 6px 14px; border-radius: var(--r-pill); font-size: var(--t-sm); }
-  .bsample-outcomes b { font-weight: 700; margin-right: 4px; }
+  .bsample-outcomes li { padding: 5px 12px; border-radius: var(--r-pill); font-size: 0.8125rem; }
+  .bsample-outcomes b { font-weight: 700; margin-right: 3px; }
   .bsample-outcomes .auto { background: var(--halo-mint); }
   .bsample-outcomes .review { background: var(--halo-cream); }
   .bsample-outcomes .reject { background: var(--halo-blush); }
-  .bsample-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-  .bsample-grid > li { display: flex; flex-direction: column; gap: 8px; padding: 16px 20px; border: 1px solid var(--line); border-radius: var(--r-md); min-width: 0; }
-  .bsample-grid h4 { font-size: 1rem; font-weight: 600; }
-  .bsample-points { display: flex; flex-direction: column; gap: 4px; }
+  .bsample-points { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; padding-top: 16px; border-top: 1px solid var(--line); }
   .bsample-points li { position: relative; padding-left: 16px; font-size: var(--t-sm); color: var(--muted); line-height: 1.5; }
   .bsample-points li::before { content: ""; position: absolute; left: 2px; top: 0.6em; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
-  .bsample-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
-  @media (max-width: 900px) {
-    .bsample-steps { grid-template-columns: 1fr; row-gap: 24px; max-width: 320px; }
-    .bsample-steps li { flex-direction: row; justify-content: flex-start; gap: 10px; padding: 9px 14px; text-align: left; }
-    .bsample-steps li:not(:last-child)::after { content: "\2193"; right: auto; left: 50%; top: auto; bottom: -22px; transform: translateX(-50%); }
+  .bsample-points b { color: var(--ink); font-weight: 600; }
+  .bsample-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 4px; }
+  @media (max-width: 1100px) {
+    .how-pair { grid-template-columns: 1fr; }
+    .bsample-steps li { font-size: var(--t-sm); }
   }
-  @media (max-width: 760px) {
-    .bsample-grid { grid-template-columns: 1fr; }
-    .bsample-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .bsample-stats li { gap: 6px; padding: 10px 8px; }
-    .bsample-stats li:nth-child(3) { border-left: 0; }
-    .bsample-stats li:nth-child(n+3) { border-top: 1px solid var(--line); }
-    .bsample-stats span { font-size: var(--t-xs); }
+  @media (max-width: 900px) {
+    .bsample-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .bsample-steps li:nth-child(3n)::after, .bsample-steps li:nth-child(3n)::before { display: none; }
   }
   .deliver { display: flex; flex-wrap: wrap; gap: 8px; }
   .deliver li { font-size: var(--t-xs); font-weight: 600; padding: 5px 12px; border-radius: 999px; border: 1px solid rgba(57, 55, 55, 0.25); background: rgba(255, 255, 255, 0.6); color: var(--ink); }
@@ -2694,45 +2692,49 @@
         </ol>
         </div>
       </div>
-      <div class="bsample" aria-labelledby="bsample-h">
-        <div class="bsample-head">
-          <p class="label">My backlog template</p>
-          <h3 id="bsample-h">My backlog template, shown on an eKYC e-wallet flow</h3>
-          <p class="bsample-lede">The template I use to manage a backlog, filled in for a sample project. The product, targets and limits are assumptions, not tied to any company.</p>
-        </div>
-        <ul class="bsample-stats" aria-label="Size of the sample backlog">
-          <li><b>12</b><span>epics</span></li>
-          <li><b>71</b><span>user stories</span></li>
-          <li><b>3</b><span>releases</span></li>
-          <li><b>10</b><span>sprints planned</span></li>
-        </ul>
-        <div class="bsample-flow" role="group" aria-label="The eKYC journey the epics follow">
-          <p class="label">The user journey the epics follow</p>
-          <ol class="bsample-steps">
-            <li><span>E01</span>Start and consent</li>
-            <li><span>E02</span>Capture ID</li>
-            <li><span>E03</span>Check ID</li>
-            <li><span>E04</span>Selfie and liveness</li>
-            <li><span>E05</span>Confirm details</li>
-            <li><span>E06</span>Risk scoring</li>
-          </ol>
-          <ul class="bsample-outcomes">
-            <li class="auto"><b>≈ 70%</b> approved automatically</li>
-            <li class="review"><b>≈ 25%</b> sent to manual review</li>
-            <li class="reject"><b>≈ 5%</b> rejected with next steps</li>
+      <div class="how-pair">
+        <div class="bsample" aria-labelledby="bsample-h">
+          <div class="ai-head">
+            <span class="ic-circle" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M13 5h8"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/></svg></span>
+            <div>
+              <p class="label">My backlog template</p>
+              <h3 id="bsample-h">Shown on an eKYC e-wallet flow</h3>
+            </div>
+          </div>
+          <p class="bsample-lede">The template I use to manage a backlog, filled in for a sample project. Figures are assumed, not from any company.</p>
+          <ul class="bsample-facts" aria-label="Size of the sample backlog">
+            <li><b>12</b> epics</li>
+            <li><b>71</b> stories</li>
+            <li><b>3</b> releases</li>
+            <li><b>10</b> sprints</li>
           </ul>
+          <div class="bsample-flow" role="group" aria-label="The eKYC journey the epics follow">
+            <p class="label">The user journey the epics follow</p>
+            <ol class="bsample-steps">
+              <li><span>E01</span>Start and consent</li>
+              <li><span>E02</span>Capture ID</li>
+              <li><span>E03</span>Check ID</li>
+              <li><span>E04</span>Selfie and liveness</li>
+              <li><span>E05</span>Confirm details</li>
+              <li><span>E06</span>Risk scoring</li>
+            </ol>
+            <ul class="bsample-outcomes">
+              <li class="auto"><b>≈70%</b> auto-approved</li>
+              <li class="review"><b>≈25%</b> manual review</li>
+              <li class="reject"><b>≈5%</b> rejected</li>
+            </ul>
+          </div>
+          <ul class="bsample-points">
+            <li><b>Outcome first:</b> 7 success metrics, each with a target</li>
+            <li><b>Releases:</b> MVP: 243 pts, Release 2: 154 pts, Release 3: 47 pts</li>
+            <li><b>Agreements:</b> Ready and Done, planning poker, MoSCoW</li>
+            <li><b>Risks:</b> 6 risks and 6 open questions, linked to stories</li>
+          </ul>
+          <div class="bsample-cta">
+            <a class="btn primary" href="https://magical-engineer-33b.notion.site/Backlog-eKYC-cho-v-i-n-t-40d869c7531a812f851ce4d01277e8bf" target="_blank" rel="noopener">Open the backlog in Notion <svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+          </div>
         </div>
-        <ul class="bsample-grid">
-          <li><h4>Start from the outcome</h4><ul class="bsample-points"><li>7 success metrics come first</li><li>Each has a measure, a target and owning epics</li><li>For example: 70% completion, 80% first-pass</li></ul></li>
-          <li><h4>Releases and sprints</h4><ul class="bsample-points"><li>MVP: 243 points, sprints 1 to 6</li><li>Release 2: 154 points, sprints 7 to 10</li><li>Release 3: 47 points, unscheduled until open questions are answered</li><li>About 42 points per two-week sprint</li></ul></li>
-          <li><h4>Working agreements</h4><ul class="bsample-points"><li>Definition of Ready and Done</li><li>Planning poker on the Fibonacci scale</li><li>Stories above 13 points are split first</li><li>MoSCoW, with a written reason for every "Won't"</li></ul></li>
-          <li><h4>Risks and open questions</h4><ul class="bsample-points"><li>6 risks, linked to the stories that reduce them</li><li>6 open questions, linked to the stories they affect</li></ul></li>
-        </ul>
-        <div class="bsample-cta">
-          <a class="btn primary" href="https://magical-engineer-33b.notion.site/Backlog-eKYC-cho-v-i-n-t-40d869c7531a812f851ce4d01277e8bf" target="_blank" rel="noopener">Open the backlog in Notion <svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-        </div>
-      </div>
-      <div class="ai-band" aria-labelledby="ai-h">
+        <div class="ai-band" aria-labelledby="ai-h">
         <div class="ai-head">
           <span class="ic-circle" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span>
           <div>
@@ -2744,6 +2746,7 @@
         <blockquote class="ai-quote">
           <p>I expect AI to take on more of the routine work in product teams. People will still have to decide which problem is worth solving, and catch the output when it's wrong. I think the way to stay in charge is to start now: use it every day, check what it produces and keep the final call. That's also why I took the Claude Academy courses this year.</p>
         </blockquote>
+      </div>
       </div>
 
       <div class="principles">
