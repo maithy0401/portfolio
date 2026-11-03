@@ -29,9 +29,21 @@
     });
   })();
 
+  /* Own-traffic opt-out: open the site once with ?notrack=1 (undo with ?notrack=0). ?ga_debug=1 turns on DebugView. */
+  (function () {
+    var m = location.search.match(/[?&]notrack=([01])/);
+    try {
+      if (m) { if (m[1] === '1') localStorage.setItem('vmt-notrack', '1'); else localStorage.removeItem('vmt-notrack'); }
+      if (localStorage.getItem('vmt-notrack') === '1') window['ga-disable-G-KGF8Y7W35M'] = true;
+    } catch (e) {}
+  })();
+
   gtag('js', new Date());
 
-  gtag('config', 'G-KGF8Y7W35M');
+  /* The site is one page with hash routes, so page_view is sent by hand on every route change (see the events script). */
+  var vmtGaConfig = { send_page_view: false };
+  if (/[?&]ga_debug=1/.test(location.search)) vmtGaConfig.debug_mode = true;
+  gtag('config', 'G-KGF8Y7W35M', vmtGaConfig);
 </script>
 <style>
   .vmt-cc { position: fixed; left: 16px; bottom: 16px; z-index: 60; width: min(440px, calc(100vw - 32px)); display: flex; flex-direction: column; gap: 14px; padding: 18px 20px; background: var(--surface, #fff); color: var(--ink, #393737); border: 1px solid var(--line, #E4E3E3); border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12); font-family: var(--f-body, "Montserrat", system-ui, sans-serif); font-size: 0.875rem; line-height: 1.5; }
@@ -119,6 +131,216 @@
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
     else build();
+  })();
+</script>
+<script>
+  /* GA4 events (tracking plan for the portfolio). Consent Mode decides what Google actually stores. */
+  (function () {
+    var CASES = { 'lotte-flex-design': 1, 'lotte-flex-onboarding': 1, 'web3-wellbeing-mvp': 1, 'prime-labo-team': 1 };
+    var SECTIONS = ['work', 'how', 'learning', 'certificates', 'experience', 'contact'];
+    var lastView = null, depthSent = {}, engagedTimer = null, scrollTicking = false;
+
+    function track(name, params) { gtag('event', name, params || {}); }
+    function clean(s, max) { return String(s || '').replace(/\s+/g, ' ').trim().slice(0, max || 80); }
+    function label(el) { return clean(el.textContent) || clean(el.getAttribute('aria-label')); }
+    function currentView() { var h = (location.hash || '').slice(1); return CASES[h] ? h : 'home'; }
+    function caseInfo(id) {
+      var root = document.querySelector('[data-view="' + id + '"]');
+      var h1 = root && root.querySelector('h1');
+      var key = root && root.querySelector('.case-tags .key');
+      return { name: h1 ? clean(h1.textContent, 100) : id, lens: key ? clean(key.textContent, 40) : '' };
+    }
+    function selectContent(id, name, source) {
+      track('select_content', { content_type: 'case_study', item_id: id, item_name: clean(name, 100), source: source });
+    }
+
+    /* Virtual page views and per-case events on every route change */
+    function viewChanged() {
+      var v = currentView();
+      if (v === lastView) return;
+      lastView = v;
+      track('page_view', {
+        page_location: location.origin + location.pathname + (v === 'home' ? '' : '?view=' + v),
+        page_title: document.title,
+        view_name: v
+      });
+      depthSent = {};
+      clearTimeout(engagedTimer);
+      if (v !== 'home') {
+        var info = caseInfo(v);
+        track('case_study_view', { case_study_id: v, case_study_name: info.name, role_lens: info.lens });
+        engagedTimer = setTimeout(function () {
+          if (document.visibilityState === 'visible' && currentView() === v) {
+            track('case_study_engaged', { case_study_id: v, engaged_seconds: 60 });
+          }
+        }, 60000);
+      }
+    }
+    window.addEventListener('hashchange', function () { setTimeout(viewChanged, 0); });
+
+    /* Read depth inside a case study: 25 / 50 / 75 / 100 % of the scrollable height */
+    window.addEventListener('scroll', function () {
+      if (scrollTicking || currentView() === 'home') return;
+      scrollTicking = true;
+      requestAnimationFrame(function () {
+        scrollTicking = false;
+        var v = currentView();
+        if (v === 'home') return;
+        var doc = document.documentElement;
+        var room = doc.scrollHeight - window.innerHeight;
+        if (room <= 0) return;
+        var pct = window.scrollY / room * 100;
+        [25, 50, 75, 100].forEach(function (step) {
+          if (pct >= (step === 100 ? 99 : step) && !depthSent[step]) {
+            depthSent[step] = true;
+            track('case_study_read_depth', { case_study_id: v, percent: step });
+          }
+        });
+      });
+    }, { passive: true });
+
+    /* Home sections: once per session when a section crosses the middle of the screen */
+    function observeSections() {
+      if (!('IntersectionObserver' in window)) return;
+      var seen = {};
+      try { seen = JSON.parse(sessionStorage.getItem('vmt-sections') || '{}'); } catch (e) {}
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var id = en.target.id;
+          if (!en.isIntersecting || currentView() !== 'home' || seen[id]) return;
+          seen[id] = 1;
+          try { sessionStorage.setItem('vmt-sections', JSON.stringify(seen)); } catch (e) {}
+          track('section_view', { section_id: id });
+        });
+      }, { rootMargin: '-35% 0px -35% 0px', threshold: 0 });
+      SECTIONS.forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+    }
+
+    /* Clicks */
+    document.addEventListener('click', function (e) {
+      var target = e.target;
+      if (!target || !target.closest) return;
+      var editing = document.documentElement.classList.contains('editing');
+
+      var img = target.closest('.slot .slot-frame img, .portrait .p-img');
+      if (img && !editing && !img.closest('.logo-slot')) {
+        var slot = img.closest('.slot');
+        var gal = img.closest('[data-gallery]');
+        var galleryId = gal ? gal.getAttribute('data-gallery') : (slot ? slot.getAttribute('data-slot') : 'portrait');
+        var index = 1;
+        if (gal && slot) index = Array.prototype.indexOf.call(gal.querySelectorAll('.slot:not(.empty)'), slot) + 1;
+        track('image_zoom', { gallery_id: galleryId, image_index: index });
+        return;
+      }
+
+      var el = target.closest('a, button');
+      if (!el) return;
+      var href = el.getAttribute('href') || '';
+      var hash = href.charAt(0) === '#' ? href.slice(1) : '';
+      var from = currentView();
+
+      if (el.id === 'menu-btn') {
+        track('menu_toggle', { state: el.getAttribute('aria-expanded') === 'true' ? 'close' : 'open' });
+        return;
+      }
+      if (el.id === 'copy-email') {
+        track('copy_email', { location: 'contact' });
+        track('generate_lead', { lead_source: 'contact_section', method: 'email_copy' });
+        return;
+      }
+      if (el.id === 'to-top') {
+        track('nav_click', { link_text: 'Back to top', target_section: 'top', nav_type: 'footer' });
+        return;
+      }
+      if (el.classList.contains('slides-btn')) {
+        var g = el.closest('[data-gallery]');
+        track('gallery_interaction', {
+          gallery_id: g ? g.getAttribute('data-gallery') : 'unknown',
+          direction: el.getAttribute('data-dir') === '-1' ? 'previous' : 'next'
+        });
+        return;
+      }
+
+      /* Header, mobile menu and hero */
+      if (el.closest('header.top') && hash) {
+        track('nav_click', {
+          link_text: el.classList.contains('mark') ? 'logo' : clean(el.textContent, 40),
+          target_section: hash,
+          nav_type: el.closest('.menu-panel') ? 'mobile' : 'header'
+        });
+        if (el.classList.contains('nav-cta')) track('generate_lead', { lead_source: 'nav_contact', method: 'contact_cta' });
+        return;
+      }
+      if (el.classList.contains('hero-go') || el.classList.contains('hero-hi') || el.classList.contains('float-card')) {
+        track('nav_click', {
+          link_text: el.classList.contains('float-card') ? clean(el.querySelector('.fc-k') && el.querySelector('.fc-k').textContent, 40) : clean(el.textContent, 40),
+          target_section: hash,
+          nav_type: el.classList.contains('float-card') ? 'float_card' : 'hero'
+        });
+        if (el.classList.contains('hero-hi')) track('generate_lead', { lead_source: 'hero_cta', method: 'contact_cta' });
+        return;
+      }
+
+      /* Case studies: opening one, and moving between them */
+      if (hash && CASES[hash]) {
+        if (el.classList.contains('card')) {
+          var h3 = el.querySelector('h3');
+          selectContent(hash, h3 ? h3.textContent : hash, 'card');
+        } else if (el.classList.contains('next-link')) {
+          var t = el.querySelector('.t');
+          selectContent(hash, t ? t.textContent : hash, 'next_link');
+          track('case_study_next', { from_case: from, to_case: hash, control: 'next_link' });
+        } else if (el.classList.contains('proof-link')) {
+          var pt = el.querySelector('.pt');
+          selectContent(hash, pt ? pt.textContent : hash, 'proof_link');
+        } else if (el.classList.contains('key-link')) {
+          selectContent(hash, el.textContent, 'experience_link');
+        } else if (el.classList.contains('pager-btn')) {
+          track('case_study_next', {
+            from_case: from,
+            to_case: hash,
+            control: (el.getAttribute('title') || '').indexOf('Previous') === 0 ? 'pager_prev' : 'pager_next'
+          });
+        }
+        return;
+      }
+      if (from !== 'home' && hash === 'work' && (el.classList.contains('back') || (el.classList.contains('btn') && el.closest('.case-next')))) {
+        track('case_study_next', { from_case: from, to_case: 'all', control: el.classList.contains('back') ? 'back_link' : 'all_button' });
+        return;
+      }
+
+      /* Outbound links */
+      if (/^https?:/.test(href)) {
+        var u;
+        try { u = new URL(href, location.href); } catch (err) { return; }
+        var domain = u.hostname.replace(/^www\./, '');
+        if (el.classList.contains('store-btn')) {
+          track('app_store_click', { store: domain.indexOf('apple') > -1 ? 'apple' : 'google', app_name: 'LOTTE C&F BNPL' });
+        } else if (domain === 'thychankuma.gumroad.com') {
+          var m = u.pathname.match(/\/l\/([^/]+)/);
+          var product = m ? m[1] : 'shop';
+          track('product_click', {
+            product_name: product,
+            price_type: product === 'spec-track-kit-full' ? 'paid' : (product === 'spec-track-kit-lite' ? 'free' : 'shop')
+          });
+        } else if (el.classList.contains('cert-link')) {
+          var card = el.closest('.cert');
+          var issuer = card && card.querySelector('.cert-issuer');
+          track('certificate_verify_click', {
+            certificate_name: clean((el.getAttribute('aria-label') || '').replace(/^Show credential:\s*/, ''), 100),
+            issuer: issuer ? clean(issuer.textContent, 40) : domain,
+            link_domain: domain
+          });
+        } else if (domain.indexOf('linkedin.com') > -1) {
+          if (el.closest('#contact')) track('contact_click', { method: 'linkedin' });
+          else track('social_click', { network: 'linkedin', location: 'certificates' });
+        }
+      }
+    }, true);
+
+    function start() { viewChanged(); observeSections(); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+    else start();
   })();
 </script>
 <style>:root{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
