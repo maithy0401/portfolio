@@ -1981,6 +1981,10 @@
   @media (min-width: 1001px) { .certs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   /* certificate image frames: transparent so the card background shows around the image */
   .cert .r-cert .slot-frame { background: transparent; }
+  /* roles with several entries (Prime-Labo): bullet list, years smaller and fainter */
+  .career-roles:has(li + li) li { position: relative; padding-left: 14px; }
+  .career-roles:has(li + li) li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
+  .career-roles:has(li + li) .yrs { font-size: 0.6875rem; font-weight: 400; color: #8F8D8D; }
   .deliver { display: flex; flex-wrap: wrap; gap: 8px; }
   .deliver li { font-size: var(--t-xs); font-weight: 600; padding: 5px 12px; border-radius: 999px; border: 1px solid rgba(57, 55, 55, 0.25); background: rgba(255, 255, 255, 0.6); color: var(--ink); }
   @media (max-width: 900px) { .case-top { grid-template-columns: minmax(0, 1fr); } }
