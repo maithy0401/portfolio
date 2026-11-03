@@ -11,14 +11,115 @@
 <meta property="og:url" content="https://maithy0401.github.io/portfolio/">
 <meta name="theme-color" content="#F7F7F7">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) with Consent Mode v2: analytics stays denied until the visitor accepts -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KGF8Y7W35M"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+
+  /* Consent Mode v2 defaults, set before the tag is configured. A saved "granted" choice is restored. */
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('vmt-consent'); } catch (e) {}
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: saved === 'granted' ? 'granted' : 'denied'
+    });
+  })();
+
   gtag('js', new Date());
 
   gtag('config', 'G-KGF8Y7W35M');
+</script>
+<style>
+  .vmt-cc { position: fixed; left: 16px; bottom: 16px; z-index: 60; width: min(440px, calc(100vw - 32px)); display: flex; flex-direction: column; gap: 14px; padding: 18px 20px; background: var(--surface, #fff); color: var(--ink, #393737); border: 1px solid var(--line, #E4E3E3); border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12); font-family: var(--f-body, "Montserrat", system-ui, sans-serif); font-size: 0.875rem; line-height: 1.5; }
+  .vmt-cc-text { margin: 0; }
+  .vmt-cc-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .vmt-cc-btn { appearance: none; min-height: 40px; padding: 0 22px; border-radius: 999px; border: 1px solid var(--ink, #393737); background: transparent; color: var(--ink, #393737); font-family: inherit; font-size: 0.875rem; font-weight: 600; cursor: pointer; }
+  .vmt-cc-btn:hover { background: var(--ink, #393737); color: #fff; }
+  .vmt-cc-btn:focus-visible, .vmt-cc-link:focus-visible { outline: 2px solid var(--ink, #393737); outline-offset: 3px; }
+  .vmt-cc-link { appearance: none; background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  @media (max-width: 520px) { .vmt-cc { left: 12px; right: 12px; bottom: 12px; width: auto; } }
+  @media (prefers-reduced-motion: no-preference) { .vmt-cc { animation: vmt-cc-in 0.25s ease both; } }
+  @keyframes vmt-cc-in { from { opacity: 0; transform: translateY(8px); } }
+</style>
+<script>
+  /* Cookie consent banner. Choice is kept in localStorage and sent to Google through Consent Mode. */
+  (function () {
+    var KEY = 'vmt-consent';
+    var box, opener = null;
+
+    function read() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+    function save(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+
+    function clearGaCookies() {
+      var host = location.hostname;
+      var gone = '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      document.cookie.split(';').forEach(function (c) {
+        var name = c.split('=')[0].trim();
+        if (name === '_ga' || name.indexOf('_ga_') === 0) {
+          document.cookie = name + gone;
+          document.cookie = name + gone + '; domain=' + host;
+          document.cookie = name + gone + '; domain=.' + host;
+        }
+      });
+    }
+
+    function hide() {
+      box.hidden = true;
+      if (opener) { opener.focus(); opener = null; }
+    }
+
+    function choose(value) {
+      save(value);
+      gtag('consent', 'update', { analytics_storage: value });
+      if (value === 'denied') clearGaCookies();
+      hide();
+    }
+
+    function show(from) {
+      if (from) opener = from;
+      box.hidden = false;
+      if (from) box.querySelector('.vmt-cc-btn').focus();
+    }
+
+    function build() {
+      box = document.createElement('div');
+      box.className = 'vmt-cc';
+      box.setAttribute('role', 'region');
+      box.setAttribute('aria-label', 'Cookie consent');
+      box.hidden = true;
+      box.innerHTML =
+        '<p class="vmt-cc-text">This site uses Google Analytics cookies to understand how people use the portfolio. ' +
+        'Analytics stays off unless you accept, and you can change your choice any time with “Cookie settings” in the footer.</p>' +
+        '<div class="vmt-cc-actions">' +
+        '<button type="button" class="vmt-cc-btn" data-choice="granted">Accept</button>' +
+        '<button type="button" class="vmt-cc-btn" data-choice="denied">Decline</button>' +
+        '</div>';
+      document.body.appendChild(box);
+      box.addEventListener('click', function (e) {
+        var b = e.target.closest && e.target.closest('[data-choice]');
+        if (b) choose(b.getAttribute('data-choice'));
+      });
+
+      var inner = document.querySelector('footer .inner');
+      if (inner) {
+        var link = document.createElement('button');
+        link.type = 'button';
+        link.className = 'vmt-cc-link';
+        link.textContent = 'Cookie settings';
+        link.addEventListener('click', function () { show(link); });
+        inner.insertBefore(link, document.getElementById('to-top'));
+      }
+
+      if (read() === null) show(null);
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+    else build();
+  })();
 </script>
 <style>:root{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 </head>
