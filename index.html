@@ -321,7 +321,7 @@
           var product = m ? m[1] : 'shop';
           track('product_click', {
             product_name: product,
-            price_type: product === 'spec-track-kit-full' ? 'paid' : (product === 'spec-track-kit-lite' ? 'free' : 'shop')
+            price_type: (product === 'spec-track-kit-full' || product === 'designer-po-sprint-kit') ? 'paid' : (product === 'spec-track-kit-lite' ? 'free' : 'shop')
           });
         } else if (el.classList.contains('cert-link')) {
           var card = el.closest('.cert');
@@ -800,6 +800,8 @@
   .dgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
   .dgrid div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   .dgrid p { font-size: var(--t-sm); line-height: 1.55; }
+  .dgrid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 720px) { .dgrid.two { grid-template-columns: 1fr; } }
   @media (max-width: 720px) {
     .decision { grid-template-columns: 1fr; gap: 6px; }
     .dgrid { grid-template-columns: 1fr; gap: 12px; }
@@ -2623,7 +2625,7 @@
       <div class="section-head">
         <p class="label">What I bring</p>
         <h2 id="roles-h">Two roles I already do every day</h2>
-        <p>At LOTTE C&amp;F Vietnam I design LOTTE FLEX and own its backlog, requirements and measurement. Before that I spent seven years leading design teams at Prime-Labo, the last two managing UI/UX and front-end together.</p>
+        <p>At LOTTE C&amp;F Vietnam I design LOTTE FLEX and manage its backlog, requirements and measurement. Before that I spent seven years leading design teams at Prime-Labo, the last two managing UI/UX and front-end together.</p>
       </div>
       <dl class="facts">
         <div class="fact">
@@ -2783,15 +2785,16 @@
             <h3 id="shop-h">Notion templates for Product Owners</h3>
             <p class="shop-lede">So your team agrees on what “done” means, and how to measure it, before anything ships.</p>
             <article class="product" aria-labelledby="prod-full-h">
-              <figure class="slot r-wide" data-slot="gumroad-cover-full" data-hint-en="Product cover: Spec &amp; Track Kit Full"></figure>
-              <div class="product-top"><h4 id="prod-full-h">Spec &amp; Track Kit Full</h4><span class="price-tag">Paid</span></div>
-              <p>Your PRD and your tracking plan under one roof: every success metric linked to the event that measures it.</p>
+              <figure class="slot r-wide" data-slot="gumroad-cover-full" data-hint-en="Product cover: Designer-to-PO Sprint Kit"></figure>
+              <div class="product-top"><h4 id="prod-full-h">Designer-to-PO Sprint Kit</h4><span class="price-tag">Paid</span></div>
+              <p>A Notion PRD template, edge-case checklist and fully worked sample PRD for designers doing PO work.</p>
               <ul class="product-inc" aria-label="What's inside">
-                <li><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>4 linked databases</li>
-                <li><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg>6 guides &amp; checklists</li>
-                <li><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>A filled example</li>
+                <li><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>16-section PRD template</li>
+                <li><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>45-point edge-case checklist</li>
+                <li><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>A filled sample PRD</li>
+                <li><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>Markdown and PDF versions</li>
               </ul>
-              <div class="product-cta"><a class="btn shop-btn" href="https://thychankuma.gumroad.com/l/spec-track-kit-full" target="_blank" rel="noopener">See the full kit <svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></div>
+              <div class="product-cta"><a class="btn shop-btn" href="https://thychankuma.gumroad.com/l/designer-po-sprint-kit" target="_blank" rel="noopener">See the kit <svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></div>
             </article>
             <div class="shop-actions">
               <a class="text-link" href="https://thychankuma.gumroad.com/l/spec-track-kit-lite?layout=profile" target="_blank" rel="noopener">Get the free Lite version</a>
@@ -3085,10 +3088,36 @@
             <ul class="bullets">
               <li><span>Redesigned the app for the new brand identity and designed end-to-end flows for onboarding and eKYC, payment, repayment, Soft OTP, session management and account status.</span></li>
               <li><span>Wrote PRDs and feature specs covering use cases and edge cases on iOS and Android, then followed development closely and resolved open questions with developers.</span></li>
-              <li><span>Took over the Admin Dashboard, Merchant Portal and BOS business-rule management through a handover, and now manage them: adjusting and improving how staff handle users, merchants, business rules and service configuration.</span></li>
+              <li><span>Took over the Admin Dashboard, Merchant Portal and BOS business-rule management through a handover. Since then I have redesigned the BOS rule-setup screens and reorganised the Admin Portal so it can grow with new requests.</span></li>
               <li><span>Wrote test cases, took part in testing and ran UAT before each release.</span></li>
               <li><span>Supported the Marketing team with key visuals, campaign banners and social posts when needed.</span></li>
             </ul>
+          </section>
+
+          <section class="block">
+            <h3><span class="ic-circle xs" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Fixing UX debt after the handover</h3>
+            <div class="decisions">
+              <div class="decision">
+                <span class="did">BOS</span>
+                <div>
+                  <h4>Rule setup that staff can do on their own</h4>
+                  <div class="dgrid two">
+                    <div><p class="label">Found</p><p>The rule-setup screens were hard to read. Staff had to study the manual, and without someone explaining the logic in person they could barely follow it.</p></div>
+                    <div><p class="label">Changed</p><p>Designed a new UI for these screens, so team members can open them and set up rules on their own, with much less need for the manual.</p></div>
+                  </div>
+                </div>
+              </div>
+              <div class="decision">
+                <span class="did">Admin</span>
+                <div>
+                  <h4>A portal that grows with each new request</h4>
+                  <div class="dgrid two">
+                    <div><p class="label">Found</p><p>Marketing and Ops keep asking for more from the Admin Portal as the product grows.</p></div>
+                    <div><p class="label">Changed</p><p>Organised its UI and flows so new requests from Marketing and Ops can be added without breaking the structure.</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
 
           <div class="gallery-wrap" data-gallery="flex-ui-systems">
@@ -3262,7 +3291,7 @@
 
           <div class="outcome">
             <p class="label"><span class="ic-circle xs v3" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg></span>Outcome</p>
-            <p>The team now has one shared view of onboarding, with every drop-off sorted by who can fix it. For the financial partner's approval steps, the report lists what to check with the partner, Risk and IT. On our side no big redesign was needed: the work narrowed to a specific step in the flow, and the proposal is in the backlog.</p>
+            <p>The team now has one shared view of onboarding, with every drop-off sorted by who can fix it. For the financial partner's approval steps, the report lists what to check with the partner, Risk and IT. On our side no big redesign was needed: the work narrowed to a specific step in the flow. The IT team is now implementing the proposal, and the same funnel will show whether it worked once it ships.</p>
           </div>
         </div>
       </div>
@@ -3290,7 +3319,7 @@
         <header class="case-head">
           <div class="case-tags"><span class="key">WELL-MVP</span><span class="lens">0→1 product UI/UX</span><span class="label">Web3 · 2023–25</span></div>
           <h1 id="c3-h">A Web3 well-being super app, from first interview to MVP</h1>
-          <p class="lede">A well-being app where people earn rewards for sharing their data on blockchain. I joined on day one and ran the whole UX process.</p>
+          <p class="lede">A well-being super app with mini apps, where people earn rewards for sharing their data on blockchain. I joined on day one and ran the whole UX process.</p>
         </header>
         <figure class="slot r-head cover" data-slot="well-cover" data-hint-en="Cover: MVP screens or key visual"></figure>
       </div>
@@ -3384,7 +3413,7 @@
       <div class="case-body">
         <dl class="meta">
           <div><dt>Roles</dt><dd>UI/UX Team Leader, 2018–2023<br>UI/UX &amp; Front-end Team Manager, 2023–2025</dd></div>
-          <div><dt>Teams</dt><dd>UI/UX and front-end</dd></div>
+          <div><dt>Team</dt><dd>5 people: 2 designers (a senior UI/UX and graphic designer, a UI/UX intern) and 3 front-end developers (lead, senior, junior)</dd></div>
           <div><dt>Clients</dt><dd>Japanese companies in IT services, job matching, Web3, e-commerce and public services</dd></div>
           <div><dt>Ways of working</dt><dd>Agile / Scrum, Figma</dd></div>
         </dl>
@@ -3410,11 +3439,11 @@
             <div class="trio">
               <div>
                 <h4>Built the practice</h4>
-                <p>Introduced Figma and Agile practices and estimated design tasks for each sprint. Later aligned direction with the Japanese UI/UX team and brought AI tools into the workflow to raise output.</p>
+                <p>Introduced Figma and Agile practices. Ran weekly sprints with design reviews and critiques, a handoff checklist for front-end, and estimates built from the function and screen lists. Later aligned direction with the Japanese UI/UX team and brought AI tools into the workflow.</p>
               </div>
               <div>
                 <h4>Ran delivery for two teams</h4>
-                <p>Planned sprints, assigned tasks and followed delivery for UI/UX and front-end, and reported progress, risks and status to Japanese management.</p>
+                <p>Led a 5-person team of 2 designers and 3 front-end developers: planned sprints, assigned tasks, followed delivery and reported progress, risks and status to Japanese management.</p>
               </div>
               <div>
                 <h4>Scoped work with clients</h4>
@@ -3524,7 +3553,7 @@
   <button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next image"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6"/></svg></button>
   <div class="lb-bar"><span class="lb-count" id="lb-count" aria-live="polite"></span><button type="button" class="slot-btn" id="lb-close">Close</button></div>
 </div>
-<script type="application/json" id="vmt-state">{"v": 1, "slots": {"cert-pspo": {"id": "cert-pspo.jpg", "cap": ""}, "cert-google-ux": {"id": "cert-google-ux.jpg", "cap": ""}, "cert-claude-101": {"id": "cert-claude-101.jpg", "cap": ""}, "cert-claude-cowork": {"id": "cert-claude-cowork.jpg", "cap": ""}, "logo-lotte": {"id": "logo-lotte.png", "cap": ""}, "logo-primelabo": {"id": "logo-primelabo.png", "cap": ""}, "logo-blocksky": {"id": "logo-blocksky.jpg", "cap": ""}, "logo-bigbeat": {"id": "logo-bigbeat.png", "cap": ""}, "logo-dubut": {"id": "logo-dubut.png", "cap": ""}, "logo-badger": {"id": "logo-badger.png", "cap": ""}, "logo-kenh14": {"id": "logo-kenh14.png", "cap": ""}, "portrait": {"id": "portrait.jpg", "cap": ""}, "gumroad-cover": {"id": "gumroad-cover.jpg", "cap": ""}, "flex-ui-app": {"id": "flex-ui-app.png", "cap": ""}, "flex-ui-cover": {"id": "flex-ui-cover.png", "cap": ""}, "flex-ui-s1": {"id": "flex-ui-s1.png", "cap": ""}, "flex-ui-s2": {"id": "flex-ui-s2.png", "cap": ""}, "flex-ui-s3": {"id": "flex-ui-s3.png", "cap": ""}, "flex-ui-s4": {"id": "flex-ui-s4.png", "cap": ""}, "flex-ui-p1": {"id": "flex-ui-p1.png", "cap": ""}, "flex-ui-p2": {"id": "flex-ui-p2.png", "cap": ""}, "flex-ui-p3": {"id": "flex-ui-p3.png", "cap": ""}, "flex-ui-p4": {"id": "flex-ui-p4.png", "cap": ""}, "flex-ui-p5": {"id": "flex-ui-p5.png", "cap": ""}, "flex-ui-p6": {"id": "flex-ui-p6.png", "cap": ""}, "flex-data-cover": {"id": "flex-data-cover.png", "cap": ""}, "flex-data-1": {"id": "flex-data-1.png", "cap": ""}, "flex-data-2": {"id": "flex-data-2.png", "cap": ""}, "flex-data-3": {"id": "flex-data-3.png", "cap": ""}, "flex-data-4": {"id": "flex-data-4.png", "cap": ""}, "well-cover": {"id": "well-cover.png", "cap": ""}, "well-p1": {"id": "well-p1.png", "cap": ""}, "well-p2": {"id": "well-p2.png", "cap": ""}, "well-p3": {"id": "well-p3.png", "cap": ""}, "well-p4": {"id": "well-p4.png", "cap": ""}, "well-p5": {"id": "well-p5.png", "cap": ""}, "well-p6": {"id": "well-p6.png", "cap": ""}, "lead-1": {"id": "lead-1.png", "cap": "Local government communication system"}, "lead-2": {"id": "lead-2.png", "cap": "AI fashion shopping app"}, "lead-3": {"id": "lead-3.png", "cap": "Clinic and nurse/doctor matching app"}, "lead-4": {"id": "lead-4.png", "cap": "Crypto wallet tool"}, "lead-5": {"id": "lead-5.png", "cap": "Internal tools for office workers"}, "lead-cover": {"id": "lead-cover.png", "cap": ""}, "gumroad-cover-full": {"id": "gumroad-cover-full.png", "cap": ""}, "cert-psm-backlog": {"id": "cert-psm-backlog.jpg", "cap": ""}}}</script>
+<script type="application/json" id="vmt-state">{"v": 1, "slots": {"cert-pspo": {"id": "cert-pspo.jpg", "cap": ""}, "cert-google-ux": {"id": "cert-google-ux.jpg", "cap": ""}, "cert-claude-101": {"id": "cert-claude-101.jpg", "cap": ""}, "cert-claude-cowork": {"id": "cert-claude-cowork.jpg", "cap": ""}, "logo-lotte": {"id": "logo-lotte.png", "cap": ""}, "logo-primelabo": {"id": "logo-primelabo.png", "cap": ""}, "logo-blocksky": {"id": "logo-blocksky.jpg", "cap": ""}, "logo-bigbeat": {"id": "logo-bigbeat.png", "cap": ""}, "logo-dubut": {"id": "logo-dubut.png", "cap": ""}, "logo-badger": {"id": "logo-badger.png", "cap": ""}, "logo-kenh14": {"id": "logo-kenh14.png", "cap": ""}, "portrait": {"id": "portrait.jpg", "cap": ""}, "gumroad-cover": {"id": "gumroad-cover.jpg", "cap": ""}, "flex-ui-app": {"id": "flex-ui-app.png", "cap": ""}, "flex-ui-cover": {"id": "flex-ui-cover.png", "cap": ""}, "flex-ui-s1": {"id": "flex-ui-s1.png", "cap": ""}, "flex-ui-s2": {"id": "flex-ui-s2.png", "cap": ""}, "flex-ui-s3": {"id": "flex-ui-s3.png", "cap": ""}, "flex-ui-s4": {"id": "flex-ui-s4.png", "cap": ""}, "flex-ui-p1": {"id": "flex-ui-p1.png", "cap": ""}, "flex-ui-p2": {"id": "flex-ui-p2.png", "cap": ""}, "flex-ui-p3": {"id": "flex-ui-p3.png", "cap": ""}, "flex-ui-p4": {"id": "flex-ui-p4.png", "cap": ""}, "flex-ui-p5": {"id": "flex-ui-p5.png", "cap": ""}, "flex-ui-p6": {"id": "flex-ui-p6.png", "cap": ""}, "flex-data-cover": {"id": "flex-data-cover.png", "cap": ""}, "flex-data-1": {"id": "flex-data-1.png", "cap": ""}, "flex-data-2": {"id": "flex-data-2.png", "cap": ""}, "flex-data-3": {"id": "flex-data-3.png", "cap": ""}, "flex-data-4": {"id": "flex-data-4.png", "cap": ""}, "well-cover": {"id": "well-cover.png", "cap": ""}, "well-p1": {"id": "well-p1.png", "cap": ""}, "well-p2": {"id": "well-p2.png", "cap": ""}, "well-p3": {"id": "well-p3.png", "cap": ""}, "well-p4": {"id": "well-p4.png", "cap": ""}, "well-p5": {"id": "well-p5.png", "cap": ""}, "well-p6": {"id": "well-p6.png", "cap": ""}, "lead-1": {"id": "lead-1.png", "cap": "Local government communication system"}, "lead-2": {"id": "lead-2.png", "cap": "AI fashion shopping app"}, "lead-3": {"id": "lead-3.png", "cap": "Clinic and nurse/doctor matching app"}, "lead-4": {"id": "lead-4.png", "cap": "Crypto wallet tool"}, "lead-5": {"id": "lead-5.png", "cap": "Internal tools for office workers"}, "lead-cover": {"id": "lead-cover.png", "cap": ""}, "gumroad-cover-full": {"id": "gumroad-cover-sprint.png", "cap": ""}, "cert-psm-backlog": {"id": "cert-psm-backlog.jpg", "cap": ""}}}</script>
 <script>
   /* Case studies are separate views, addressed by #name so each one has its own link. */
   (function () {
