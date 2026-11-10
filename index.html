@@ -1660,9 +1660,9 @@
   .case-head .lede { margin-inline: 0; max-width: 62ch; }
   .case-tags .label { font-size: var(--fs-14); font-weight: 500; letter-spacing: 0; text-transform: none; }
 
-  /* work: the first case study leads, the other three follow */
+  /* work: the first case study leads, the other four follow in a 2 by 2 grid */
   #work { padding-top: clamp(24px, 3vw, 40px); }
-  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .card { gap: 18px; }
   .card-body { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
   .card.feature { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
