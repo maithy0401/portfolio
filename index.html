@@ -2256,6 +2256,7 @@
   .r-head[data-slot="flex-data-cover"].filled .slot-frame::after { display: none; }
   /* FLEX-UI cover: a touch smaller than the default header image */
   .case-top:has(> .slot.filled) .r-head[data-slot="flex-ui-cover"] .slot-frame { transform: scale(1); transform-origin: center bottom; }
+  .case-top:has(> .slot.filled) .r-head[data-slot="rang-cover"] .slot-frame { transform: scale(0.9); transform-origin: right center; }
   /* small screens: a filled cover goes under the title instead of squeezing it into a narrow column */
   @media (max-width: 900px) {
     .case-top:has(> .slot.filled) { grid-template-columns: minmax(0, 1fr); }
