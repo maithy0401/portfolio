@@ -1017,7 +1017,12 @@
     background: color-mix(in srgb, var(--bg) 78%, transparent);
     font-size: var(--t-sm); font-weight: 600; color: var(--ink);
   }
-  .slot-cap { font-size: var(--t-sm); color: var(--muted); line-height: 1.45; }
+  .meta-list { display: flex; flex-direction: column; gap: 2px; }
+  .meta-list li { position: relative; padding-left: 14px; }
+  .meta-list li::before { content: ""; position: absolute; left: 1px; top: 0.6em; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
+  .trio-list { gap: 6px; font-size: var(--t-sm); color: var(--muted); line-height: 1.55; }
+  .trio-list code { font-size: 0.92em; }
+  .slot-cap { font-size: var(--t-xs); font-style: italic; text-align: center; color: var(--muted); line-height: 1.45; }
   .slot-cap-input {
     width: 100%; font-family: var(--f-body); font-size: var(--t-sm);
     padding: 8px 10px; border-radius: var(--r-sm); border: 1px solid var(--line);
@@ -2429,6 +2434,11 @@
   .r-phone.filled .slot-frame { aspect-ratio: auto; background: transparent; border-radius: 0; overflow: visible; }
   .r-phone.filled .slot-frame img { position: static; display: block; width: 100%; height: auto; object-fit: contain; border-radius: 16px; }
   @media (max-width: 520px) { .g-phone { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
+  /* every figure caption shares the image-note style, so it never reads as body text */
+  .fig figcaption, figure > figcaption { font-size: var(--t-xs); font-style: italic; text-align: center; color: var(--muted); line-height: 1.45; }
+  /* Rang app screens: one frame height for all, the taller screen is trimmed at the top */
+  [data-gallery="rang-app"] .r-phone.filled .slot-frame { aspect-ratio: 375 / 812; overflow: hidden; border-radius: 16px; }
+  [data-gallery="rang-app"] .r-phone.filled .slot-frame img { height: 100%; object-fit: cover; object-position: center bottom; border-radius: 0; }
 
   /* lightbox: previous / next between the images on the current page */
   .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.35); background: rgba(255, 255, 255, 0.12); color: #fff; cursor: pointer; }
@@ -3530,6 +3540,7 @@
           <div class="case-tags"><span class="key">RANG-DS</span><span class="lens">Design system</span><span class="label">Personal project · 2026</span></div>
           <h1 id="c5-h">One design system for an ordering app, a POS and a dashboard</h1>
           <p class="lede">Rang is a fictional Vietnamese coffee chain. I built its design system as a public project to show how I structure a system, document it for developers and keep it consistent as it grows.</p>
+          <p class="case-cta"><a class="btn primary" href="https://www.figma.com/community/file/1701830330904012105/rang-design-system-coffee-chain" target="_blank" rel="noopener">Open in Figma Community <svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></p>
         </header>
         <figure class="slot r-head cover" data-slot="rang-cover" data-hint-en="Cover: Rang Design System"></figure>
       </div>
@@ -3539,8 +3550,8 @@
         <dl class="meta">
           <div><dt>Role</dt><dd>Sole designer and system owner</dd></div>
           <div><dt>Type</dt><dd>Personal project for a fictional brand. No client and no team.</dd></div>
-          <div><dt>Scope</dt><dd>Brand layer, tokens, 28 components, 10 screens, governance page</dd></div>
-          <div><dt>Tools</dt><dd>Figma variables and components. Built with AI assistance (Claude through the Figma MCP). Product photos generated with Figma AI.</dd></div>
+          <div><dt>Scope</dt><dd><ul class="meta-list"><li>Brand layer</li><li>Tokens</li><li>28 components</li><li>10 screens</li><li>Governance page</li></ul></dd></div>
+          <div><dt>Tools</dt><dd><ul class="meta-list"><li>Figma variables and components</li><li>Built with AI assistance (Claude through the Figma MCP)</li><li>Product photos generated with Figma AI</li></ul></dd></div>
         </dl>
         <div class="story">
           <section class="block">
@@ -3553,15 +3564,15 @@
             <div class="trio">
               <div>
                 <h4>Three tiers of tokens</h4>
-                <p>Primitives hold the raw values (37 colors), semantic tokens name the role, such as <code>color/bg/surface</code>, and components only use semantic tokens. Each token carries its CSS variable name for developers.</p>
+                <ul class="meta-list trio-list"><li>Primitives hold the raw values (37 colors)</li><li>Semantic tokens name the role, such as <code>color/bg/surface</code></li><li>Components only use semantic tokens</li><li>Each token carries its CSS variable name</li></ul>
               </div>
               <div>
                 <h4>One collection, two modes</h4>
-                <p>Light and Dark are two modes of the same Color collection. Switching the mode on a parent frame restyles every component inside it, with no token swaps.</p>
+                <ul class="meta-list trio-list"><li>Light and Dark are two modes of the same Color collection</li><li>Switching the mode on a parent frame restyles every component inside it</li><li>No token swaps needed</li></ul>
               </div>
               <div>
-                <h4>Type that fits Vietnamese</h4>
-                <p>13 text styles in Montserrat, with line height of at least 1.4 so stacked diacritics never touch the line above.</p>
+                <h4>Type styles named by role</h4>
+                <ul class="meta-list trio-list"><li>13 text styles in Montserrat</li><li>Grouped as Display, Heading, Body, Label and Price</li><li>Components pick a role, never a raw font size</li></ul>
               </div>
             </div>
           </section>
@@ -3626,7 +3637,6 @@
           <div class="outcome">
             <p class="label"><span class="ic-circle xs v3" aria-hidden="true"><svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg></span>Outcome</p>
             <p>The file is public on Figma Community: brand, tokens, 28 components, 10 screens and the governance page. It has no team behind it, so nothing here is measured. The adoption targets in the file are what I would track on a real team: 90% of screens built only from the library and an instance detach rate under 5%.</p>
-            <p><a class="btn ghost" href="https://www.figma.com/community/file/1701830330904012105/rang-design-system-coffee-chain" target="_blank" rel="noopener">Open in Figma Community <svg aria-hidden="true" focusable="false" class="ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></p>
           </div>
         </div>
       </div>
